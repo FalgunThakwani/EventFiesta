@@ -32,10 +32,10 @@ deployEventFiesta:
   image: maven:latest
   script:
     - echo "Deploy Event Fiesta to Heroku"
-    - sudo apt-get update -qy
-    - sudo apt-get install -y ruby-dev
-    - sudo gem install dp
-    - sudo dpl --provider=heroku --app=$APP_NAME --apikey=$APP_KEY
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dp
+    - dpl --provider=heroku --app=$APP_NAME --apikey=$APP_KEY
   artifacts:
     paths:
       - target
