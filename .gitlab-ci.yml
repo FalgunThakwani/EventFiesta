@@ -10,7 +10,7 @@ buildEventFiesta:
     - mvn clean package -Dmaven.test.skip=true
   artifacts:
     paths:
-      - /outputs/logs
+      - target/build/output
   tags:
     - ugrad
 
@@ -20,5 +20,8 @@ testEventFiesta:
   script:
     - echo "Testing Event Fiesta"
     - mvn verify
+  artifacts:
+    paths:
+      - target/test/output
   tags:
     - ugrad
