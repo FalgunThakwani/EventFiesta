@@ -10,7 +10,7 @@ buildEventFiesta:
     - mvn clean package -Dmaven.test.skip=true
   artifacts:
     paths:
-      - target/build/output
+      - target
   tags:
     - ugrad
 
@@ -22,6 +22,6 @@ testEventFiesta:
     - mvn verify
   artifacts:
     paths:
-      - target/test/output
+      - target
   tags:
     - ugrad
