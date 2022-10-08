@@ -1,7 +1,6 @@
 stages:
   - build
   - test
-  - deploy
 
 buildEventFiesta:
   stage: build
@@ -26,19 +25,3 @@ testEventFiesta:
       - target
   tags:
     - ugrad
-
-deployEventFiesta:
-  stage: deploy
-  image: maven:latest
-  script:
-    - echo "Deploy Event Fiesta to Heroku"
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dp
-    - dpl --provider=heroku --app=$APP_NAME --apikey=$APP_KEY
-  artifacts:
-    paths:
-      - target
-  tags:
-    - ugrad
-  only: develop
