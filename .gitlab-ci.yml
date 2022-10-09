@@ -1,0 +1,62 @@
+stages:
+  - build
+  - test
+  - deploy
+
+buildEventFiesta:
+  stage: build
+  image: maven:latest
+  script:
+    - echo "Building Event Fiesta"
+    - mvn clean package -Dmaven.test.skip=true
+  artifacts:
+    paths:
+      - target
+  tags:
+    - ugrad
+
+testEventFiesta:
+  stage: test
+  image: maven:latest
+  script:
+    - echo "Testing Event Fiesta"
+    - mvn verify
+  artifacts:
+    paths:
+      - target
+  tags:
+    - ugrad
+
+deployDevelop:
+  stage: deploy
+  tags: 
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - echo "Deploy Event Fiesta Develop/Test to Heroku"
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$APP_NAME --api-key=$APP_KEY
+  artifacts:
+    paths:
+      - target
+  only:
+    - develop
+
+deployProduction:
+  stage: deploy
+  tags:
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - echo "Deploy Event Fiesta Production to Heroku"
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$PRODUCTION_APP_NAME --api-key=$PRODUCTION_API_KEY
+  artifacts:
+    paths:
+      - target
+  only:
+    - main

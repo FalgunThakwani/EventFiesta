@@ -12,7 +12,7 @@ class EventFiestaApplicationTests {
 	}
 
 	@Test
-	private void getAppNameTest() {
+	public void getAppNameTest() {
 		String appName = EventFiestaApplication.getAppName();
 		Assertions.assertEquals(appName, "Event Fiesta");
 	}
