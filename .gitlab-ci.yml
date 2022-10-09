@@ -27,13 +27,13 @@ testEventFiesta:
   tags:
     - ugrad
 
-deployEventFiesta:
+deployDevelop:
   stage: deploy
   tags: 
     - dalfcs_gitlab_docker_ci
   image: ruby:latest
   script:
-    - echo "Deploy Event Fiesta to Heroku"
+    - echo "Deploy Event Fiesta Develop/Test to Heroku"
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
@@ -43,3 +43,20 @@ deployEventFiesta:
       - target
   only:
     - develop
+
+deployProduction:
+  stage: deploy
+  tags:
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - echo "Deploy Event Fiesta Production to Heroku"
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$PRODUCTION_APP_NAME --api-key=$PRODUCTION_API_KEY
+  artifacts:
+    paths:
+      - target
+  only:
+    - main
