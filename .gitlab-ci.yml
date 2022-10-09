@@ -30,7 +30,7 @@ testEventFiesta:
 deployEventFiesta:
   stage: deploy
   tags: 
-    - dalfcs_gitlab__docker_ci
+    - dalfcs_gitlab_docker_ci
   image: ruby:2.6
   script:
     - echo "Deploy Event Fiesta to Heroku"
