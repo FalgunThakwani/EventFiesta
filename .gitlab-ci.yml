@@ -31,12 +31,12 @@ deployEventFiesta:
   stage: deploy
   tags: 
     - dalfcs_gitlab_docker_ci
-  image: ruby:2.6
+  image: ruby:latest
   script:
     - echo "Deploy Event Fiesta to Heroku"
     - apt-get update -qy
     - apt-get install -y ruby-dev
-    - gem install dp
+    - gem install dpl
     - dpl --provider=heroku --app=$APP_NAME --api-key=$APP_KEY
   artifacts:
     paths:
