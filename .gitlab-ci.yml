@@ -29,7 +29,9 @@ testEventFiesta:
 
 deployEventFiesta:
   stage: deploy
-  image: maven:latest
+  tags: 
+    - dalfcs_gitlab__docker_ci
+  image: ruby:2.6
   script:
     - echo "Deploy Event Fiesta to Heroku"
     - apt-get update -qy
@@ -39,7 +41,5 @@ deployEventFiesta:
   artifacts:
     paths:
       - target
-  tags:
-    - ugrad
   only:
     - develop
