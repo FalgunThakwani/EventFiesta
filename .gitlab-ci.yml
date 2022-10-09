@@ -37,7 +37,7 @@ deployEventFiesta:
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dp
-    - dpl --provider=heroku --app=$APP_NAME --apikey=$APP_KEY
+    - dpl --provider=heroku --app=$APP_NAME --api-key=$APP_KEY
   artifacts:
     paths:
       - target
