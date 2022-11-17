@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Group 11 project - Event Fiesta</title>
-    <p> Welcome to Event Fiesta</p>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
 </head>
 <body>
-
+<div class="header">
+    <img th:src="@{/images/logo.png}" class="logo">
+    <div class="header-right">
+        <a href="#home">ABOUT US</a>
+        <a href="#contact">OUR SERVICES</a>
+        <a href="#about">BLOG</a>
+        <a href="#about">CONTACT US</a>
+        <a href="#about">LOGIN AS VENDOR</a>
+        <a href="/userlogin">LOGIN AS USER</a>
+    </div>
+</div>
+<div>
+    <div class="logo-text">
+    <div class="heading">BEST EVENT PLANNER IN CANADA</div>
+    <div class="sub-heading">Let's Make Your Dream a Reality</div>
+    <div class="content-text">We at Event Fiesta provides event planning from setting</div>
+        <div class="content-text"> up venues to decoration to sending E-invites and organising guest lists.</div>
+        <div class="content-text">Our team of expert planners will help you enjoy the event.</div>
+    </div>
+    <img th:src="@{/images/homepage.jpg}" class="image">
+</div>
 </body>
 </html>
