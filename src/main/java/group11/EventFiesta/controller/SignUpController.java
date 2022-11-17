@@ -10,6 +10,7 @@ import group11.EventFiesta.model.User;
 
 @Controller
 public class SignUpController {
+
     @GetMapping("/signup")
     public String getHomePage(Model model) {
         model.addAttribute("user", new User());
@@ -19,6 +20,7 @@ public class SignUpController {
     @PostMapping("/handleUserSignUp")
     public String handleUserSignUp(@ModelAttribute User user) {
         // Todo: Store User object in db
+
         return "UserSignUp";
     }
 
