@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserLoginController {
 
-        @GetMapping("/userlogin")
+        @GetMapping("/userLogin")
         public String getHomePage(Model model) {
             model.addAttribute("user", new User());
             return "UserLogin";
@@ -19,7 +19,7 @@ public class UserLoginController {
         @PostMapping("/handleUserLogin")
         public String handleUserSignUp(@ModelAttribute User user) {
             // Todo: logic for checking username and password
-
+            System.out.println(user.getEmail());
             return "UserLogin";
         }
 
