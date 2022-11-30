@@ -2,7 +2,7 @@ package group11.EventFiesta;
 
 public interface ILogin {
 
-    public Object login(String username, String pwd);
+    public Object login(String username, String pwd) throws Exception;
 
     public Boolean logout(Object object);
 
