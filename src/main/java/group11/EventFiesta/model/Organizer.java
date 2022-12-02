@@ -5,6 +5,8 @@ public class Organizer {
     private String email;
     private String password;
 
+    private Integer organizerId;
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -13,12 +15,20 @@ public class Organizer {
         this.password = password;
     }
 
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public Integer getOrganizerId() {
+        return organizerId;
     }
 
     @Override
