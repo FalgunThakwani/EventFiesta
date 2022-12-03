@@ -27,9 +27,9 @@ public class DBConnectionPool {
         ds = new BasicDataSource();
 
         //todo need to get db configurations from application.properties file
-        ds.setUrl("jdbc:mysql://localhost:3306/CSCI5308_11_DEVINT");
-        ds.setUsername("root");
-        ds.setPassword("Root@123");
+        ds.setUrl("jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_11_DEVINT");
+        ds.setUsername("CSCI5308_11_DEVINT_USER");
+        ds.setPassword("DhErnQD2UR");
         ds.setMinIdle(5);
         ds.setMaxIdle(10);
         ds.setMaxOpenPreparedStatements(100);
