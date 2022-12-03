@@ -1,17 +1,19 @@
 package group11.EventFiesta.organizer;
 
-import group11.EventFiesta.ILogin;
 
 public abstract class LoginState {
 
-    ILogin login;
-
-    LoginState(ILogin login) {
-        this.login = login;
+    LoginState() {
+        setLoginStatus();
+        setNextHtml();
     }
     String loginStatus;
 
     String nextHtml;
+
+    public abstract void setLoginStatus();
+
+    public abstract void setNextHtml();
 
     public String getLoginStatus() {
         return loginStatus;

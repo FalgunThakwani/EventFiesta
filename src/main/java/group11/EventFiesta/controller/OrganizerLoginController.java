@@ -1,6 +1,7 @@
 package group11.EventFiesta.controller;
 
 import group11.EventFiesta.model.Organizer;
+import group11.EventFiesta.organizer.LoginState;
 import group11.EventFiesta.organizer.OrganizerLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class OrganizerLoginController {
 
-    @GetMapping("/organizerLogin")
+    @GetMapping("/organizer/login")
     public String getOrganizerLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("organizer", new Organizer());
         System.out.println(request.getRequestURI());
@@ -37,14 +38,14 @@ public class OrganizerLoginController {
     }
 
     @PostMapping("/handleOrganizerLogin")
-    public String handleOrganizerLogin(@ModelAttribute Organizer organizer, HttpServletRequest request) {
+    public String handleOrganizerLogin(Model model, @ModelAttribute Organizer organizer, HttpServletRequest request) {
         System.out.println("inside handleOrganizerLogin()" );
         OrganizerLogin organizerLogin = new OrganizerLogin();
-        if(organizerLogin.login(organizer, request))
-            return "organizerDetails"; //todo redirect to  organizer landing page
-        else {
-            return "organizerLogin";
-        }
+        LoginState loginState = organizerLogin.login(organizer, request);
+        model.addAttribute("statusMsg", loginState.getLoginStatus());
+        System.out.println(loginState.getLoginStatus());
+        System.out.println(loginState.getNextHtml());
+        return loginState.getNextHtml();
     }
 
 }

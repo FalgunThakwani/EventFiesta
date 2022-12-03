@@ -1,6 +1,9 @@
 package group11.EventFiesta.model;
 
-public class Organizer {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Organizer implements Account {
 
     private String email;
     private String password;
@@ -15,7 +18,7 @@ public class Organizer {
         this.password = password;
     }
 
-    public void setOrganizerId(Integer organizerId) {
+    public void setAccountId(Integer organizerId) {
         this.organizerId = organizerId;
     }
 
@@ -27,8 +30,15 @@ public class Organizer {
         return password;
     }
 
-    public Integer getOrganizerId() {
+    public Integer getAccountId() {
         return organizerId;
+    }
+
+    @Override
+    public boolean verifyEmailAddress() {
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPattern.matcher(email);
+        return matcher.find();
     }
 
     @Override

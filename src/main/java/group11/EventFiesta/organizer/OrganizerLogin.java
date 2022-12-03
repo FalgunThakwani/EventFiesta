@@ -1,15 +1,19 @@
 package group11.EventFiesta.organizer;
 
-import group11.EventFiesta.model.Organizer;
+import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.ILogin;
+import group11.EventFiesta.model.Account;
 import javax.servlet.http.HttpServletRequest;
 
-public class OrganizerLogin /*implements ILogin*/ {
+public class OrganizerLogin implements ILogin {
 
     /*@Override*/
-    public Boolean login(Organizer organizer, HttpServletRequest request) {
+    public LoginState login(Account organizer, HttpServletRequest request) {
         try {
-            ILoginHandler accounCheckHandler = new AccountCheckHandler();
-            ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler();
+            IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
+            ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence);
+            ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler(mySQLDBPersistence);
             ILoginHandler createSessionHandler = new CreateSessionHandler();
             accounCheckHandler.setNextHandler(verifyPasswordHandler);
             verifyPasswordHandler.setNextHandler(createSessionHandler);
@@ -25,7 +29,7 @@ public class OrganizerLogin /*implements ILogin*/ {
         return true;
     }
 
-    public Boolean resetPassword(String emailId, String newPassword) {
-        return null;
+    public Boolean resetPassword(Account organizer) {
+        return false;
     }
 }
