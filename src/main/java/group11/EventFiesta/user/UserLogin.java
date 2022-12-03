@@ -1,20 +1,23 @@
 package group11.EventFiesta.user;
 
 import group11.EventFiesta.ILogin;
+import group11.EventFiesta.model.Account;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class UserLogin implements ILogin {
     @Override
-    public Object login(String username, String pwd) {
+    public Object login(Account user, HttpServletRequest request) {
         return null;
     }
 
     @Override
-    public Boolean logout(Object object) {
+    public Boolean logout(HttpServletRequest request) {
         return null;
     }
 
     @Override
-    public Boolean resetPassword(String emailId, String newPassword){
+    public Boolean resetPassword(Account account){
         return null;
     }
 }

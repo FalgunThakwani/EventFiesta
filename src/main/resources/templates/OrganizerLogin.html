@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Sign Up</title>
+        <title>Organizer Login</title>
         <link th:href="@{/css/common.css}" rel="stylesheet">
     </head>
 
@@ -25,7 +25,12 @@
                     <p>Password*</p>
 
                     <p><input  class= "w-410" maxlength="25" name="password" type="password" th:field="*{password}" /></p>
-                    <p><a href="/forgotPassword">Forgot password?</a>&nbsp;</p>
+                    <p><a href="/organizer/forgotPassword">Forgot password?</a>&nbsp;</p>
+
+                    <div th:if="${statusMsg} != null">
+                        <p style="color: red" data-th-text="${statusMsg}"/>
+                    </div>
+
                     <p><input class="btn submitButton"name="Login" type="submit" value="Login" /></p>
                 </form>
 

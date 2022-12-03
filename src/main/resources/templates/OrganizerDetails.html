@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizer details</title>
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+
+<body>
+<div class="login_container" th:object="${organizer}" >
+    <p>
+        <span th:text="*{email}" />
+        <span> logged in successfully!</span>
+    </p>
+    <p>Logout?&nbsp;<a href="/organizerLogout">Logout</a></p>
+
+</div>
+</body>
+</html>
