@@ -2,8 +2,13 @@ package group11.EventFiesta.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Organizer {
+
+public class Organizer implements Account {
+
+    private Integer organizerId;
     private String userId;
     private String firstName;
     private String lastName;
@@ -143,11 +148,34 @@ public class Organizer {
         this.confirmPassword = confirmPassword;
     }
 
+    public void setAccountId(Integer organizerId) {
+        this.organizerId = organizerId;
+    }
+
     public String getBusiness() {
         return business;
     }
 
     public void setBusiness(String business) {
         this.business = business;
+    }
+
+    public Integer getAccountId() {
+        return organizerId;
+    }
+
+    @Override
+    public boolean verifyEmailAddress() {
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPattern.matcher(email);
+        return matcher.find();
+    }
+
+    @Override
+    public String toString() {
+        return "Organizer{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
