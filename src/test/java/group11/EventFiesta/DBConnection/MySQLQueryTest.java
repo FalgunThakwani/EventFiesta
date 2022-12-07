@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,18 +11,14 @@ import java.util.HashMap;
 public class MySQLQueryTest {
 
     @Test
-    public void executeQueryTest() throws Exception {
-        Connection connection = null;
+    public void executeQueryTest() {
         try {
-            DBConnectionPool dbConnectionPool = DBConnectionPool.getInstance();
-            connection = dbConnectionPool.getConnection();
+            //todo create mock DB
             MySQLDBPersistence mySQLQuery = new MySQLDBPersistence();
             ArrayList<HashMap<String, Object>> result = mySQLQuery.loadData("select * from UserInfo");
-            Assertions.assertEquals(result.size(), 0);
+            Assertions.assertEquals(result.size(), 1);
         } catch (Exception exception) {
             exception.printStackTrace();
-        } finally {
-            connection.close();
         }
     }
 
