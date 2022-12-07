@@ -2,6 +2,7 @@ package group11.EventFiesta.controller;
 
 import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.model.User;
+import group11.EventFiesta.user.LoginState;
 import group11.EventFiesta.user.UserLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,25 +10,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class UserLoginController {
 
         @GetMapping("/userLogin")
-        public String getHomePage(Model model) {
+        public String getUserLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
             model.addAttribute("user", new User());
+            System.out.println(request.getRequestURI());
             return "UserLogin";
         }
 
         @PostMapping("/handleUserLogin")
-        public String handleUserSignUp(@ModelAttribute User user) throws Exception {
+        public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request)
+        {
             // Todo: logic for checking username and password
             System.out.println(user.getEmail());
             System.out.println(user.getPassword());
             UserLogin userLogin = new UserLogin();
-            userLogin.login(user.getEmail(), user.getPassword());
 
-
-            return "UserLogin";
+            LoginState loginState = userLogin.login(user, request);
+            model.addAttribute("statusMsg", loginState.getLoginStatus());
+            System.out.println(loginState.getLoginStatus());
+            System.out.println(loginState.getNextHtml());
+            return loginState.getNextHtml();
         }
 
     }

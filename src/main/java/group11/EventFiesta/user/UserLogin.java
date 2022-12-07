@@ -10,9 +10,20 @@ import java.util.HashMap;
 
 public class UserLogin implements ILogin {
     @Override
-    public Object login(String email, String password) throws Exception {
-
-        String query = "select * from event_fiesta.userinfo where email=" + email;
+    public LoginState login(Account user, HttpServletRequest request) {
+        try {
+            IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
+            ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence);
+            ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler(mySQLDBPersistence);
+            ILoginHandler createSessionHandler = new CreateSessionHandler();
+            accounCheckHandler.setNextHandler(verifyPasswordHandler);
+            verifyPasswordHandler.setNextHandler(createSessionHandler);
+            return accounCheckHandler.execute(organizer, request);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return null;
+        /* String query = "select * from event_fiesta.userinfo where email=" + email;
         IDBPersistence db = new MySQLDBPersistence();
         ArrayList<HashMap<String, Object>> result;
         result = db.loadData(query);
@@ -33,19 +44,21 @@ public class UserLogin implements ILogin {
             }
             else {
                 return "WRONG PASSWORD";
-            }
+            } */
         }
 
 
     }
 
     @Override
-    public Boolean logout(Object object) {
-        return null;
+    public Boolean logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return true;
     }
 
     @Override
-    public Boolean resetPassword(String emailId, String newPassword){
-        return null;
+    public Boolean resetPassword(Account user)
+    {
+        return false;
     }
 }
