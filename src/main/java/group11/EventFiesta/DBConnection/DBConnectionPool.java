@@ -37,7 +37,6 @@ public class DBConnectionPool {
 
 
     public Connection getConnection() throws SQLException {
-        ds.getNumActive();
         return ds.getConnection();
     }
 

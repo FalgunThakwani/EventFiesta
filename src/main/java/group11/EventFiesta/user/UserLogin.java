@@ -4,6 +4,9 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.ILogin;
+import group11.EventFiesta.model.Account;
+
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +25,8 @@ public class UserLogin implements ILogin {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        return null;
+        public Object login (Account user, HttpServletRequest request){
+
         /* String query = "select * from event_fiesta.userinfo where email=" + email;
         IDBPersistence db = new MySQLDBPersistence();
         ArrayList<HashMap<String, Object>> result;
@@ -45,6 +49,7 @@ public class UserLogin implements ILogin {
             else {
                 return "WRONG PASSWORD";
             } */
+            return null;
         }
 
 
@@ -57,8 +62,8 @@ public class UserLogin implements ILogin {
     }
 
     @Override
-    public Boolean resetPassword(Account user)
-    {
+    public Boolean resetPassword(Account user) {
         return false;
     }
+
 }
