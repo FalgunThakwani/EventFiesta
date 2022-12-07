@@ -15,8 +15,9 @@ public class FilterRegistration {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(authenticationFilter());
         registration.addUrlPatterns("/*");
-        //add the urls which does not need authentication here
-        registration.addInitParameter("EXCLUDE_URL_PATTERN", "/.*.jpg|/.*.css|/home|/organizer/login|/handleOrganizerLogin");
+        // add the urls which does not need authentication here
+        registration.addInitParameter("EXCLUDE_URL_PATTERN",
+                "/.*.jpg|/.*.css|/home|/organizer/login|/handleOrganizerLogin|/signup|/handleUserSignUp");
         registration.setName("authenticationFilter");
         registration.setOrder(1);
         return registration;
