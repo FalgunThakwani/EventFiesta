@@ -19,7 +19,8 @@ public class MySQLQueryTest {
             connection = dbConnectionPool.getConnection();
             MySQLDBPersistence mySQLQuery = new MySQLDBPersistence();
             ArrayList<HashMap<String, Object>> result = mySQLQuery.loadData("select * from UserInfo");
-            Assertions.assertEquals(result.size(), 0);
+            Assertions.assertTrue(result.size()>0);
+           // Assertions.assertEquals(result.size(), 0);
         } catch (Exception exception) {
             exception.printStackTrace();
         } finally {
