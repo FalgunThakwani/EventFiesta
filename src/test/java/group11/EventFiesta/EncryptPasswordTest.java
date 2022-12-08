@@ -9,8 +9,6 @@ public class EncryptPasswordTest {
 
     @Test
     public void getEncryptedPwd() {
-//        String pwdFromDB = "3DBOFG449Z34j7dTYS+hDA==";
-//        String saltFromDB = "UHbtPc3UnowVcCCd6I+v1g==";
         String saltFromDB = EncryptPassword.getNextSalt();
         String pwd = "Abc@123";
         System.out.println(saltFromDB);
