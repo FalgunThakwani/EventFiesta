@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`UserSensitive` (
   `security_question` VARCHAR(240) NOT NULL,
   `security_answer` VARCHAR(45) NOT NULL,
   `sign_up_date` DATE NOT NULL,
-  `last login` DATE NOT NULL,
+  `last_login` DATE NOT NULL,
   `encrypted_password` VARCHAR(45) NOT NULL,
   `private_key` VARCHAR(45) NOT NULL,
   `private_key_expiry` DATE NOT NULL,

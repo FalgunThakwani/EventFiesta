@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Questions</title>
+    <link th:href="@{/css/securityQuestion.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<div>
+    <div class="split left">
+        <div class="left-container">
+            <p class="image-align">
+            <div style="text-align: center;">
+                <img th:src="@{/images/reset-password-icon.svg}" class="lock-image">
+            </div>
+            <span style="font-size:38px;">Security Questions</span>
+            </p>
+            <form th:action="@{/handleSecurityQuestion}" method="post">
+                <p>Enter your Security Question 1</p>
+                <p><input maxlength="50" name="newPassword" type="password"/></p>
+                <p>Enter your Security Question 2</p>
+                <p><input maxlength="50" name="confirmPassword" type="password"/></p>
+                <p><input class="btn" name="Login" type="submit" value="Continue"/></p>
+            </form>
+        </div>
+    </div>
+    <div class="split right">
+        <img th:src="@{/images/forgotpassword.png}" class="image">
+    </div>
+</div>
+</body>
+</html>
