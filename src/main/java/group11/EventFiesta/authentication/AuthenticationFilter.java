@@ -24,7 +24,11 @@ public class AuthenticationFilter implements Filter {
 
         String excludedURLs = this.config.getInitParameter("EXCLUDE_URL_PATTERN");
         String urlPath = req.getRequestURI();
+        System.out.println("url path ......");
         System.out.println(urlPath);
+        System.out.println("excluded urls.....");
+        System.out.println(excludedURLs);
+
 
         if ((excludedURLs != null) && (Pattern.matches(excludedURLs, urlPath))) {
             System.out.println("inside if");
