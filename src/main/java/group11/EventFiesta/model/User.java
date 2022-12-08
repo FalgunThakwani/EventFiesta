@@ -1,7 +1,10 @@
 package group11.EventFiesta.model;
 
-public class User {
-    private String userId;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class User implements Account {
+    private Integer userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -9,14 +12,6 @@ public class User {
     private String confirmPassword;
     private String securityQuestion;
     private String securityAnswer;
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getFirstName() {
         return this.firstName;
@@ -72,6 +67,23 @@ public class User {
 
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+    }
+
+    @Override
+    public boolean verifyEmailAddress() {
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = emailPattern.matcher(email);
+        return matcher.find();
+    }
+
+    @Override
+    public Integer getAccountId() {
+        return userId;
+    }
+
+    @Override
+    public void setAccountId(Integer id) {
+        this.userId = id;
     }
 
 }
