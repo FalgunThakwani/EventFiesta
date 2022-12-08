@@ -3,7 +3,7 @@ package group11.EventFiesta.user;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.model.Account;
-import group11.EventFiesta.user.IncorrectPassword;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -26,8 +26,8 @@ public class VerifyPasswordHandler extends LoginHandler{
             HashMap<String, Object> row = data.get(0);
             String pwdFromDB = row.get("encrypted_password").toString();
             String saltFromDB = row.get("private_key").toString();
-            //String encPwd = EncryptPassword.getEncryptedPwd(user.getPassword(), saltFromDB);
-            String encPwd = "lvpEQgg0Woy8l5Wdu0JcZA==";
+            String encPwd = EncryptPassword.getEncryptedPwd(user.getPassword(), saltFromDB);
+            //String encPwd = "lvpEQgg0Woy8l5Wdu0JcZA==";
             if (pwdFromDB.equals(encPwd)) {
                 return nextHandler.execute(user, request);
             }
