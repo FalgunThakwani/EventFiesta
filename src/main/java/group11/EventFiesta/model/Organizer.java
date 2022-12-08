@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class Organizer implements Account {
 
+    private Integer organizerId;
     private String userId;
     private String firstName;
     private String lastName;
@@ -126,8 +127,6 @@ public class Organizer implements Account {
     public String getEmail() {
         return this.email;
     }
-
-    private Integer organizerId;
 
     public void setEmail(String email) {
         this.email = email;
