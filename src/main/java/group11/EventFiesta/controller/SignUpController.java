@@ -1,4 +1,5 @@
 package group11.EventFiesta.controller;
+
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
@@ -42,7 +43,7 @@ public class SignUpController {
             System.out.println("Error in validating user");
             e.printStackTrace();
         }
-        return "UserSignUp";
+        return "home";
     }
 
     @GetMapping("/org/signup")

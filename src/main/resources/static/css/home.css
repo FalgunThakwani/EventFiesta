@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+.header {
+  overflow: hidden;
+  background-color: #eeecf5;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 40px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 0;
+  font-weight: 500;
+}
+
+.header a:hover {
+  color: white;
+  text-decoration: underline;
+  background-color: hsl(253deg 2% 33%);
+}
+
+.header-right {
+  float: right;
+}
+
+.logged-header-right {
+  float: right;
+  display: flex;
+}
+
+.userDetails {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 40px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 0;
+    font-weight: 500;
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 87vh;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+}
+
+.logo {
+  width: 7.5rem;
+  height: 6.5rem;
+}
+
+.logo-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+}
+
+.heading {
+  font-size: 40px;
+  margin: 35px 0;
+  font-weight: 600;
+}
+
+.sub-heading {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.content-text {
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.login-logo {
+  padding-right: 15px;
+  width: 30px;
+  height: 30px;
+}
