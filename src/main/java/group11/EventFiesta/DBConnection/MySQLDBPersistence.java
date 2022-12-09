@@ -77,7 +77,10 @@ public class MySQLDBPersistence implements IDBPersistence {
             System.out.println("Exception in loadData():  " + exception.getMessage());
             exception.printStackTrace();
         } finally {
-            resultSet.close();
+ if (resultSet != null) {
+
+                resultSet.close();
+            }
             statement.close();
             connection.close();
         }
