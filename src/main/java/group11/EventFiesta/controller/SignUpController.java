@@ -1,4 +1,5 @@
 package group11.EventFiesta.controller;
+
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
@@ -42,7 +43,7 @@ public class SignUpController {
             System.out.println("Error in validating user");
             e.printStackTrace();
         }
-        return "UserSignUp";
+        return "home";
     }
 
     @GetMapping("/org/signup")
@@ -63,6 +64,7 @@ public class SignUpController {
     public String handleOrgSignUp(@ModelAttribute Organizer organizer, Model model) {
         System.out.println(organizer.getService());
         // Store Organizer object in db
+
         ISignup signup = new OrganizerSignUp(dbPersistence);
         try {
             if (signup.validateUser(organizer)) {
@@ -77,7 +79,6 @@ public class SignUpController {
             System.out.println("Error in validating Organizer");
             e.printStackTrace();
         }
-        
         return "home";
     }
 

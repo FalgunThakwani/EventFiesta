@@ -11,12 +11,10 @@ public abstract class ISignup {
     /// Store information in db object specific
     public abstract void storeInfo(Account object) throws Exception;
 
-    ///This method will encrypt the recieved password
+    /// This method will encrypt the recieved password
     public String encryptReceivedPassword(String password, String key) {
         String encryptedPWD = EncryptPassword.getEncryptedPwd(password, key);
         return encryptedPWD;
     }
-
-    ///Create 
 
 }

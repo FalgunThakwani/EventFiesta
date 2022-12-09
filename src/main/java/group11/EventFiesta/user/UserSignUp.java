@@ -1,6 +1,10 @@
 package group11.EventFiesta.user;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import group11.EventFiesta.EncryptPassword;
@@ -18,7 +22,6 @@ public class UserSignUp extends ISignup {
 
     @Override
     public boolean validateUser(Account user) throws Exception {
-
         ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_checkUserExists", user.getEmail());
         if (resultSet.size() > 0) {
             return true;
@@ -27,23 +30,36 @@ public class UserSignUp extends ISignup {
     }
 
     @Override
-    public void storeInfo(Account object) {
+    public void storeInfo(Account object) throws Exception {
         /// In user sign up the Account object is expected to be a User class object
         User user = (User) object;
-
+        Object[] params = createParams(user);
+        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_storeUserData", params);
     }
 
     private Object[] createParams(User user) {
         String key = EncryptPassword.getNextSalt();
         String encryptedPassword = encryptReceivedPassword(user.getPassword(), key);
-        Object[] params = { user.getFirstName(), user.getLastName(), user.getEmail(), encryptedPassword };
-
+        Object[] params = { user.getFirstName(), user.getLastName(), user.getEmail(),
+                user.getSecurityQuestion(), user.getSecurityAnswer(), getSqlDateTime(0), getSqlDateTime(0),
+                encryptedPassword, key, getSqlDateTime(15), 0 };
         return params;
     }
 
-    public String encryptReceivedPassword(String password, String key) {
-        String encryptedPWD = EncryptPassword.getEncryptedPwd(password, key);
-        return encryptedPWD;
+    private String getSqlDateTime(int addNumberofDays) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        long now = System.currentTimeMillis();
+        Date sqlDate = new Date(now);
+        Calendar cal = Calendar.getInstance();
+        try {
+            cal.setTime(sdf.parse(sqlDate.toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        cal.add(Calendar.DAY_OF_MONTH, addNumberofDays);
+        String date = sdf.format(cal.getTime());
+        return date;
     }
 
 }
