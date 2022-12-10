@@ -2,7 +2,7 @@ package group11.EventFiesta.organizer;
 
 public class LoginSuccess extends LoginState {
 
-    public void setNextHtml() {
+    public void setNextPage() {
         nextPage = "organizerDetails";
     }
 

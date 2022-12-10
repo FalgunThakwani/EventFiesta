@@ -7,7 +7,7 @@ public class MailNotSent extends LoginState {
     }
 
     @Override
-    public void setNextHtml() {
+    public void setNextPage() {
         nextPage = "redirect:/home";
     }
 }

@@ -1,15 +1,13 @@
 package group11.EventFiesta.organizer;
 
-public class SentOTP extends LoginState {
-
+public class IncorrectOTP extends LoginState {
     @Override
     public void setLoginStatus() {
-        loginStatus = "OTP has been sent";
+        loginStatus = "Incorrect OTP! Please try again..";
     }
 
     @Override
     public void setNextPage() {
-        nextPage = "enterOTP";
+        nextPage = "/enterOTP";
     }
-
 }
