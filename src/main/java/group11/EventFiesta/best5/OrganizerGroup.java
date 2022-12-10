@@ -1,19 +1,32 @@
 package group11.EventFiesta.best5;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class OrganizerGroup implements GroupComponent {
+public class OrganizerGroup extends GroupComponent {
 
-    List<OrganizerService> organizerServices = new ArrayList();
+    List<GroupComponent> organizerServices = new ArrayList();
 
     @Override
-    public Integer calculateScore() {
-        Integer score = 0;
-        for (OrganizerService organizerService : organizerServices) {
+    public Double calculateScore() {
+        Double score = 0.0;
+        for (GroupComponent organizerService : organizerServices) {
             score += organizerService.calculateScore();
         }
         return score / organizerServices.size();
     }
 
+    public void add(GroupComponent service) {
+        organizerServices.add(service);
+    }
+
+    @Override
+    public String toString() {
+        return "OrganizerGroup{" +
+                "organizerServices=" + organizerServices +
+                "}\n";
+    }
+
+    public void remove(GroupComponent service) {
+        organizerServices.remove(service);
+    }
 }
