@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GetBestFiveOptionsTest {
+public class GetBestNOptionsTest {
 
 
     private HashMap<String, List<GroupComponent>> getOrganizerServices() {
