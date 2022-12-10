@@ -1,56 +1,52 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link th:href="@{/css/signup.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
 </head>
+
 <body>
-    <div class="signupcontainer">
-        <div class="split left">
-
-       
-    <p>Join our beloved community</p>
-
-    <p><span style="font-size:38px;">Create an account</span></p>
-    
-    <p>Already a member?&nbsp;<a href="/signin">Sign In</a></p>
-
+<div class="signupcontainer">
+    <div class="split left">
+        <p><span style="font-size:38px;">Create an account</span></p>
+        <p>Already a member?&nbsp;<a href="/userLogin">Sign In</a></p>
         <form th:action="@{/handleUserSignUp}" th:object="${user}" method="post">
-    
-    <p>First name*&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Last name*</p>
-    
-    <p><input maxlength="20" name="First name" required="required" type="text" th:field="*{firstName}" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="25" name="last name" required="required" type="text" th:field="*{lastName}" /></p>
-    
-    <p>Email*</p>
-    
-    <p><input maxlength="50" name="email" type="email" th:field="*{email}" /></p>
-    
-    <p>Password*</p>
-    
-    <p><input maxlength="25" name="password" type="password" th:field="*{password}" /></p>
-    
-    <p>Confirm Password*</p>
-    
-    <p><input maxlength="25" name="confirm password" required="required" type="text" /></p>
-    
-    <p>Security Question*</p>
-    <select title="security question" style="width:420px;" th:field="*{securityQuestion}">
-        <optionvalue=""></option>
-        <option value="What is your fathers middle name?">What is your fathers middle name?</option>
-        <option value="What is your wife's full name?">What is your wife's full name?</option>
-    </select>
-    <p>Security Answer*</p>
-    <p><input maxlength="100" name="security answer" required="required" type="text" style="width: 410px;" th:field="*{securityAnswer}"/></p>
-    <p><input name="terms&amp;service" required="required" type="radio" />&nbsp;I agree to the&nbsp;<a href="/termsofservice">Terms of Service</a>&nbsp;&amp;&nbsp;<a href="/privacypolicy">Privacy Policy</a></p>
-    <p><input class="btn"name="Sign Up" type="submit" value="Sign Up" /></p>
-</form>
-</div>
-<div class="split right">
-<img 
-th:src="@{/images/signupimage.jpg}" class="image">
-</div>
+            <p>First name*&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Last name*</p>
+            <p><input maxlength="20" name="firstName" required="required" type="text"
+                      th:field="*{firstName}" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input
+                    maxlength="25" name="lastName" required="required" type="text" th:field="*{lastName}" /></p>
+            <p>Email*</p>
+            <p><input maxlength="50" name="email" type="email" th:field="*{email}" /></p>
+            <p>Password*</p>
+            <p><input maxlength="25" name="password" type="password" th:field="*{password}" /></p>
+            <p>Confirm Password*</p>
+            <p><input maxlength="25" name="confirm password" required="required" type="text" /></p>
+            <p>Security Question*</p>
+            <select title="security question"  class="dropdown" th:field="*{securityQuestion}">
+                <optionvalue="">
+                </option>
+                <option value="What is your fathers middle name?">What is your fathers middle name?</option>
+                <option value="What is your wife's full name?">What is your wife's full name?</option>
+            </select>
+            <p>Security Answer*</p>
+            <p><input maxlength="100" name="security answer" required="required" type="text"
+                      th:field="*{securityAnswer}" /></p>
+            <p class="align-content">
+                <input name="terms&amp;service" required="required" class="checkbox-size" type="checkbox" />&nbsp;I agree to the&nbsp;<a
+                    href="/termsofservice">Terms of Service</a>&nbsp;&amp;&nbsp;<a href="/privacypolicy">Privacy
+                Policy</a>
+            </p>
+            <p><input class="btn" name="Sign Up" type="submit" value="Sign Up" /></p>
+        </form>
+    </div>
+    <div class="split right">
+        <img th:src="@{/images/signupimage.jpg}" class="image">
+    </div>
 </div>
 </body>
+
 </html>

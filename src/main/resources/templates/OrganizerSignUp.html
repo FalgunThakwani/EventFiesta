@@ -16,6 +16,10 @@
 
         <p>Already a member?&nbsp;<a href="/signin">Sign In</a></p>
 
+        <div th:if="${ValidationMsg} != null">
+            <p style="color: red" data-th-text="${ValidationMsg}" />
+        </div>
+
         <form id="regForm" th:action="@{/handleOrgSignUp}" th:object="${organizer}" method="post">
             <div class="tab">
                 <p>Name of Your Business*</p>
@@ -40,7 +44,7 @@
 
                 <p>Confirm Password*</p>
 
-                <p><input maxlength="25" name="confirm password" required="required" type="text"/></p>
+                <p><input maxlength="25" name="confirm password" th:field="*{confirmPassword}" required="required" type="text"/></p>
 
 
 
@@ -50,18 +54,24 @@
                 <p>Tell us more about your business</p>
                 <p>What service(s) your business offers?*</p>
 
-                <p><input maxlength="50" id="eventspace" value="eventspace" name="service" type="checkbox" th:field="*{service}"/>
-                <label for="eventspace"> Event Space</label>
-                <input maxlength="50" id="catering" value="catering" name="service" type="checkbox" th:field="*{service}"/>
-                <label for="catering"> Catering</label><br></p>
-                <p><input maxlength="50" id="decoration" value="decoration" name="service" type="checkbox" th:field="*{service}"/>
-                <label for="decoration"> Decoration</label>
-                <input maxlength="50" id="others" value="others" name="service" type="checkbox" th:field="*{service}"/>
-                <label for="others"> Others</label><br></p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th> Service</th>
+                        <th> Cost</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="serv, itemStat : *{service}">
+                        <td><input th:field="*{service[__${itemStat.index}__].name}" /></td>
+                        <td><input th:field="*{service[__${itemStat.index}__].cost}" /></td>
+                    </tr>
+                    </tbody>
+                </table>
 
-                <p>Approximate charge of Service*</p>
+<!--                <p>Approximate charge of Service*</p>-->
 
-                <p><input maxlength="50" name="charge" type="text" th:field="*{charge}"/></p>
+<!--                <p><input maxlength="50" name="charge" type="text" th:field="*{charge}"/></p>-->
 
                 <p>Business Number *</p>
 
@@ -74,15 +84,15 @@
                 <p>Province*&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Pincode*</p>
 
                 <p><input maxlength="50" name="province" type="text" th:field="*{province}"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input maxlength="25" name="pincode" required="required" type="text" th:field="*{pincode}"/></p>
-            </div>
+<!--            </div>-->
 
-            <div class = "tab">
+<!--            <div class = "tab">-->
 
                 <p>Just a few more details:></p>
                 <p>What time is appropriate to contact you?*</p>
                 <input type="datetime-local" name="fromcontact" th:field="*{fromcontact}"/> to <input type="datetime-local" name="tocontact" th:field="*{tocontact}"/>
 
-                <p>Any other details you wish to share?</p>
+<!--                <p>Any other details you wish to share?</p>-->
 <!--                <input type="text" name="otherdetails" id="otherdetails" />-->
             </div>
 

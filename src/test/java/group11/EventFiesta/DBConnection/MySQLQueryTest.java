@@ -16,7 +16,8 @@ public class MySQLQueryTest {
             //todo create mock DB
             MySQLDBPersistence mySQLQuery = new MySQLDBPersistence();
             ArrayList<HashMap<String, Object>> result = mySQLQuery.loadData("select * from UserInfo");
-            Assertions.assertEquals(result.size(), 1);
+            Assertions.assertTrue(result.size()>0);
+           // Assertions.assertEquals(result.size(), 0);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
