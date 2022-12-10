@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Event Details</title>
+        <link th:href="@{/css/home.css}" rel="stylesheet">
+        <link th:href="@{/css/UserEventChecklist.css}" rel="stylesheet">
+        <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+    </head>
+    <body>
+        <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+
+        <div class="container">
+            <h1 style="text-align: center;">TODO Checklist</h1>
+            <section class="todoapp">
+                <header class="header">
+                    <form th:action="@{/todo/add}" th:method="post" th:object="${todoItem}">
+                        <input class="new-todo" placeholder="Add Description for todo list" autofocus th:field="*{name}">
+                    </form>
+                </header>
+                <section class="main" >
+                    <form th:action="@{/todo/remove}" th:method="post" th:object="${todoItem}">
+                        <ul class="todo-list">
+                            <li th:each="item : ${todoList}" >
+                                <div class="view">
+                                    <input class="toggle" type="checkbox" onchange="this.form.submit()"
+                                           th:field="*{id}" th:value="${item.id}">
+                                    <label th:text="${item.name}"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </section>
+            </section>
+        </div>
+    </body>
+</html>

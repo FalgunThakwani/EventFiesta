@@ -16,7 +16,6 @@ public class ForgotPasswordController {
     @PostMapping("/handleForgotPassword")
     public String handleForgotPassword(@ModelAttribute User user) {
         // Todo: logic for checking username and password
-
         return "redirect:/securityQuestion";
     }
 }

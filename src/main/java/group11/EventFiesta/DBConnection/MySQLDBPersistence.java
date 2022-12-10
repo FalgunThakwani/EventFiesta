@@ -87,14 +87,22 @@ public class MySQLDBPersistence implements IDBPersistence {
         return rows;
     }
 
-    public Integer saveData(String query) throws Exception {
+    public Integer saveData(String query, Object... params) throws Exception {
         Connection connection;
-        PreparedStatement statement = null;
+
+        CallableStatement statement = null;
+
         Integer result = -1;
         try {
             DBConnectionPool connectionPool = DBConnectionPool.getInstance();
             connection = connectionPool.getConnection();
-            statement = connection.prepareStatement(query);
+
+            statement = connection.prepareCall(query);
+
+            int pi = 1;
+            for (Object param : params) {
+                statement.setObject(pi++, param);
+            }
 
             result = statement.executeUpdate();
         } catch (Exception exception) {
@@ -116,6 +124,14 @@ public class MySQLDBPersistence implements IDBPersistence {
         prepareCallString = buffer.toString();
         prepareCallString += ")}";
         return prepareCallString;
+    }
+
+    public Integer updateData(String storedProcedure, Object... params) throws Exception {
+        String query = spPrepareStatement(storedProcedure, params);
+
+        System.out.println("Constructed query for stored procedure: " + query);
+
+        return saveData(query, params);
     }
 
 }
