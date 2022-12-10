@@ -4,20 +4,18 @@ import group11.EventFiesta.best5.GetBestNOptions;
 import group11.EventFiesta.best5.GroupComponent;
 import group11.EventFiesta.best5.OrganizerGroup;
 import group11.EventFiesta.best5.OrganizerService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GetBestNOptionsTest {
 
 
-    private HashMap<String, List<GroupComponent>> getOrganizerServices() {
+    private Map<String, List<GroupComponent>> getOrganizerServicesMock() {
 
-        HashMap<String, List<GroupComponent>> map = new HashMap();
+        Map<String, List<GroupComponent>> map = new HashMap();
 
         List<GroupComponent> services = new ArrayList<>();
         services.add(new OrganizerService("catering",5.0));
@@ -27,7 +25,6 @@ public class GetBestNOptionsTest {
         services = new ArrayList<>();
         services.add(new OrganizerService("decoration",3.0));
         services.add(new OrganizerService("decoration",5.0));
-        services.add(new OrganizerService("decoration",7.0));
         map.put("decoration", services);
 
         services = new ArrayList<>();
@@ -40,7 +37,7 @@ public class GetBestNOptionsTest {
     @Test
     public void getBestNGroupsTest() {
         int n = 5;
-        HashMap<String, List<GroupComponent>> map = getOrganizerServices();
+        Map<String, List<GroupComponent>> map = getOrganizerServicesMock();
         System.out.println(map);
         List<List<GroupComponent>> servicesAndProviders = new ArrayList<>();
         for (List<GroupComponent> serviceProviders : map.values()) {
@@ -53,8 +50,11 @@ public class GetBestNOptionsTest {
         }
         List<GroupComponent> allGroups = new ArrayList<>();
         GetBestNOptions getBestNOptions = new GetBestNOptions();
+
         getBestNOptions.getAllGroups(servicesAndProviders, allGroups, new OrganizerGroup());
+        Assertions.assertEquals(allGroups.size(), 4);
+
         List<GroupComponent> bestNGroups = getBestNOptions.getBestNGroups(allGroups, n);
-        System.out.println("best n groups: " + bestNGroups);
+        Assertions.assertEquals(bestNGroups.size(), 4);
     }
 }

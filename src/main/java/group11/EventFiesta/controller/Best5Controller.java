@@ -3,6 +3,7 @@ package group11.EventFiesta.controller;
 import java.util.List;
 import java.util.Map;
 
+import group11.EventFiesta.best5.GetBestNOptions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,28 @@ public class Best5Controller {
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire, dPersistence);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores.size());
-        return "home";
+        GetBestNOptions getBestNOptions = new GetBestNOptions();
+        List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
+        System.out.println("bestFiveGroups: " + bestFiveGroups);
+        model.addAttribute("bestFiveOptions", bestFiveGroups);
+        return "BestFiveOptions";
     }
+
+//    @GetMapping("/bestFiveOptions")
+//    public String getBestFiveOptions(RedirectAttributes requestAttribute, Model model) {
+////        UserEventQuestionnaire questionnaire = (UserEventQuestionnaire) model.getAttribute("userEventObject");
+//         UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
+//         questionnaire.setBudget(100);
+//         questionnaire.setCity("Halifax");
+//         questionnaire.setService("Catering,Decoration");
+//        HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire, dPersistence);
+//        Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
+//        System.out.println(servicesAndScores);
+//        GetBestNOptions getBestNOptions = new GetBestNOptions();
+//        List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
+//        System.out.println("bestFiveGroups: " + bestFiveGroups);
+//        model.addAttribute("bestFiveOptions", bestFiveGroups);
+//        return "BestFiveOptions";
+//    }
 
 }
