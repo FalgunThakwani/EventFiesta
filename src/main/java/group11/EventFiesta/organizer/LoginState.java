@@ -9,7 +9,7 @@ public abstract class LoginState {
     }
     String loginStatus;
 
-    String nextHtml;
+    String nextPage;
 
     public abstract void setLoginStatus();
 
@@ -19,7 +19,7 @@ public abstract class LoginState {
         return loginStatus;
     }
 
-    public String getNextHtml() {
-        return nextHtml;
+    public String getNextPage() {
+        return nextPage;
     }
 }

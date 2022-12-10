@@ -1,14 +1,13 @@
 package group11.EventFiesta.organizer;
 
-public class IncorrectPassword extends LoginState {
-
+public class MailNotSent extends LoginState {
     @Override
     public void setLoginStatus() {
-        loginStatus = "Entered password is incorrect";
+        loginStatus = "Mail could not be sent due to an error";
     }
 
     @Override
     public void setNextHtml() {
-        nextPage = "organizerLogin";
+        nextPage = "redirect:/home";
     }
 }

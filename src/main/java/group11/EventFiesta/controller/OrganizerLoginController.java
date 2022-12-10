@@ -18,7 +18,6 @@ public class OrganizerLoginController {
     @GetMapping("/organizer/login")
     public String getOrganizerLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("organizer", new Organizer());
-        System.out.println(request.getRequestURI());
         return "OrganizerLogin";
     }
 
@@ -33,19 +32,15 @@ public class OrganizerLoginController {
     @GetMapping("/organizerDetails")
     public String getOrganizerDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("organizer", new Organizer());
-        System.out.println(request.getRequestURI());
         return "OrganizerDetails";
     }
 
     @PostMapping("/handleOrganizerLogin")
     public String handleOrganizerLogin(Model model, @ModelAttribute Organizer organizer, HttpServletRequest request) {
-        System.out.println("inside handleOrganizerLogin()" );
         OrganizerLogin organizerLogin = new OrganizerLogin();
         LoginState loginState = organizerLogin.login(organizer, request);
         model.addAttribute("statusMsg", loginState.getLoginStatus());
-        System.out.println(loginState.getLoginStatus());
-        System.out.println(loginState.getNextHtml());
-        return loginState.getNextHtml();
+        return loginState.getNextPage();
     }
 
 }

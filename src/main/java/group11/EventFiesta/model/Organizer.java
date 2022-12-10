@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Organizer implements Account {
+public class Organizer extends Account {
 
     private String userId;
     private String firstName;
@@ -16,7 +16,6 @@ public class Organizer implements Account {
     private String password;
     private String confirmPassword;
     private float charge;
-
     public float getCharge() {
         return charge;
     }

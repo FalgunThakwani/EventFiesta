@@ -9,6 +9,6 @@ public interface ILoginHandler {
 
     void setNextHandler(ILoginHandler handler);
 
-    LoginState execute(Account organizer, HttpServletRequest request) throws Exception;
+    LoginState execute(Account organizer) throws Exception;
 
 }

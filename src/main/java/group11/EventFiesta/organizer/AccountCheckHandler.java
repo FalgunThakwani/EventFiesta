@@ -18,16 +18,16 @@ public class AccountCheckHandler extends LoginHandler {
     }
 
     @Override
-    public LoginState execute(Account organizer, HttpServletRequest request) throws Exception {
+    public LoginState execute(Account organizer) throws Exception {
         Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
         ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
-        Integer organizer_id = -1;
+        Integer organizer_id;
         if (data.size() > 0) {
             organizer_id = Integer.parseInt(data.get(0).get("organizer_id").toString());
             System.out.println(organizer_id);
             organizer.setAccountId(organizer_id);
-            return nextHandler.execute(organizer, request);
+            return nextHandler.execute(organizer);
         } else {
             return new InvalidAccount();
         }

@@ -16,8 +16,12 @@ public class UserLogin implements ILogin {
         return null;
     }
 
+    public void forgotPassword(Account account) {
+
+    }
     @Override
-    public Boolean resetPassword(Account account){
+    public Boolean resetPassword(Account account) {
         return null;
     }
+
 }
