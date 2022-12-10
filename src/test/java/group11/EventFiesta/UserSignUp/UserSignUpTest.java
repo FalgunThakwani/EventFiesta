@@ -1,5 +1,6 @@
 package group11.EventFiesta.UserSignUp;
 
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,11 @@ public class UserSignUpTest {
     public void validateWrongUser() throws Exception {
         user.setEmail("fl700637@dal.ca");
         Assertions.assertEquals(signupTest.validateUser(user), false);
+    }
+
+    @Test
+    public void storeInfo() throws Exception {
+        signupTest.storeInfo(user);
     }
 
 

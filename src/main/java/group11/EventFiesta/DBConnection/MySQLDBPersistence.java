@@ -12,7 +12,7 @@ public class MySQLDBPersistence implements IDBPersistence {
         Connection connection = connectionPool.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        ArrayList<HashMap<String, Object>> rows = new ArrayList();
+        ArrayList<HashMap<String, Object>> rows = new ArrayList<HashMap<String, Object>>();
         try {
             statement = connection.prepareStatement(query);
 
@@ -46,7 +46,7 @@ public class MySQLDBPersistence implements IDBPersistence {
         Connection connection = connectionPool.getConnection();
         CallableStatement statement = null;
         ResultSet resultSet = null;
-        ArrayList<HashMap<String, Object>> rows = new ArrayList();
+        ArrayList<HashMap<String, Object>> rows = new ArrayList<HashMap<String, Object>>();
 
         try {
             // statement = connection.prepareCall("{call " + storedProcedure + "(?, ?, ?,
