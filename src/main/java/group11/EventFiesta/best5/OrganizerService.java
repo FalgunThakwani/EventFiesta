@@ -1,32 +1,35 @@
 package group11.EventFiesta.best5;
-import java.util.Random;
+
+import group11.EventFiesta.model.EventServices;
+import group11.EventFiesta.model.Reviews;
 
 public class OrganizerService extends GroupComponent {
 
-    private String serviceName;//catering, decoration, auditorium
-    private Double score = 0.0; //min score because the criteria matched
+    /// 1 particular organizer will have 1 service and 1 score
 
-    static int count = 1;
+    protected String serviceName;// catering, decoration, auditorium
+    protected Integer orgranizerId;
+    protected Integer serviceId;
+    private Double score;
+    protected Reviews reviews;
+    protected EventServices eventServices;
+    protected Integer serviceRatings;
+    private HelperForDB helper;
 
-    public int organizerId;
+    public OrganizerService() {
+        helper = new HelperForDB();
+    }
 
     public OrganizerService(String serviceName, Double score) {
+        helper = new HelperForDB();
         this.serviceName = serviceName;
         this.score = score;
-        organizerId = count++;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public int getOrganizerId() {
-        return organizerId;
-    }
-
-    @Override
     public Double calculateScore() {
-        return score;
+        Double scoreByRatings = 1.0 * helper.getRatingsForService(serviceId); //todo fix the return value
+        System.out.println(scoreByRatings);
+        return scoreByRatings;
     }
 
     @Override
@@ -34,8 +37,17 @@ public class OrganizerService extends GroupComponent {
         return "OrganizerService{" +
                 "serviceName='" + serviceName + '\'' +
                 ", score=" + score +
-                ", organizerId=" + organizerId +
                 "}\n";
     }
-}
 
+    @Override
+    public void add(GroupComponent child) {
+        // DO NOTHING I AM A LEAF
+    }
+
+    @Override
+    public void remove(GroupComponent child) {
+        // DO NOTHING I AM A LEAF
+    }
+
+}

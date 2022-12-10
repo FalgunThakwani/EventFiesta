@@ -9,4 +9,6 @@ public abstract class GroupComponent implements Comparable<GroupComponent> {
         return this.calculateScore() > groupComponent.calculateScore() ? 1 : (this.calculateScore() < groupComponent.calculateScore() ? -1 : 0);
     }
 
+    public abstract void add(GroupComponent child);
+	public abstract void remove(GroupComponent child);
 }

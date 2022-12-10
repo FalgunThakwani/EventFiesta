@@ -31,10 +31,9 @@ public class UserSignUp extends ISignup {
 
     @Override
     public void storeInfo(Account object) throws Exception {
-        /// In user sign up the Account object is expected to be a User class object
         User user = (User) object;
         Object[] params = createParams(user);
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_storeUserData", params);
+        connection.loadData("sp_storeUserData", params);
     }
 
     private Object[] createParams(User user) {

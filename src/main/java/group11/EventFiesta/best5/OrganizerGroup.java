@@ -4,7 +4,7 @@ import java.util.*;
 
 public class OrganizerGroup extends GroupComponent {
 
-    List<GroupComponent> organizerServices = new ArrayList();
+    List<GroupComponent> organizerServices = new ArrayList<GroupComponent>();
 
     @Override
     public Double calculateScore() {
