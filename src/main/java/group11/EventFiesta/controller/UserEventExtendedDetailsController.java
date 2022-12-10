@@ -27,7 +27,6 @@ public class UserEventExtendedDetailsController {
         System.out.println(userEventQuestionnaire.getBudget());
         System.out.println(userEventQuestionnaire.getGuestCount());
         System.out.println(userEventQuestionnaire.getEventArea());
-
         return "redirect:/bestOrganizers";
     }
 

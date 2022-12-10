@@ -8,7 +8,6 @@ public class UserEventQuestionnaire {
     private String dateTime;
     private String service;
     private int budget;
-
     private int guestCount;
     private String eventArea;
 
