@@ -23,6 +23,7 @@ public class UserEventDetailsController {
     @PostMapping("/handleAddUserEvents")
     public String handleUserEventQuestionnaireSubmission(Model model,
                                                          @ModelAttribute UserEventQuestionnaire userEventQuestionnaire) {
+
         model.addAttribute("userEventQuestionnaire", userEventQuestionnaire);
         return "UserEventExtendedDetails";
     }
