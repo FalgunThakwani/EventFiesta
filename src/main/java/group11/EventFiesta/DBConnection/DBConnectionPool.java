@@ -10,11 +10,11 @@ public class DBConnectionPool {
 
     private static DBConnectionPool dbcpDataSource = null;
 
-    public static DBConnectionPool getInstance() {
+    public static DBConnectionPool getInstance(DBConnectionProperties properties) {
         if (dbcpDataSource == null) {
             synchronized (DBConnectionPool.class) {
                 if (dbcpDataSource == null) {
-                    dbcpDataSource = new DBConnectionPool();
+                    dbcpDataSource = new DBConnectionPool(properties);
                 }
             }
         }
@@ -23,13 +23,11 @@ public class DBConnectionPool {
 
     private static BasicDataSource ds = null;
 
-    private DBConnectionPool() {
+    private DBConnectionPool(DBConnectionProperties dbProperties) {
         ds = new BasicDataSource();
-
-        //todo need to get db configurations from application.properties file
-        ds.setUrl("jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_11_DEVINT");
-        ds.setUsername("CSCI5308_11_DEVINT_USER");
-        ds.setPassword("DhErnQD2UR");
+        ds.setUrl(dbProperties.getUrl());
+        ds.setUsername(dbProperties.getUsername());
+        ds.setPassword(dbProperties.getPassword());
         ds.setMinIdle(5);
         ds.setMaxIdle(10);
         ds.setMaxOpenPreparedStatements(100);

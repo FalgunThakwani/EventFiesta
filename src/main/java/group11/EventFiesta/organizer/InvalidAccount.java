@@ -7,7 +7,7 @@ public class InvalidAccount extends LoginState {
     }
 
     @Override
-    public void setNextHtml() {
-        nextHtml = "OrganizerLogin";
+    public void setNextPage() {
+        nextPage = "OrganizerLogin";
     }
 }

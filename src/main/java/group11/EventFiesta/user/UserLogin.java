@@ -4,6 +4,7 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.ILogin;
 import group11.EventFiesta.model.Account;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class UserLogin implements ILogin {
@@ -28,9 +29,11 @@ public class UserLogin implements ILogin {
         return true;
     }
 
-    @Override
-    public Boolean resetPassword(Account user) {
-        return false;
-    }
+    public void forgotPassword(Account account) {
 
+    }
+    @Override
+    public Boolean resetPassword(Account account) {
+        return null;
+    }
 }

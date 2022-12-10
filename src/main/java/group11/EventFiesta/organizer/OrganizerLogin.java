@@ -14,10 +14,10 @@ public class OrganizerLogin implements ILogin {
             IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
             ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence);
             ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler(mySQLDBPersistence);
-            ILoginHandler createSessionHandler = new CreateSessionHandler();
+            ILoginHandler createSessionHandler = new CreateSessionHandler(request);
             accounCheckHandler.setNextHandler(verifyPasswordHandler);
             verifyPasswordHandler.setNextHandler(createSessionHandler);
-            return accounCheckHandler.execute(organizer, request);
+            return accounCheckHandler.execute(organizer);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -29,7 +29,12 @@ public class OrganizerLogin implements ILogin {
         return true;
     }
 
-    public Boolean resetPassword(Account organizer) {
-        return false;
+    @Override
+    public Boolean resetPassword(Account account) {
+        return null;
+    }
+
+    public void forgotPassword(Account account) {
+        return;
     }
 }

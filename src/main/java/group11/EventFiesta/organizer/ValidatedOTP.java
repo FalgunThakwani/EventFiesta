@@ -1,14 +1,13 @@
 package group11.EventFiesta.organizer;
 
-public class IncorrectPassword extends LoginState {
-
+public class ValidatedOTP extends LoginState {
     @Override
     public void setLoginStatus() {
-        loginStatus = "Entered password is incorrect";
+        loginStatus = "OTP validated succesfully!";
     }
 
     @Override
     public void setNextPage() {
-        nextPage = "organizerLogin";
+        nextPage = "/resetPassword";
     }
 }

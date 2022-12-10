@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface ILogin {
 
-    public Object login(Account account, HttpServletRequest request);
+    Object login(Account account, HttpServletRequest request);
 
-    public Boolean logout(HttpServletRequest request);
+    Boolean logout(HttpServletRequest request);
 
     //validate the security question and answer and give option to reset the password after validation
-    public Boolean resetPassword(Account account);
+     Boolean resetPassword(Account account);
 
+     void forgotPassword(Account account);
 
 }

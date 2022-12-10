@@ -5,21 +5,21 @@ public abstract class LoginState {
 
     LoginState() {
         setLoginStatus();
-        setNextHtml();
+        setNextPage();
     }
     String loginStatus;
 
-    String nextHtml;
+    String nextPage;
 
     public abstract void setLoginStatus();
 
-    public abstract void setNextHtml();
+    public abstract void setNextPage();
 
     public String getLoginStatus() {
         return loginStatus;
     }
 
-    public String getNextHtml() {
-        return nextHtml;
+    public String getNextPage() {
+        return nextPage;
     }
 }

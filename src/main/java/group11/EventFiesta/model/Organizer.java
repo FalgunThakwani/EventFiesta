@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Organizer implements Account {
+public class Organizer extends Account {
 
 
     private Integer organizerId;
