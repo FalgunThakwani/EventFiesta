@@ -64,9 +64,9 @@ public class Mail {
         return authenticator;
     }
 
-    public Boolean sendMail(MailHandler mailHandler) {
+    public Boolean sendMail(SMTPProtocol SMTPProtocol) {
         Boolean status = true;
-        Properties properties = mailHandler.getMailProperties();
+        Properties properties = SMTPProtocol.getMailProperties();
         Session session = Session.getInstance(properties, getAuthenticator());
         try {
             MimeMessage message = new MimeMessage(session);
