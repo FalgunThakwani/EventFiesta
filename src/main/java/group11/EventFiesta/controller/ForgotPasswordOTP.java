@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ForgotPasswordOTP {
 
-    @GetMapping("/forgotPassword")
+    @GetMapping("/forgotPasswordWithOTP")
     public String getForgotPassword(Model model) {
         model.addAttribute("organizer", new Organizer());
         return "ForgotPassword";

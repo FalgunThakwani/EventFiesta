@@ -3,7 +3,7 @@ package group11.EventFiesta.model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User implements Account {
+public class User extends Account {
     private Integer userId;
     private String firstName;
     private String lastName;
