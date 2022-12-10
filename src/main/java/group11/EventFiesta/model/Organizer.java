@@ -1,6 +1,5 @@
 package group11.EventFiesta.model;
 
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,54 +7,44 @@ import java.util.regex.Pattern;
 
 public class Organizer implements Account {
 
+
     private Integer organizerId;
-    private String userId;
     private String firstName;
     private String lastName;
     private String email;
     private String business;
     private String password;
     private String confirmPassword;
-    private float charge;
-
-    public float getCharge() {
-        return charge;
-    }
-
-    public void setCharge(float charge) {
-        this.charge = charge;
-    }
-
     private int businessNo;
     private String address;
     private String City;
     private String province;
     private String pincode;
-    private Date fromcontact;
-    private Date tocontact;
-    private List<String> service;
+    private String fromcontact;
+    private String tocontact;
+    private List<Service> service;
 
-    public List<String> getService() {
+    public List<Service> getService() {
         return service;
     }
 
-    public void setService(List<String> service) {
+    public void setService(List<Service> service) {
         this.service = service;
     }
 
-    public Date getFromcontact() {
+    public String getFromcontact() {
         return fromcontact;
     }
 
-    public void setFromcontact(Date fromcontact) {
+    public void setFromcontact(String fromcontact) {
         this.fromcontact = fromcontact;
     }
 
-    public Date getTocontact() {
+    public String getTocontact() {
         return tocontact;
     }
 
-    public void setTocontact(Date tocontact) {
+    public void setTocontact(String tocontact) {
         this.tocontact = tocontact;
     }
 
@@ -98,14 +87,6 @@ public class Organizer implements Account {
 
     public void setBusinessNo(int businessNo) {
         this.businessNo = businessNo;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getFirstName() {
