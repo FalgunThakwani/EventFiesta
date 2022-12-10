@@ -26,14 +26,11 @@ public class UserLoginController {
         }
 
         @PostMapping("/handleUserLogin")
-        public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request)
-        {
+        public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request) {
             model.addAttribute("user", user);
-            // Todo: logic for checking username and password
             System.out.println(user.getEmail());
             System.out.println(user.getPassword());
             UserLogin userLogin = new UserLogin();
-
             LoginState loginState = userLogin.login(user, request);
             model.addAttribute("statusMsg", loginState.getLoginStatus());
             System.out.println(loginState.getLoginStatus());

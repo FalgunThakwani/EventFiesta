@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @SessionAttributes({"user"})
 @Controller
 public class UserHomeController {
@@ -15,16 +18,9 @@ public class UserHomeController {
     public String getUserHomePage(@ModelAttribute User user, Model model)
     {
         System.out.println("Inside UserHomeController user: " + user.toString());
-
         System.out.println("Logged in user ........." + user.getFirstName());
-
-        user.setFirstName("Demo");
-        user.setLastName("User");
-
         model.addAttribute("user", user);
-
         return "UserHomepage";
     }
-
 
 }
