@@ -9,7 +9,7 @@ public class MySQLDBPersistence implements IDBPersistence {
     private DBConnectionPool connectionPool;
 
     public MySQLDBPersistence() {
-        DBConnectionProperties properties = new DBConnectionProperties("mysql");
+        DBConnectionProperties properties = DBConnectionProperties.getInstance("mysql");
         connectionPool = DBConnectionPool.getInstance(properties);
     }
 

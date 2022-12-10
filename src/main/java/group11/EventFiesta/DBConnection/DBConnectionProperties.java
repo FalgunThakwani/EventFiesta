@@ -11,7 +11,21 @@ public class DBConnectionProperties {
 
     String password;
 
-    DBConnectionProperties(String db) {
+    private static DBConnectionProperties dbConnectionProperties = null;
+
+    //used singleton to load properties because the properties does not vary, can be fetched just once from the properties file
+    public static DBConnectionProperties getInstance(String db) {
+        if (dbConnectionProperties == null) {
+            synchronized (DBConnectionProperties.class) {
+                if (dbConnectionProperties == null) {
+                    dbConnectionProperties = new DBConnectionProperties(db);
+                }
+            }
+        }
+        return dbConnectionProperties;
+    }
+
+    private DBConnectionProperties(String db) {
         loadDBProperties(db);
     }
 
