@@ -1,4 +1,4 @@
-package group11.EventFiesta.organizer;
+package group11.EventFiesta.account.organizer;
 
 import ch.qos.logback.core.encoder.EchoEncoder;
 import group11.EventFiesta.DBConnection.IDBPersistence;

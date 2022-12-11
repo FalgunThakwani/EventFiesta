@@ -1,18 +1,20 @@
-package group11.EventFiesta.organizer;
+package group11.EventFiesta.account.login.organizer;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.ILogin;
+import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Account;
 import javax.servlet.http.HttpServletRequest;
 
 public class OrganizerLogin implements ILogin {
 
     /*@Override*/
-    public LoginState login(Account organizer, HttpServletRequest request) {
+    public IState login(Account organizer, HttpServletRequest request) {
         try {
             IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
-            ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence);
+            Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
+            ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence, params);
             ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler(mySQLDBPersistence);
             ILoginHandler createSessionHandler = new CreateSessionHandler(request);
             accounCheckHandler.setNextHandler(verifyPasswordHandler);
