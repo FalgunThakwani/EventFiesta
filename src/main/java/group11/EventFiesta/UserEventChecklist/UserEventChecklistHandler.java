@@ -8,7 +8,6 @@ import java.util.*;
 
 public class UserEventChecklistHandler{
 
-
     IDBPersistence idbPersistence;
 
     public UserEventChecklistHandler() {
@@ -28,7 +27,6 @@ public class UserEventChecklistHandler{
                 userEventChecklist.setStatus((Integer) row.get("status"));
                 userEventToDoList.add(userEventChecklist);
             }
-
         }
         return userEventToDoList;
     }
@@ -42,18 +40,6 @@ public class UserEventChecklistHandler{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-    }
-
-    public boolean updateItemToChecklist(int eventID, int checklistItemID, boolean status)
-    {
-        Object[] params = new Object[]{"EventCheckList", "status", status, "checklist_item_id", checklistItemID};
-        try {
-            idbPersistence.loadData("updateDBUsingWhere", params);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return false;
     }
 
     public boolean removeItem(int id)
@@ -62,15 +48,12 @@ public class UserEventChecklistHandler{
         {
             int result = idbPersistence.updateData("update_event_checklist", id);
             System.out.println("Remove Item Count: " + result);
-
             return result > 0;
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
         }
-
         return false;
-
     }
 }

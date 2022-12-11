@@ -11,7 +11,7 @@ public class AccountCheckHandler extends LoginHandler{
 
     IDBPersistence idbPersistence;
 
-    AccountCheckHandler(IDBPersistence idbPersistence) {
+    public AccountCheckHandler(IDBPersistence idbPersistence) {
         this.idbPersistence = idbPersistence;
     }
 

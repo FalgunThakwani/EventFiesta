@@ -10,6 +10,5 @@ public class LoginSuccess extends LoginState{
     public void setNextHtml() {
         nextHtml = "UserHomepage";
         //return "redirect:/resetPassword";
-
     }
 }

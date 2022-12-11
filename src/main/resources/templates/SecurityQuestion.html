@@ -16,13 +16,22 @@
             </div>
             <span style="font-size:38px;">Security Questions</span>
             </p>
-            <form th:action="@{/handleSecurityQuestion}" method="post">
-                <p>Enter your Security Question 1</p>
-                <p><input maxlength="50" name="newPassword" type="password"/></p>
-                <p>Enter your Security Question 2</p>
-                <p><input maxlength="50" name="confirmPassword" type="password"/></p>
+            <form th:action="@{/handleSecurityQuestion}" method="post" th:object="${user}">
+                <p>Enter your registered Email Address</p>
+                <p><input maxlength="50" name="email" type="email" required th:value="*{email}"/></p>
+                <p>Select your Security Question</p>
+                <select title="security question"  class="dropdown" name="securityanswer" required th:field="*{securityQuestion}">
+                    <option value="What is your fathers middle name?">What is your fathers middle name?</option>
+                    <option value="What is your wife's full name?">What is your wife's full name?</option>
+                </select>
+                <p>Enter your Security Answer</p>
+                <p><input maxlength="50" name="securityanswer" type="text" required th:field="*{securityAnswer}"/></p>
                 <p><input class="btn" name="Login" type="submit" value="Continue"/></p>
             </form>
+            <p><a href="/">Back to Home</a></p>
+            <div th:if="${statusMsg} != null">
+                <p style="color: red" data-th-text="${statusMsg}"/>
+            </div>
         </div>
     </div>
     <div class="split right">
