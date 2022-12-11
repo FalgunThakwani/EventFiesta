@@ -1,20 +1,286 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Organizer details</title>
-    <link th:href="@{/css/common.css}" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Business Dashboard</title>
+        <link th:href="@{/css/home.css}" rel="stylesheet">
+        <link th:href="@{/css/BusinessHomepage.css}" rel="stylesheet">
+        <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+    </head>
+    <body>
+        <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+        <div class="container">
+            <div>
+                <h1 style="text-align: center;">Events Organization</h1>
+            </div>
+            <div>
+                <div class="left">
+                    <div class="tab">
+                        <button class="links" onclick="activeSelectedTab(event, 'Pending')"  id="default">Pending</button>
+                        <button class="links" onclick="activeSelectedTab(event, 'Upcoming')">Upcoming</button>
+                        <button class="links" onclick="activeSelectedTab(event, 'Completed')">Completed</button>
+                    </div>
 
-<body>
-<div class="login_container" th:object="${organizer}" >
-    <p>
-        <span th:text="*{email}" />
-        <span> logged in successfully!</span>
-    </p>
-    <p>Logout?&nbsp;<a href="/organizerLogout">Logout</a></p>
+                    <div id="Pending" class="content">
+                        <div class="verticalTab">
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Pending_1')" id="defaultPending">October 6 | Baby Shower</button>
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Pending_2')">October 15 | Farewell Event</button>
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Pending_3')">October 21 | Birthday</button>
+                        </div>
 
-</div>
-</body>
+                        <div id="Pending_1" class="verticalTabContent">
+                            <h3 class="align-center">October 6 | Baby Shower</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+                                </div>
+                            </div>
+                            <div class="align-box" style="margin: 50px 0 20px 0;">
+                                <p><input class="btn" name="Login" type="submit" value="Accept"/></p>
+                                <p><input class="btn-secondary" name="Login" type="submit" value="Reject"/></p>
+                            </div>
+
+                        </div>
+
+                        <div id="Pending_2" class="verticalTabContent">
+                            <h3 class="align-center">October 15 | Farewell Event</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+
+                                </div>
+                            </div>
+                            <div class="align-box" style="margin: 50px 0 20px 0;">
+                                <p><input class="btn" name="Login" type="submit" value="Accept"/></p>
+                                <p><input class="btn-secondary" name="Login" type="submit" value="Reject"/></p>
+                            </div>
+                        </div>
+
+                        <div id="Pending_3" class="verticalTabContent">
+                            <h3 class="align-center">October 21 | Birthday</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+
+                                </div>
+                            </div>
+                            <div class="align-box" style="margin: 50px 0 20px 0;">
+                                <p><input class="btn" name="Login" type="submit" value="Accept"/></p>
+                                <p><input class="btn-secondary" name="Login" type="submit" value="Reject"/></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Upcoming" class="content">
+                        <div class="verticalTab">
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Upcoming_1')"  id="defaultUpcoming">November 6 | Wedding</button>
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Upcoming_2')">November 16 | Farewell</button>
+                        </div>
+
+                        <div id="Upcoming_1" class="verticalTabContent">
+                            <h3 class="align-center">November 6 | Wedding</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+                                </div>
+                            </div>
+                            <h3>Action Plan</h3>
+                            <table>
+                                <tr>
+                                    <th>Service & Head</th>
+                                    <th>Action Plan</th>
+                                </tr>
+                                <tr>
+                                    <td>Catering</td>
+                                    <td>Gather Food</td>
+                                </tr>
+                                <tr>
+                                    <td>Decoration</td>
+                                    <td>Gather Lights</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="Upcoming_2" class="verticalTabContent">
+                            <h3 class="align-center">November 16 | Farewell</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+                                </div>
+
+                            </div>
+                            <h3>Action Plan</h3>
+                            <table>
+                                <tr>
+                                    <th>Service & Head</th>
+                                    <th>Action Plan</th>
+                                </tr>
+                                <tr>
+                                    <td>Catering</td>
+                                    <td>Gather Food</td>
+                                </tr>
+                                <tr>
+                                    <td>Decoration</td>
+                                    <td>Gather Lights</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div id="Completed" class="content">
+                        <div class="verticalTab">
+                            <button class="verticalLinks" onclick="activeVerticalSelectedTab(event, 'Completed_1')"  id="defaultCompleted">September 6 | Baby Shower</button>
+                        </div>
+
+                        <div id="Completed_1" class="verticalTabContent">
+                            <h3 class="align-center">September 6 | Baby Shower</h3>
+                            <hr>
+                            <div class="align-box">
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Services</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Client Info</div>
+                                    <p>Catering</p>
+                                    <p>Decoration</p>
+                                </div>
+                                <div class="align-box-content">
+                                    <div class="box-content-header">Event Details</div>
+                                    <p><strong>Location : </strong>Delhi</p>
+                                    <p><strong>Count : </strong>1000</p>
+
+                                </div>
+                            </div>
+                            <h3>Client Review</h3>
+                            <table>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Review</th>
+                                </tr>
+                                <tr>
+                                    <td>Catering</td>
+                                    <td>Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td>Decoration</td>
+                                    <td>Good</td>
+                                </tr>
+                            </table>
+                            <div class="align-box" style="margin: 50px 0 20px 0;align-items: baseline;">
+                                <p>Please help us improve by providing the feedback</p>
+                                <p><input class="btn-secondary" name="Login" type="submit" value="Feedback"/></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function activeSelectedTab(event, selectedTab) {
+              var tabIndex = 0;
+              var content = document.getElementsByClassName("content");
+              for (tabIndex = 0; tabIndex < content.length; tabIndex++) {
+                content[tabIndex].style.display = "none";
+              }
+              var links = document.getElementsByClassName("links");
+              for (tabIndex = 0; tabIndex < links.length; tabIndex++) {
+                links[tabIndex].classList.remove("active");
+              }
+              document.getElementById(selectedTab).style.display = "flex";
+              event.currentTarget.classList.add("active");
+              if (selectedTab == 'Pending') {
+                document.getElementById("defaultPending").click();
+              } else if (selectedTab == 'Upcoming') {
+                document.getElementById("defaultUpcoming").click();
+              } else if (selectedTab == 'Completed') {
+                document.getElementById("defaultCompleted").click();
+              }
+            }
+
+            function activeVerticalSelectedTab(event, selectedTab) {
+              var vTabIndex = 0;
+              var verticalTabContent = document.getElementsByClassName("verticalTabContent");
+              for (vTabIndex = 0; vTabIndex < verticalTabContent.length; vTabIndex++) {
+                verticalTabContent[vTabIndex].style.display = "none";
+              }
+              var verticalLinks = document.getElementsByClassName("verticalLinks");
+              for (vTabIndex = 0; vTabIndex < verticalLinks.length; vTabIndex++) {
+                verticalLinks[vTabIndex].classList.remove("active");
+              }
+              document.getElementById(selectedTab).style.display = "block";
+              event.currentTarget.classList.add("active");
+            }
+            document.getElementById("default").click();
+
+        </script>
+    </body>
 </html>
