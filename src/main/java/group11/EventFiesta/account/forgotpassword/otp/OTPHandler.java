@@ -1,6 +1,8 @@
-package group11.EventFiesta.organizer;
+package group11.EventFiesta.account.forgotpassword.otp;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.account.IState;
+import group11.EventFiesta.account.login.organizer.LoginHandler;
 import group11.EventFiesta.mail.Mail;
 import group11.EventFiesta.mail.MailHandler;
 import group11.EventFiesta.mail.SSLMailHandler;
@@ -19,14 +21,14 @@ public class OTPHandler extends LoginHandler {
     }
 
     @Override
-    public LoginState execute(Account organizer) {
+    public IState execute(Account account) {
         Integer otp = generateOTP();
-        saveOTP(organizer.getAccountId(), otp);
-        Boolean mailSentStatus = sendMail(organizer.getEmail(), otp);
+        saveOTP(account.getAccountId(), otp);
+        Boolean mailSentStatus = sendMail(account.getEmail(), otp);
         if(mailSentStatus) {
-            return new SentOTP();
+            return new SentOTP(account);
         } else {
-            return new MailNotSent();
+            return new MailNotSent(account);
         }
     }
 
@@ -42,7 +44,7 @@ public class OTPHandler extends LoginHandler {
     private void saveOTP(Integer accountId, Integer otp) {
         try {
             Long otpTime = System.currentTimeMillis();
-            idbPersistence.saveData("update OrganizerSensitive set otp = " + otp + ", otp_time = " + otpTime + " where organizer_id= " + accountId);
+            idbPersistence.saveData("update OrganizerSensitive set otp = " + otp + ", otp_time = " + otpTime + " where organizer_id= " + accountId); //todo move to stored procedure
         } catch (Exception exception) {
             System.out.println("Exception in otphandler: " + exception.getMessage());
         }

@@ -4,6 +4,12 @@ public abstract class Account {
 
     Integer otp;
 
+    Boolean org = false;
+
+    public abstract Boolean getOrg();
+
+    public abstract void setOrg(Boolean org) ;
+
     public abstract boolean verifyEmailAddress();
 
     public abstract String getEmail();

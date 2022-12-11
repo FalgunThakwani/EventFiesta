@@ -1,4 +1,4 @@
-package group11.EventFiesta.organizer;
+package group11.EventFiesta.account.login.organizer;
 
 public abstract class LoginHandler implements ILoginHandler {
 

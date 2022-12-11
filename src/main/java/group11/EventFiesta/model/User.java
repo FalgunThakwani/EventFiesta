@@ -13,6 +13,14 @@ public class User extends Account {
     private String securityQuestion;
     private String securityAnswer;
 
+    public Boolean getOrg() {
+        return org;
+    }
+
+    public void setOrg(Boolean org) {
+        this.org = org;
+    }
+
     public String getFirstName() {
         return this.firstName;
     }

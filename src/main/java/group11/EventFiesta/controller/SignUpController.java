@@ -5,7 +5,7 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.Service;
-import group11.EventFiesta.organizer.OrganizerSignUp;
+import group11.EventFiesta.account.organizer.OrganizerSignUp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
