@@ -3,7 +3,6 @@ package group11.EventFiesta.controller;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.account.*;
-import group11.EventFiesta.account.forgotpassword.AccountState;
 import group11.EventFiesta.account.forgotpassword.otp.ForgotPasswordUsingOTP;
 import group11.EventFiesta.account.forgotpassword.otp.GenerateOTP;
 import group11.EventFiesta.account.forgotpassword.otp.IForgotPassword;
@@ -14,22 +13,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserForgotPasswordOTP {
 
-    @GetMapping("/userForgotPasswordWithOTP")
+    @GetMapping("/UserForgotPasswordUsingOTP")
     public String getForgotPassword(Model model) {
         model.addAttribute("user", new User());
-        return "ForgotPassword";
+        return "UserForgotPasswordUsingOTP";
     }
 
     @PostMapping("/userGetOTP")
     public String getOTP(Model model, @ModelAttribute User user) {
         System.out.println("inside getOTP()" );
         IDBPersistence idbPersistence = new MySQLDBPersistence();
+        List<Object[]> paramList = new ArrayList<>();
         Object [] params = new Object[] {"UserInfo", "user_id", "email", user.getEmail()};
+        paramList.add(params);
+        params = new Object[]{"UserSensitive", "user_id"};
+        paramList.add(params);
         GenerateOTP generateOTP = new GenerateOTP(idbPersistence);
-        IState accountState = generateOTP.generateOTP(user, params);
+        IState accountState = generateOTP.generateOTP(user, paramList);
         return accountState.getNextPage();
     }
 

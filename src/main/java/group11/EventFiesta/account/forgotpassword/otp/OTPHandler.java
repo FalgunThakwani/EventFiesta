@@ -9,6 +9,7 @@ import group11.EventFiesta.mail.SSLMailHandler;
 import group11.EventFiesta.model.Account;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -16,8 +17,11 @@ public class OTPHandler extends LoginHandler {
 
     IDBPersistence idbPersistence;
 
-    public OTPHandler(IDBPersistence idbPersistence) {
+    Object[] param;
+
+    public OTPHandler(IDBPersistence idbPersistence, Object[] param) {
         this.idbPersistence = idbPersistence;
+        this.param = param;
     }
 
     @Override
@@ -44,7 +48,16 @@ public class OTPHandler extends LoginHandler {
     private void saveOTP(Integer accountId, Integer otp) {
         try {
             Long otpTime = System.currentTimeMillis();
-            idbPersistence.saveData("update OrganizerSensitive set otp = " + otp + ", otp_time = " + otpTime + " where organizer_id= " + accountId); //todo move to stored procedure
+            Object[] newParam = new Object[param.length + 3];
+            int i = 0;
+            for (; i < param.length; i++) {
+                newParam[i] = param[i];
+            }
+            newParam[i++] = otp;
+            newParam[i++] = otpTime;
+            newParam[i] = accountId;
+            System.out.println(Arrays.toString(newParam));
+            idbPersistence.updateData("updateTwoColumnDBUsingWhere", newParam);//"update OrganizerSensitive set otp = " + otp + ", otp_time = " + otpTime + " where organizer_id= " + accountId); //todo move to stored procedure
         } catch (Exception exception) {
             System.out.println("Exception in otphandler: " + exception.getMessage());
         }

@@ -14,22 +14,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class OrgnaizerForgotPasswordOTP {
 
-    @GetMapping("/OrganizerForgotPassword")
+    @GetMapping("/OrganizerForgotPasswordUsingOTP")
     public String getForgotPassword(Model model) {
         model.addAttribute("organizer", new Organizer());
-        return "OrganizerForgotPassword";
+        return "OrganizerForgotPasswordUsingOTP";
     }
 
     @PostMapping("/organizerGetOTP")
     public String getOTP(Model model, @ModelAttribute Organizer organizer) {
         System.out.println("inside getOTP()" );
         IDBPersistence idbPersistence = new MySQLDBPersistence();
+        List<Object[]> paramList = new ArrayList<>();
         Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
+        paramList.add(params);
+        params = new Object[]{"OrganizerSensitive", "organizer_id"};
+        paramList.add(params);
         GenerateOTP generateOTP = new GenerateOTP(idbPersistence);
-        IState accountState = generateOTP.generateOTP(organizer, params);
+        IState accountState = generateOTP.generateOTP(organizer, paramList);
         return accountState.getNextPage();
     }
 
