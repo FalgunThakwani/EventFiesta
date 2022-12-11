@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Reset password</title>
+    <title>Organizer - Enter OTP</title>
     <link th:href="@{/css/common.css}" rel="stylesheet">
 </head>
 
@@ -16,9 +16,10 @@
             <p style="color: green" data-th-text="${statusMsg}"/>
         </div>
 
-        <form th:action="@{/validateOTP}" th:object="${organizer}" method="post">
+        <form th:action="@{/organizerValidateOTP}" th:object="${organizer}" method="post">
 
             <p>Enter OTP*</p>
+            <p><input  type="hidden" th:field="*{org}" /></p>
             <p><input  type="hidden" th:field="*{email}" /></p>
             <p><input  type="hidden" th:field="*{accountId}" /></p>
 
@@ -27,8 +28,7 @@
             <p><input class="btn submitButton"name="Login" type="submit" value="Validate" /></p>
         </form>
 
-        <p>Are you an organizer? Try&nbsp;<a href="/organizerLogin">organizer login</a></p>
-        <p>Are you a customer? Try&nbsp;<a href="/userLogin">user login</a></p>
+        <p>Retry&nbsp;<a href="/organizerLogin"> login</a></p>
     </div>
 
     <div class="split-50w right">
