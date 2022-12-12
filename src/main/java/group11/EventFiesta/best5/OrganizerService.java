@@ -21,6 +21,7 @@ public class OrganizerService extends GroupComponent {
     public OrganizerService(String serviceName, Double score) {
         this.serviceName = serviceName;
         this.score = score;
+        this.calculator = new CalculateScoreForService(this);
     }
 
     public Double calculateScore() {
