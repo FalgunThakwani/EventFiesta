@@ -36,7 +36,7 @@ public class DecoratedOrganizerService extends BaseDecorator {
     }
 
     private void getDetailsFromDB() {
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
+        List<Map<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
         buildObject(resultSet);
     }
 
