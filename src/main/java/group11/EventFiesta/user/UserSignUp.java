@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import group11.EventFiesta.EncryptPassword;
-import group11.EventFiesta.ISignup;
+import group11.EventFiesta.UserEventChecklist.EncryptPassword;
+import group11.EventFiesta.account.ISignup;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;

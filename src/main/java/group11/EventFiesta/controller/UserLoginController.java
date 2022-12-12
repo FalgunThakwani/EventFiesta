@@ -1,6 +1,5 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.model.User;
 import group11.EventFiesta.user.LoginState;
 import group11.EventFiesta.user.UserLogin;

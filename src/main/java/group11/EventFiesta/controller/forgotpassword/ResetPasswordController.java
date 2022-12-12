@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.forgotpassword;
 
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ForgotPasswordController {
-    @GetMapping("/forgotPassword")
-    public String getForgotPasswordPage() {
-        return "ForgotPassword";
+public class ResetPasswordController {
+    @GetMapping("/resetPassword")
+    public String getResetPasswordPage() {
+        return "ResetPassword";
     }
 
-    @PostMapping("/handleForgotPassword")
-    public String handleForgotPassword(@ModelAttribute User user) {
+    @PostMapping("/handleResetPassword")
+    public String handleResetPassword(@ModelAttribute User user) {
         // Todo: logic for checking username and password
-        return "redirect:/securityQuestion";
+
+        return "home";
     }
 }
