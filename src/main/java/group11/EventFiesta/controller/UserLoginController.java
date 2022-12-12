@@ -1,5 +1,7 @@
 package group11.EventFiesta.controller;
 
+import group11.EventFiesta.account.login.user.LoginState;
+import group11.EventFiesta.account.login.user.UserLogin;
 import group11.EventFiesta.model.User;
 import group11.EventFiesta.user.LoginState;
 import group11.EventFiesta.user.UserLogin;
@@ -24,6 +26,14 @@ public class UserLoginController {
             return "UserLogin";
         }
 
+        @GetMapping("/userLogout")
+        public String getUserLogout(Model model, HttpServletRequest request, HttpServletResponse response) {
+            UserLogin userLogin = new UserLogin();
+            userLogin.logout(request);
+            model.addAttribute("user", new User());
+            return "UserLogin";
+         }
+
         @PostMapping("/handleUserLogin")
         public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request) {
             model.addAttribute("user", user);
@@ -37,5 +47,5 @@ public class UserLoginController {
             return loginState.getNextHtml();
         }
 
-    }
+}
 

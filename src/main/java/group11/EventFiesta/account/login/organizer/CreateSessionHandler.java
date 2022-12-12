@@ -20,6 +20,8 @@ public class CreateSessionHandler extends LoginHandler {
         if (session == null) {
             session = request.getSession(true);
             session.setAttribute("isOrganizer", true);
+            session.setAttribute("accountId", organizer.getAccountId());
+            session.setAttribute("accountEmail", organizer.getEmail());
             System.out.println("Created session!");
         }
         return new LoginSuccess(organizer);

@@ -2,38 +2,105 @@ package group11.EventFiesta.best5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.model.UserEventQuestionnaire;
 
-///This is riduculous it will always violate open/close principle
 public class HelperForDB implements IHelperForDB {
 
     IDBPersistence connection = new MySQLDBPersistence();
 
-    public HelperForDB() {
-    }
-
-    protected Integer getRatingsForService(Integer serviceId) {
+    @Override
+    public List<Map<String, Object>> getRatingsForService(Integer serviceId) {
+        List<Map<String, Object>> resultSet = new ArrayList<>();
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            resultSet = connection
                     .loadData("sp_getRatings", serviceId);
-            return calculateRatingsForService(resultSet);
+            return resultSet;
         } catch (Exception e) {
             System.out.println("Error in getting Ratings for services");
             e.printStackTrace();
-            return 0;
+            return resultSet;
         }
     }
 
-    private Integer calculateRatingsForService(ArrayList<HashMap<String, Object>> resultSet) {
-        Integer ratingScore = 4;
-        for (int i = 0; i < resultSet.size(); i++) {
-            ratingScore += (Integer) resultSet.get(i).get("rating");
+    @Override
+    public List<Map<String, Object>> getOrganizersFromDB(UserEventQuestionnaire userEventQuestionnaire) {
+        List<Map<String, Object>> resultSet = new ArrayList<>();
+        float twentyPercentOfBudget = ((userEventQuestionnaire.getBudget() * 20) / 100);
+        float budget_l = userEventQuestionnaire.getBudget() - twentyPercentOfBudget;
+        float budget_u = userEventQuestionnaire.getBudget() + twentyPercentOfBudget;
+        Integer guestCount = userEventQuestionnaire.getGuestCount();
+        if (guestCount < 0) {
+            guestCount = 1;
         }
-        if (resultSet.size() > 0) {
-            ratingScore = ratingScore / resultSet.size();
+        Object[] params = { userEventQuestionnaire.getCity(), userEventQuestionnaire.getService(), budget_l, budget_u,
+                guestCount };
+        try {
+            resultSet = connection
+                    .loadData("getOrganizersMatchingUserQuestionare", params);
+            return resultSet;
+        } catch (Exception e) {
+            System.out.print("Error in getting organizers from DB.");
+            e.printStackTrace();
         }
-        return ratingScore;
+
+        return resultSet;
     }
+
+    @Override
+    public List<Map<String, Object>> getOrganizerDetailsFromDB(Integer organizerID) {
+        try {
+            List<Map<String, Object>> resultSet = connection
+                    .loadData("sp_getOrganizerDetails", organizerID);
+            return resultSet;
+        } catch (Exception e) {
+            System.out.println("Error in getting organizer details form DB");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getServiceHistory(Integer serviceID) {
+        try {
+            List<Map<String, Object>> resultSet = connection
+                    .loadData("sp_getServiceHistory", serviceID);
+            return resultSet;
+        } catch (Exception e) {
+            System.out.println("Error in getting service history form DB");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getTotalEventsRatio() {
+        try {
+            List<Map<String, Object>> resultSet = connection
+                    .loadData("sp_getTotalEventsRatio", "event_id");
+            return resultSet;
+        } catch (Exception e) {
+            System.out.println("Error in getting Total Events Ratio form DB");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getBudgetForService(Integer serviceId) {
+        try {
+            List<Map<String, Object>> resultSet = connection
+                    .loadData("sp_getBudgetForService", serviceId);
+            return resultSet;
+        } catch (Exception e) {
+            System.out.println("Error in getting budget for service form DB");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 }

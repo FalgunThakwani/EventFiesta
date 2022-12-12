@@ -7,6 +7,8 @@ import group11.EventFiesta.model.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VerifyPasswordHandler extends LoginHandler {
 
@@ -19,13 +21,15 @@ public class VerifyPasswordHandler extends LoginHandler {
     @Override
     public IState execute(Account organizer) throws Exception {
         Object [] params = new Object[] {"OrganizerSensitive", "encrypted_password, private_key", "organizer_id", organizer.getAccountId()};
-        ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+        List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
         if (data.size() > 0) {
-            HashMap<String, Object> row = data.get(0);
+            Map<String, Object> row = data.get(0);
             String pwdFromDB = row.get("encrypted_password").toString();
             String saltFromDB = row.get("private_key").toString();
             String encPwd = EncryptPassword.getEncryptedPwd(organizer.getPassword(), saltFromDB);
+            System.out.println("organizer.getPassword(): " + organizer.getPassword());
+            System.out.println("encPwd: " + encPwd);
             if (pwdFromDB.equals(encPwd)) {
                 return nextHandler.execute(organizer);
             }

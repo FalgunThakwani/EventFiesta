@@ -5,7 +5,7 @@ import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.account.*;
 import group11.EventFiesta.account.forgotpassword.otp.ForgotPasswordUsingOTP;
 import group11.EventFiesta.account.forgotpassword.otp.GenerateOTP;
-import group11.EventFiesta.account.forgotpassword.otp.IForgotPassword;
+import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

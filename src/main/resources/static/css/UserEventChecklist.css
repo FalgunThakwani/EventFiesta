@@ -6,7 +6,7 @@ body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 .container {
- margin-top: 80px !important;
+  margin-top: 80px !important;
   margin: 0 auto;
   max-width: 1600px;
 }
@@ -16,11 +16,29 @@ body {
   margin: 80px 100px;
 }
 
+.todoapp {
+  padding: 10px 20px;
+  margin: 30px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 40px -7px rgb(0 0 0 / 75%);
+  background: #eeecf5;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todoappLeft {
+  flex: 0 0 60%;
+}
+
+.todoappRight {
+  flex: 0 0 30%;
+  margin: auto 0;
+}
+
 .field-set-override {
   gap: 20px;
-  display: flex;
   font-size: 25px;
-  float: left;
   margin-bottom: 2em;
   border-color: darkgray;
   border-width: 1px;
@@ -30,23 +48,22 @@ input[type="radio"] {
   height: 20px;
   width: 20px;
 }
-.dropdown {
-  width: 420px;
-  min-height: 40px;
-}
-
-.date-format {
-  font-size: 18px;
-  padding: 0px 10px;
-  width: 400px;
-  min-height: 40px;
-}
 
 input[type="submit"].btn:hover {
   border: 1px solid black;
 }
 
-input[name="Login"] {
+.input-adjust {
+  display: flex;
+  margin: 20px 0;
+}
+
+input[name="name"] {
+  width: 500px;
+  min-height: 30px;
+}
+
+.btn {
   background-color: #002244;
   border: none;
   color: white;
@@ -55,13 +72,18 @@ input[name="Login"] {
   display: inline-block;
   font-size: 16px;
   border-radius: 15px;
-  width: 250px;
-  height: 45px;
+  width: 150px;
+  height: 40px;
   margin-left: 100px;
-  margin-top: 30px;
   cursor: pointer;
 }
 
-.strike {
-    text-decoration: line-through;
+.checkbox-size {
+  width: 18px;
+  height: 18px;
+}
+
+.todo-image {
+  width: 100%;
+  height: auto;
 }

@@ -3,16 +3,16 @@ package group11.EventFiesta.controller;
 import group11.EventFiesta.account.ISignup;
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.account.signup.user.UserSignUp;
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.Service;
-import group11.EventFiesta.account.organizer.OrganizerSignUp;
+import group11.EventFiesta.account.signup.organizer.OrganizerSignUp;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import group11.EventFiesta.model.User;
-import group11.EventFiesta.user.UserSignUp;
 
 import java.util.ArrayList;
 
