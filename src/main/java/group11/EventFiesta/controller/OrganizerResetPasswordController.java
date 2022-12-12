@@ -4,10 +4,9 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
-import group11.EventFiesta.account.forgotpassword.otp.GenerateOTP;
 import group11.EventFiesta.account.forgotpassword.resetpassword.GenerateNewEncryptedPassword;
 import group11.EventFiesta.account.forgotpassword.resetpassword.ResetPasswordHandler;
-import group11.EventFiesta.model.User;
+import group11.EventFiesta.model.Organizer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,33 +14,30 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@SessionAttributes({"user"})
+@SessionAttributes({"organizer"})
 @Controller
-public class UserResetPasswordController {
-    @GetMapping("/userResetPassword")
-    public String getResetPasswordPage(Model model, @ModelAttribute User user)
+public class OrganizerResetPasswordController {
+    @GetMapping("/organizerResetPassword")
+    public String getResetPasswordPage(Model model, @ModelAttribute Organizer organizer)
     {
-        System.out.println("In userResetPassword " + user.getUserId());
+        System.out.println("In organizer ResetPassword " + organizer.getOrganizerId());
 
-        model.addAttribute("user", user);
-        return "UserResetPassword";
+        model.addAttribute("organizer", organizer);
+        return "OrganizerResetPassword";
     }
 
-    @PostMapping("/handleUserResetPassword")
-    public String handleResetPassword(Model model, @ModelAttribute User user) throws Exception {
-        model.addAttribute("user", user);
-        System.out.println("user id is : " + user.getUserId());
-        System.out.println("user password is : " + user.getPassword());
-        System.out.println("user confirm password is : " + user.getConfirmPassword());
-        int user_id = user.getUserId();
-        String newPassword = user.getPassword();
-        if(user.getPassword().equals(user.getConfirmPassword()))
+    @PostMapping("/handleOrganizerResetPassword")
+    public String handleResetPassword(Model model, @ModelAttribute Organizer organizer) throws Exception {
+        model.addAttribute("organizer", organizer);
+        System.out.println("organizer id is : " + organizer.getOrganizerId());
+        System.out.println("organizer password is : " + organizer.getPassword());
+        System.out.println("organizer confirm password is : " + organizer.getConfirmPassword());
+        int organizer_id = organizer.getOrganizerId();
+        String newPassword = organizer.getPassword();
+        if(organizer.getPassword().equals(organizer.getConfirmPassword()))
         {
             IDBPersistence idbPersistence = new MySQLDBPersistence();
-            Object [] params1 = new Object[] {"UserSensitive", "private_key", "user_id", user_id};
+            Object [] params1 = new Object[] {"OrganizerSensitive", "private_key", "organizer_id", organizer_id};
             GenerateNewEncryptedPassword generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params1);
             String newEncryptedPassword = generateNewEncryptedPassword.getEncryptedPassword(newPassword);
             if(newEncryptedPassword.equals("FAILURE"))
@@ -49,9 +45,9 @@ public class UserResetPasswordController {
                  model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
             }
             else {
-                Object[] params2 = new Object[]{"UserSensitive", "encrypted_password", newEncryptedPassword, "user_id", user_id};
+                Object[] params2 = new Object[]{"OrganizerSensitive", "encrypted_password", newEncryptedPassword, "organizer_id", organizer_id};
                 IForgotPassword resetPasswordHandler = new ResetPasswordHandler(new MySQLDBPersistence(), params2);
-                IState state = resetPasswordHandler.validate(user);
+                IState state = resetPasswordHandler.validate(organizer);
                 model.addAttribute("statusMsg", state.getStatus());
             }
         }
@@ -59,6 +55,6 @@ public class UserResetPasswordController {
         {
             model.addAttribute("statusMsg", "PASSWORDS NOT MATCHING");
         }
-        return "UserResetPassword";
+        return "OrganizerResetPassword";
     }
 }

@@ -22,14 +22,14 @@ import java.util.List;
 @Controller
 public class UserSecurityQuestionsController {
     @GetMapping("/userSecurityQuestion")
-    public String getSecretQuestionPage(Model model)
+    public String getSecurityQuestionPage(Model model)
     {
         model.addAttribute("user", new User());
         return "UserSecurityQuestion";
     }
 
     @PostMapping("/handleUserSecurityQuestion")
-    public String handleSecretQuestion(Model model, @ModelAttribute User user) throws Exception
+    public String handleSecurityQuestion(Model model, @ModelAttribute User user) throws Exception
     {
         int user_id;
         String statusMessage;

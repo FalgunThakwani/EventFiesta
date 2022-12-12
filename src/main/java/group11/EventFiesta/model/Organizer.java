@@ -26,8 +26,13 @@ public class Organizer extends Account {
     private String province;
     private String pincode;
     private String fromcontact;
+
     private String tocontact;
     private List<Service> service;
+
+    private String securityQuestion;
+
+    private String securityAnswer;
 
     public List<Service> getService() {
         return service;
@@ -156,6 +161,30 @@ public class Organizer extends Account {
 
     public Integer getAccountId() {
         return organizerId;
+    }
+
+    public Integer getOrganizerId() {
+        return organizerId;
+    }
+
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
     }
 
     @Override
