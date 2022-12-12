@@ -1,8 +1,5 @@
 package group11.EventFiesta.best5;
 
-import group11.EventFiesta.model.EventServices;
-import group11.EventFiesta.model.Reviews;
-
 public class OrganizerService extends GroupComponent {
 
     /// 1 particular organizer will have 1 service and 1 score
@@ -10,34 +7,41 @@ public class OrganizerService extends GroupComponent {
     protected String serviceName;// catering, decoration, auditorium
     protected Integer orgranizerId;
     protected Integer serviceId;
+    protected Double budget;
+    protected Double headCount;
+    protected String event;
+    protected String dateTime;
     private Double score;
-    protected Reviews reviews;
-    protected EventServices eventServices;
-    protected Integer serviceRatings;
-    private HelperForDB helper;
+    private ICalculateScore calculator;
 
     public OrganizerService() {
-        helper = new HelperForDB();
+        this.calculator = new CalculateScoreForService(this);
     }
 
     public OrganizerService(String serviceName, Double score) {
-        helper = new HelperForDB();
         this.serviceName = serviceName;
         this.score = score;
+        this.calculator = new CalculateScoreForService(this);
     }
 
     public Double calculateScore() {
-        Double scoreByRatings = 1.0 * helper.getRatingsForService(serviceId); //todo fix the return value
+        Double scoreByRatings = 1.0 * calculator.calculateRatingsForService();
         System.out.println(scoreByRatings);
         return scoreByRatings;
     }
 
     @Override
     public String toString() {
-        return "OrganizerService{" +
-                "serviceName='" + serviceName + '\'' +
-                ", score=" + score +
-                "}\n";
+        return "{" +
+                " serviceName='" + serviceName + "'" +
+                ", orgranizerId='" + orgranizerId + "'" +
+                ", serviceId='" + serviceId + "'" +
+                ", budget='" + budget + "'" +
+                ", headCount='" + headCount + "'" +
+                ", event='" + event + "'" +
+                ", dateTime='" + dateTime + "'" +
+                ", score='" + score + "'" +
+                "}";
     }
 
     @Override
