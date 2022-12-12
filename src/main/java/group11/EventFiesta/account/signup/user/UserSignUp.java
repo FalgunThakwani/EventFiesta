@@ -1,15 +1,15 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.signup.user;
+
+import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.ISignup;
+import group11.EventFiesta.model.Account;
+import group11.EventFiesta.model.User;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import group11.EventFiesta.EncryptPassword;
-import group11.EventFiesta.ISignup;
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.model.Account;
-import group11.EventFiesta.model.User;
 
 public class UserSignUp extends ISignup {
     private IDBPersistence connection;

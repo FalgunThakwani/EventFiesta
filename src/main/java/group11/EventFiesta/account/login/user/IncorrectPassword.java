@@ -1,6 +1,6 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
-public class IncorrectPassword extends LoginState{
+public class IncorrectPassword extends LoginState {
 
     @Override
     public void setLoginStatus() {

@@ -1,9 +1,8 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.model.Account;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VerifyPasswordHandler extends LoginHandler{
+public class VerifyPasswordHandler extends LoginHandler {
 
     IDBPersistence idbPersistence;
 

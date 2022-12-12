@@ -7,7 +7,6 @@ public class TodoChecklist
     private int eventID;
     private int status;
     private boolean eventStatus;
-
     public void userEventChecklist(){}
 
     public boolean isEventStatus() {
