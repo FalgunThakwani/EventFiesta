@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 public class UserForgotPasswordOTP {
 
-    @GetMapping("/UserForgotPasswordUsingOTP")
+    @GetMapping("/UserForgotPasswordOTP")
     public String getForgotPassword(Model model) {
         model.addAttribute("user", new User());
         return "UserForgotPasswordUsingOTP";
