@@ -23,6 +23,7 @@ public class UserEventQuestionnaire {
         this.guestCount = guestCount;
         this.eventArea = eventArea;
     }
+    
     public String getEvent() {
         return event;
     }
