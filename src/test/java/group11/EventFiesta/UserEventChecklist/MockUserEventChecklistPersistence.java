@@ -4,11 +4,12 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MockUserEventChecklistPersistence implements IDBPersistence
 {
-    ArrayList<HashMap<String, Object>> checklist;
+    List<Map<String, Object>> checklist;
 
     public MockUserEventChecklistPersistence()
     {
@@ -16,7 +17,7 @@ public class MockUserEventChecklistPersistence implements IDBPersistence
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> loadData(String query) throws Exception
+    public List<Map<String, Object>> loadData(String query) throws Exception
     {
         HashMap<String, Object> map = new HashMap<>();
 
@@ -30,7 +31,7 @@ public class MockUserEventChecklistPersistence implements IDBPersistence
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> loadData(String storedProcedure, Object... params) throws Exception
+    public List<Map<String, Object>> loadData(String storedProcedure, Object... params) throws Exception
     {
         HashMap<String, Object> map = new HashMap<>();
 
