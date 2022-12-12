@@ -2,7 +2,7 @@ package group11.EventFiesta.account.forgotpassword.otp;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.account.IState;
-import group11.EventFiesta.account.forgotpassword.AccountState;
+import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.Account;
 
 import java.util.ArrayList;

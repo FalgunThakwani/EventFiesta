@@ -1,4 +1,4 @@
-package group11.EventFiesta.account.forgotpassword.otp;
+package group11.EventFiesta.account.forgotpassword;
 
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.AccountState;

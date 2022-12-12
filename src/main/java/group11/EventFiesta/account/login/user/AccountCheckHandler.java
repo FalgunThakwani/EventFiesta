@@ -1,4 +1,4 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.model.Account;
@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AccountCheckHandler extends LoginHandler{
+public class AccountCheckHandler extends LoginHandler {
 
     IDBPersistence idbPersistence;
 
-    AccountCheckHandler(IDBPersistence idbPersistence) {
+    public AccountCheckHandler(IDBPersistence idbPersistence) {
         this.idbPersistence = idbPersistence;
     }
 

@@ -1,12 +1,11 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
 import group11.EventFiesta.model.Account;
-import group11.EventFiesta.user.LoginSuccess;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class CreateSessionHandler extends LoginHandler{
+public class CreateSessionHandler extends LoginHandler {
     @Override
     public LoginState execute(Account user, HttpServletRequest request) throws Exception {
         HttpServletRequest req = request;

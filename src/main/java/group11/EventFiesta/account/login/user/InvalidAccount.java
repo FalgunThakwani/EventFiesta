@@ -1,6 +1,6 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
-public class InvalidAccount extends LoginState{
+public class InvalidAccount extends LoginState {
     @Override
     public void setLoginStatus() {
         loginStatus = "INVALID ACCOUNT";
@@ -9,6 +9,6 @@ public class InvalidAccount extends LoginState{
     @Override
     public void setNextHtml() {
         nextHtml = "UserLogin";
-
     }
+
 }

@@ -1,6 +1,6 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
-public abstract class LoginHandler implements ILoginHandler{
+public abstract class LoginHandler implements ILoginHandler {
 
     ILoginHandler nextHandler;
 
