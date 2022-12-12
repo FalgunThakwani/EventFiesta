@@ -24,7 +24,7 @@
 
                 <p><input maxlength="25" name="password" type="password" th:field="*{password}" required/></p>
 
-                <p align="center"><a href="/forgotPassword?userType=user">Forgot Password?</a></p>
+                <p align="center"><a href="/userForgotPassword">Forgot Password?</a></p>
 
                 <div th:if="${statusMsg} != null">
                     <p style="color: red" data-th-text="${statusMsg}"/>

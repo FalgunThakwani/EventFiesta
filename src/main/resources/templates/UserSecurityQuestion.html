@@ -16,7 +16,7 @@
             </div>
             <span style="font-size:38px;">Security Questions</span>
             </p>
-            <form th:action="@{/handleSecurityQuestion}" method="post" th:object="${user}">
+            <form th:action="@{/handleUserSecurityQuestion}" method="post" th:object="${user}">
                 <p>Enter your registered Email Address</p>
                 <p><input maxlength="50" name="email" type="email" required th:value="*{email}"/></p>
                 <p>Select your Security Question</p>

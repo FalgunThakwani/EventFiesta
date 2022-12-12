@@ -1,7 +1,6 @@
 package group11.EventFiesta.controller;
 
 import group11.EventFiesta.ForgotPassword.SecretQuestionHandler;
-import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,15 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @SessionAttributes({"user"})
 @Controller
-public class SecurityQuestionsController {
-    @GetMapping("/securityQuestion")
+public class UserSecurityQuestionsController {
+    @GetMapping("/userSecurityQuestion")
     public String getSecretQuestionPage(Model model)
     {
         model.addAttribute("user", new User());
-        return "SecurityQuestion";
+        return "UserSecurityQuestion";
     }
 
-    @PostMapping("/handleSecurityQuestion")
+    @PostMapping("/handleUserSecurityQuestion")
     public String handleSecretQuestion(Model model, @ModelAttribute User user) throws Exception
     {
         model.addAttribute("user", user);
@@ -31,17 +30,17 @@ public class SecurityQuestionsController {
             Boolean result = secretQuestionHandler.validateSecurityAnswer(user_id, user.getSecurityQuestion(), user.getSecurityAnswer());
             if(result == true)
             {
-                return "redirect:/resetPassword";
+                return "redirect:/userResetPassword";
             }
             else
             {
                 model.addAttribute("statusMsg", "SECURITY DETAILS NOT MATCHED ");
-                return "SecurityQuestion";
+                return "UserSecurityQuestion";
             }
         }
         else {
             model.addAttribute("statusMsg", "INVALID ACCOUNT");
-            return "SecurityQuestion";
+            return "UserSecurityQuestion";
         }
 
     }

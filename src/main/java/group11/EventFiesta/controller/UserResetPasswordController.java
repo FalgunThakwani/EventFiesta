@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @SessionAttributes({"user"})
 @Controller
-public class ResetPasswordController {
-    @GetMapping("/resetPassword")
+public class UserResetPasswordController {
+    @GetMapping("/userResetPassword")
     public String getResetPasswordPage(Model model, @ModelAttribute User user)
     {
         model.addAttribute("user", user);
-        return "ResetPassword";
+        return "UserResetPassword";
     }
 
-    @PostMapping("/handleResetPassword")
+    @PostMapping("/handleUserResetPassword")
     public String handleResetPassword(Model model, @ModelAttribute User user) throws Exception {
         model.addAttribute("user", user);
         System.out.println("user id is : " + user.getUserId());
@@ -32,18 +32,18 @@ public class ResetPasswordController {
             if(result == true)
             {
                 model.addAttribute("statusMsg", "PASSWORDS UPDATED SUCCESSFULLY");
-                return "ResetPassword";
+                return "UserResetPassword";
             }
             else
             {
                 model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
-                return "ResetPassword";
+                return "UserResetPassword";
             }
         }
         else
         {
             model.addAttribute("statusMsg", "PASSWORDS NOT MATCHING");
-            return "ResetPassword";
+            return "UserResetPassword";
         }
     }
 }
