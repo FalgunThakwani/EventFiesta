@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SessionAttributes({"organizer"})
 @Controller
@@ -37,7 +39,7 @@ public class OrganizerSecurityQuestionsController {
         String email = organizer.getEmail();
         Object[] params1 = new Object[]{"OrganizerInfo", "*", "email", email};
         VerifyEmailHandler verifyEmailHandler = new VerifyEmailHandler(new MySQLDBPersistence(), params1);
-        ArrayList<HashMap<String, Object>> result = verifyEmailHandler.validateEmail(organizer);
+        List<Map<String, Object>> result = verifyEmailHandler.validateEmail(organizer);
         if(result != null && result.size() > 0) {
 
             organizer_id = Integer.parseInt(result.get(0).get("organizer_id").toString());

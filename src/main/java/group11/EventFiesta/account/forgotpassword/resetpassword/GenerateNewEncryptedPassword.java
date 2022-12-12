@@ -5,6 +5,8 @@ import group11.EventFiesta.EncryptPassword;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GenerateNewEncryptedPassword {
 
@@ -17,7 +19,7 @@ public class GenerateNewEncryptedPassword {
     }
 
     public String getEncryptedPassword(String newPassword) {
-        ArrayList<HashMap<String, Object>> data = null;
+        List<Map<String, Object>> data = null;
         try {
             data = idbPersistence.loadData("getFromDBUsingWhere", params);
         } catch (Exception e) {
@@ -25,7 +27,7 @@ public class GenerateNewEncryptedPassword {
         }
         System.out.println(data);
         if (data.size() > 0) {
-            HashMap<String, Object> row = data.get(0);
+            Map<String, Object> row = data.get(0);
             String saltFromDB = row.get("private_key").toString();
             String newEncryptedPassword = EncryptPassword.getEncryptedPwd(newPassword, saltFromDB);
             return newEncryptedPassword;

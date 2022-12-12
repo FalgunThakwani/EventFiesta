@@ -7,6 +7,8 @@ import group11.EventFiesta.model.Account;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VerifyPasswordHandler extends LoginHandler {
 
@@ -19,10 +21,10 @@ public class VerifyPasswordHandler extends LoginHandler {
     @Override
     public LoginState execute(Account user, HttpServletRequest request) throws Exception {
         Object [] params = new Object[] {"UserSensitive", "encrypted_password, private_key", "user_id", user.getAccountId()};
-        ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+        List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
         if (data.size() > 0) {
-            HashMap<String, Object> row = data.get(0);
+            Map<String, Object> row = data.get(0);
             String pwdFromDB = row.get("encrypted_password").toString();
             String saltFromDB = row.get("private_key").toString();
             String encPwd = EncryptPassword.getEncryptedPwd(user.getPassword(), saltFromDB);

@@ -2,9 +2,9 @@ package group11.EventFiesta.mail;
 
 import java.util.Properties;
 
-public class SSLMailHandler extends MailHandler {
+public class SSLSMTPProtocol extends SMTPProtocol {
 
-    public SSLMailHandler(String host, Integer port) {
+    public SSLSMTPProtocol(String host, Integer port) {
         super(host, port);
     }
 

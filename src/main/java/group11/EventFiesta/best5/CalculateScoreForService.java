@@ -3,6 +3,7 @@ package group11.EventFiesta.best5;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CalculateScoreForService implements ICalculateScore {
 
@@ -33,7 +34,7 @@ public class CalculateScoreForService implements ICalculateScore {
     }
 
     public Double ratingsByReviews() {
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getRatingsForService(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getRatingsForService(service.serviceId);
         Double total = defaultScore;
         for (int i = 0; i < resultSet.size(); i++) {
             total += (Integer) resultSet.get(i).get("rating");
@@ -45,7 +46,7 @@ public class CalculateScoreForService implements ICalculateScore {
     }
 
     public Double ratingsByExperince() {
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getServiceHistory(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getServiceHistory(service.serviceId);
         Double total = defaultScore;
         Double x = 0.0;
         Double y = 0.0;
@@ -64,7 +65,7 @@ public class CalculateScoreForService implements ICalculateScore {
 
     public Double ratingsByBudget() {
         Double total = defaultScore;
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getBudgetForService(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getBudgetForService(service.serviceId);
         Double budget = service.budget;
         Double twentyPercentOfBudget = ((budget * 20) / 100);
         Double budget_l = budget - twentyPercentOfBudget;
@@ -88,7 +89,7 @@ public class CalculateScoreForService implements ICalculateScore {
     private Double getTotalEventsRatio() {
         Double ratio = 0.0;
         Double totalEvents = 0.0;
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getTotalEventsRatio();
+        List<Map<String, Object>> resultSet = helperForDB.getTotalEventsRatio();
         for (int i = 0; i < resultSet.size(); i++) {
             totalEvents += (Long) resultSet.get(i).get("Count(event_id)");
         }

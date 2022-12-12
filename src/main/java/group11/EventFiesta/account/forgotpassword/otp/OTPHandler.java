@@ -4,8 +4,7 @@ import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.login.organizer.LoginHandler;
 import group11.EventFiesta.mail.Mail;
-import group11.EventFiesta.mail.MailHandler;
-import group11.EventFiesta.mail.SSLMailHandler;
+import group11.EventFiesta.mail.SMTPProtocol;
 import group11.EventFiesta.model.Account;
 
 import java.security.SecureRandom;
@@ -16,12 +15,14 @@ import java.util.Random;
 public class OTPHandler extends LoginHandler {
 
     IDBPersistence idbPersistence;
+    SMTPProtocol SMTPProtocol;
 
     Object[] param;
 
-    public OTPHandler(IDBPersistence idbPersistence, Object[] param) {
+    public OTPHandler(IDBPersistence idbPersistence, Object[] param, SMTPProtocol SMTPProtocol) {
         this.idbPersistence = idbPersistence;
         this.param = param;
+        this.SMTPProtocol = SMTPProtocol;
     }
 
     @Override
@@ -67,7 +68,6 @@ public class OTPHandler extends LoginHandler {
         String mailSubject = "Event Fiesta - Reset Password";
         String mailBody = "The OTP to reset password is: " + otp;
         Mail mail = new Mail(recipent, mailSubject, mailBody);
-        MailHandler mailHandler = new SSLMailHandler("smtp.gmail.com", 465);
-        return mail.sendMail(mailHandler);
+        return mail.sendMail(SMTPProtocol);
     }
 }

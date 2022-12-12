@@ -6,6 +6,8 @@ import group11.EventFiesta.model.Account;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AccountCheckHandler extends LoginHandler {
 
@@ -18,7 +20,7 @@ public class AccountCheckHandler extends LoginHandler {
     @Override
     public LoginState execute(Account user, HttpServletRequest request) throws Exception {
         Object [] params = new Object[] {"UserInfo", "user_id", "email", user.getEmail()};
-        ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+        List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
         Integer user_id = -1;
         if (data.size() > 0) {

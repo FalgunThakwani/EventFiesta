@@ -6,6 +6,8 @@ import group11.EventFiesta.model.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AccountCheckHandler extends LoginHandler {
 
@@ -19,7 +21,7 @@ public class AccountCheckHandler extends LoginHandler {
 
     @Override
     public IState execute(Account account) throws Exception {
-        ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+        List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
         Integer accountId;
         if (data.size() > 0) {

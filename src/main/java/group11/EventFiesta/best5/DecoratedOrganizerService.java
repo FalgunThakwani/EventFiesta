@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DecoratedOrganizerService extends BaseDecorator {
 
@@ -34,12 +36,12 @@ public class DecoratedOrganizerService extends BaseDecorator {
     }
 
     private void getDetailsFromDB() {
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
+        List<Map<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
         buildObject(resultSet);
     }
 
     /// Use builder pattern to do this kind of stuff please
-    private void buildObject(ArrayList<HashMap<String, Object>> resultSet) {
+    private void buildObject(List<Map<String, Object>> resultSet) {
         if (resultSet.size() > 0) {
             organizerName = resultSet.get(0).get("name").toString();
             firstName = resultSet.get(0).get("first_name").toString();
