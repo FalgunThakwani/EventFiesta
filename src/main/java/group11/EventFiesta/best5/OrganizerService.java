@@ -20,11 +20,11 @@ public class OrganizerService extends GroupComponent {
         helper = new HelperForDB();
     }
 
-    public OrganizerService(String serviceName, Double score) {
-        helper = new HelperForDB();
-        this.serviceName = serviceName;
-        this.score = score;
-    }
+//    public OrganizerService(String serviceName, Double score) {
+//        helper = new HelperForDB();
+//        this.serviceName = serviceName;
+//        this.score = score;
+//    }
 
     public Double calculateScore() {
         Double scoreByRatings = 1.0 * helper.getRatingsForService(serviceId); //todo fix the return value

@@ -12,23 +12,22 @@ import java.util.stream.Collectors;
 
 public class GetBestNOptionsTest {
 
-
     private Map<String, List<GroupComponent>> getOrganizerServicesMock() {
 
         Map<String, List<GroupComponent>> map = new HashMap();
 
         List<GroupComponent> services = new ArrayList<>();
-        services.add(new OrganizerService("catering",5.0));
-        services.add(new OrganizerService("catering",4.0));
-        map.put("catering", services);
-
-        services = new ArrayList<>();
-        services.add(new OrganizerService("decoration",3.0));
-        services.add(new OrganizerService("decoration",5.0));
-        map.put("decoration", services);
-
-        services = new ArrayList<>();
-        services.add(new OrganizerService("auditorium",4.0));
+//        services.add(new OrganizerService("catering",5.0));
+//        services.add(new OrganizerService("catering",4.0));
+//        map.put("catering", services);
+//
+//        services = new ArrayList<>();
+//        services.add(new OrganizerService("decoration",3.0));
+//        services.add(new OrganizerService("decoration",5.0));
+//        map.put("decoration", services);
+//
+//        services = new ArrayList<>();
+//        services.add(new OrganizerService("auditorium",4.0));
         map.put("auditorium", services);
 
         return map;
