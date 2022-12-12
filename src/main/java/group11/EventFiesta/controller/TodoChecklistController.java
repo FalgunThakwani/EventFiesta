@@ -1,5 +1,6 @@
 package group11.EventFiesta.controller;
 
+import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.UserEventChecklist.UserEventChecklistHandler;
 import group11.EventFiesta.model.TodoChecklist;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class TodoChecklistController
     @GetMapping("/load")
     public String getTodoList(Model model) throws Exception
     {
-        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler();
+        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
         List<TodoChecklist> userEventToDoList = userEventChecklistHandler.getChecklist("123");
         todoList.clear();
         for(TodoChecklist item: userEventToDoList)
@@ -44,7 +45,7 @@ public class TodoChecklistController
     public String add(@ModelAttribute("todoItem") TodoChecklist item, Model model) throws Exception
     {
         System.out.println("Todo Item to add " + item.toString());
-        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler();
+        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
         List<TodoChecklist> userEventToDoList = userEventChecklistHandler.addItemToChecklist("123", item.getName());
         return "redirect:/todo/load";
     }
@@ -62,7 +63,7 @@ public class TodoChecklistController
                 break;
             }
         }
-        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler();
+        UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
         System.out.println("In Todo Controller. Calling removeItem() for " + itemToDelete.getId());
         userEventChecklistHandler.removeItem(itemToDelete.getId());
         return "redirect:/todo/load";
