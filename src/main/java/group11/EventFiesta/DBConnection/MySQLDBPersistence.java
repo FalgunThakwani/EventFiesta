@@ -6,9 +6,14 @@ import java.util.HashMap;
 
 public class MySQLDBPersistence implements IDBPersistence {
 
-    public ArrayList<HashMap<String, Object>> loadData(String query) throws Exception {
+    private DBConnectionPool connectionPool;
 
-        DBConnectionPool connectionPool = DBConnectionPool.getInstance();
+    public MySQLDBPersistence() {
+        DBConnectionProperties properties = DBConnectionProperties.getInstance("mysql");
+        connectionPool = DBConnectionPool.getInstance(properties);
+    }
+
+    public ArrayList<HashMap<String, Object>> loadData(String query) throws Exception {
         Connection connection = connectionPool.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -41,8 +46,6 @@ public class MySQLDBPersistence implements IDBPersistence {
     }
 
     public ArrayList<HashMap<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
-
-        DBConnectionPool connectionPool = DBConnectionPool.getInstance();
         Connection connection = connectionPool.getConnection();
         CallableStatement statement = null;
         ResultSet resultSet = null;
@@ -94,7 +97,6 @@ public class MySQLDBPersistence implements IDBPersistence {
 
         Integer result = -1;
         try {
-            DBConnectionPool connectionPool = DBConnectionPool.getInstance();
             connection = connectionPool.getConnection();
 
             statement = connection.prepareCall(query);

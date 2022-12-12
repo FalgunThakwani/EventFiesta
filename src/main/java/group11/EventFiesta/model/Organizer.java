@@ -5,10 +5,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Organizer implements Account {
+public class Organizer extends Account {
 
-
+    public Organizer() {
+        org = true;
+    }
     private Integer organizerId;
+
+    private Boolean org = true;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -26,6 +31,14 @@ public class Organizer implements Account {
 
     public List<Service> getService() {
         return service;
+    }
+
+    public Boolean getOrg() {
+        return org;
+    }
+
+    public void setOrg(Boolean org) {
+        this.org = org;
     }
 
     public void setService(List<Service> service) {
@@ -155,8 +168,22 @@ public class Organizer implements Account {
     @Override
     public String toString() {
         return "Organizer{" +
-                "email='" + email + '\'' +
+                "organizerId=" + organizerId +
+                ", org=" + org +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", business='" + business + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", businessNo=" + businessNo +
+                ", address='" + address + '\'' +
+                ", City='" + City + '\'' +
+                ", province='" + province + '\'' +
+                ", pincode='" + pincode + '\'' +
+                ", fromcontact='" + fromcontact + '\'' +
+                ", tocontact='" + tocontact + '\'' +
+                ", service=" + service +
                 '}';
     }
 }

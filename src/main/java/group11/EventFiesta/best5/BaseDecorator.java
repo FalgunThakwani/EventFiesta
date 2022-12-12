@@ -9,13 +9,13 @@ public abstract class BaseDecorator extends OrganizerService {
     }
 
     @Override
-    public Integer calculateScore() {
+    public Double calculateScore() {
         return organizerService.calculateScore();
     }
 
     @Override
-    public void Add(GroupComponent child) {
-        organizerService.Add(child);
+    public void add(GroupComponent child) {
+        organizerService.add(child);
     }
 
 }

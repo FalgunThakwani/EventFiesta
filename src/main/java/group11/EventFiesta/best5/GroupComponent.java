@@ -1,8 +1,14 @@
 package group11.EventFiesta.best5;
 
-public interface GroupComponent {
+public abstract class GroupComponent implements Comparable<GroupComponent> {
 
-    Integer calculateScore();
-    public abstract void Add(GroupComponent child);
-	public abstract void Remove(GroupComponent child);
+    public abstract Double calculateScore();
+
+    @Override
+    public int compareTo(GroupComponent groupComponent) {
+        return this.calculateScore() > groupComponent.calculateScore() ? 1 : (this.calculateScore() < groupComponent.calculateScore() ? -1 : 0);
+    }
+
+    public abstract void add(GroupComponent child);
+	public abstract void remove(GroupComponent child);
 }

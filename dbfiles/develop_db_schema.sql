@@ -19,7 +19,9 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`OrganizerSensitive` (
   `encrypted_password` VARCHAR(45) NOT NULL,
   `private_key` VARCHAR(45) NOT NULL,
   `private_key_expiry` DATE NOT NULL,
-  `islogout` TINYINT NOT NULL,
+  `otp` INT,
+  `otp_time` BIGINT(50),
+
   PRIMARY KEY (`organizer_id`),
   INDEX `fk_OrganizerSensitive_OrganizerInfo1_idx` (`organizer_id` ASC),
   CONSTRAINT `fk_OrganizerSensitive_OrganizerInfo1`
@@ -46,7 +48,8 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`UserSensitive` (
   `encrypted_password` VARCHAR(45) NOT NULL,
   `private_key` VARCHAR(45) NOT NULL,
   `private_key_expiry` DATE NOT NULL,
-  `islogout` TINYINT NOT NULL,
+  `otp` INT,
+  `otp_time` BIGINT(50),
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_UserSensitive_UserInfo_idx` (`user_id` ASC),

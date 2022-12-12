@@ -1,11 +1,10 @@
-package group11.EventFiesta.organizer;
+package group11.EventFiesta.account.login.organizer;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Account;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,7 +17,7 @@ public class VerifyPasswordHandler extends LoginHandler {
     }
 
     @Override
-    public LoginState execute(Account organizer, HttpServletRequest request ) throws Exception {
+    public IState execute(Account organizer) throws Exception {
         Object [] params = new Object[] {"OrganizerSensitive", "encrypted_password, private_key", "organizer_id", organizer.getAccountId()};
         ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(data);
@@ -28,9 +27,9 @@ public class VerifyPasswordHandler extends LoginHandler {
             String saltFromDB = row.get("private_key").toString();
             String encPwd = EncryptPassword.getEncryptedPwd(organizer.getPassword(), saltFromDB);
             if (pwdFromDB.equals(encPwd)) {
-                return nextHandler.execute(organizer, request);
+                return nextHandler.execute(organizer);
             }
         }
-        return new IncorrectPassword();
+        return new IncorrectPassword(organizer);
     }
 }

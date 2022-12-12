@@ -32,7 +32,7 @@ public class DecoratedOrganizerService extends BaseDecorator {
     }
 
     @Override
-    public Integer calculateScore() {
+    public Double calculateScore() {
         return super.calculateScore();
     }
 
