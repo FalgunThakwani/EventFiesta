@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 
@@ -38,7 +40,7 @@ public class DecoratedOrganizerService extends BaseDecorator {
 
     private void getDetailsFromDB() {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getOrganizerDetails", org.orgranizerId);
             buildObject(resultSet);
         } catch (Exception e) {
@@ -48,7 +50,7 @@ public class DecoratedOrganizerService extends BaseDecorator {
     }
 
     /// Use builder pattern to do this kind of stuff please
-    private void buildObject(ArrayList<HashMap<String, Object>> resultSet) {
+    private void buildObject(List<Map<String, Object>> resultSet) {
         if (resultSet.size() > 0) {
             organizerName = resultSet.get(0).get("name").toString();
             firstName = resultSet.get(0).get("first_name").toString();

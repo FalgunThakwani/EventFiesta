@@ -9,7 +9,7 @@ public class LoginSuccess extends LoginState {
     }
 
     public void setNextPage() {
-        nextPage = "organizerDetails";
+        nextPage = "redirect:/getOrganizerDetails";
     }
 
     public void setStatus() {

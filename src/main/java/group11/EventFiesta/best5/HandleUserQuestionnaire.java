@@ -45,7 +45,7 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
         float budget_u = userEventQuestionnaire.getBudget() + twentyPercentOfBudget;
         Object[] params = { userEventQuestionnaire.getCity(), userEventQuestionnaire.getService(), budget_l, budget_u };
         try {
-            ArrayList<HashMap<String, Object>> resultSet = dbPersistence
+            List<Map<String, Object>> resultSet = dbPersistence
                     .loadData("getOrganizersMatchingUserQuestionare", params);
             setOrganizerServiceObject(resultSet);
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
         return organizersList;
     }
 
-    public void setOrganizerServiceObject(ArrayList<HashMap<String, Object>> resultSet) {
+    public void setOrganizerServiceObject(List<Map<String, Object>> resultSet) {
         for (int i = 0; i < resultSet.size(); i++) {
             OrganizerService organizerService = new OrganizerService();
             organizerService.orgranizerId = Integer.parseInt(resultSet.get(i).get("organizer_id").toString());

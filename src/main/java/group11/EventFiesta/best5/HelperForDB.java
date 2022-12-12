@@ -2,6 +2,8 @@ package group11.EventFiesta.best5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
@@ -16,7 +18,7 @@ public class HelperForDB implements IHelperForDB {
 
     protected Integer getRatingsForService(Integer serviceId) {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getRatings", serviceId);
             return calculateRatingsForService(resultSet);
         } catch (Exception e) {
@@ -26,7 +28,7 @@ public class HelperForDB implements IHelperForDB {
         }
     }
 
-    private Integer calculateRatingsForService(ArrayList<HashMap<String, Object>> resultSet) {
+    private Integer calculateRatingsForService(List<Map<String, Object>> resultSet) {
         Integer ratingScore = 4;
         for (int i = 0; i < resultSet.size(); i++) {
             ratingScore += (Integer) resultSet.get(i).get("rating");

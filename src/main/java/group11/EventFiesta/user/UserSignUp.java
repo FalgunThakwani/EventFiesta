@@ -3,9 +3,7 @@ package group11.EventFiesta.user;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 
 import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.ISignup;
@@ -22,7 +20,7 @@ public class UserSignUp extends ISignup {
 
     @Override
     public boolean validateUser(Account user) throws Exception {
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_checkUserExists", user.getEmail());
+        List<Map<String, Object>> resultSet = connection.loadData("sp_checkUserExists", user.getEmail());
         if (resultSet.size() > 0) {
             return true;
         }
