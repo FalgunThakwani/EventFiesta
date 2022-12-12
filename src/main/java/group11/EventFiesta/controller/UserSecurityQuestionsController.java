@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SessionAttributes({"user"})
 @Controller
@@ -40,7 +41,7 @@ public class UserSecurityQuestionsController {
         String email = user.getEmail();
         Object[] params1 = new Object[]{"UserInfo", "*", "email", email};
         VerifyEmailHandler verifyEmailHandler = new VerifyEmailHandler(new MySQLDBPersistence(), params1);
-        ArrayList<HashMap<String, Object>> result = verifyEmailHandler.validateEmail(user);
+        List<Map<String, Object>> result = verifyEmailHandler.validateEmail(user);
         if(result != null && result.size() > 0) {
 
             user_id = Integer.parseInt(result.get(0).get("user_id").toString());

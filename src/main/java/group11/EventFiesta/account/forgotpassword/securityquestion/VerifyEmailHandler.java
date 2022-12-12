@@ -5,6 +5,8 @@ import group11.EventFiesta.model.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VerifyEmailHandler {
 
@@ -16,14 +18,14 @@ public class VerifyEmailHandler {
         this.params = params;
     }
 
-    public ArrayList<HashMap<String, Object>> validateEmail(Account account) throws Exception {
+    public List<Map<String, Object>> validateEmail(Account account) throws Exception {
 
         System.out.println("Params: ");
 
         for(Object o: params)
             System.out.println(String.valueOf(o));
 
-        ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+        List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         System.out.println(params);
         System.out.println(data);
         if (data.size() > 0) {

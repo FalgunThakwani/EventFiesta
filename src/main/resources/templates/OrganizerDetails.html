@@ -1,20 +1,279 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Organizer details</title>
-    <link th:href="@{/css/common.css}" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Organizer Dashboard</title>
+        <link th:href="@{/css/home.css}" rel="stylesheet">
+        <link th:href="@{/css/BusinessHomepage.css}" rel="stylesheet">
+        <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+    </head>
+    <body>
+        <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+        <div class="container">
+            <div>
+                <h1 style="text-align: center;">My events</h1>
+            </div>
+            <div>
+                <div class="left">
+                    <div class="tab">
+                        <button class="links" onclick="activeSelectedTab(event, 'Pending')"  id="default">Pending</button>
+                        <button class="links" onclick="activeSelectedTab(event, 'Upcoming')">Upcoming</button>
+                        <button class="links" onclick="activeSelectedTab(event, 'Completed')">Completed</button>
+                    </div>
 
-<body>
-<div class="login_container" th:object="${organizer}" >
-    <p>
-        <span th:text="*{email}" />
-        <span> logged in successfully!</span>
-    </p>
-    <p>Logout?&nbsp;<a href="/organizerLogout">Logout</a></p>
+                    <div id="Pending" class="content">
+                        <th:block th:if="${#lists.isEmpty(PendingEvents)}">
+                            <h5 style="color: red;">No events!</h5>
+                        </th:block>
+                            <th:block th:if="${not #lists.isEmpty(PendingEvents)}">
+                            <div class="verticalTab" >
+                                <div th:each="organizerEvent, iter :${PendingEvents}">
+                                    <button class="verticalLinks" th:id="${iter.index} == 0 ? 'defaultPending'" th:attr = "onclick=|activeVerticalSelectedTab(event, 'Pending_${organizerEvent.event_id}')|" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date}"></button>
+                                </div>
+                            </div>
+                            <th:block th:each="organizerEvent, iter :${PendingEvents}">
+<!--                                <form th:action="@{/acceptEvent}" th:method="post" th:object="${todoItem}">-->
+                                <div th:attr="id=|Pending_${organizerEvent.event_id}|" class="verticalTabContent">
+                                    <h3 class="align-center" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date} + ' | ' + ${organizerEvent.venue}"></h3>
+                                    <hr>
+                                    <div class="align-box">
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Services</div>
+                                            <span th:each="service:${organizerEvent.services}">
+                                                <p>
+                                                    <strong th:text = "${service.service_type}"/>
+                                                    <p th:text="'Time: ' + ${service.service_time} "/>
+                                                    <p th:text="'Cost: ' + ${service.cost} "/>
+                                                    <p th:text="'Details: ' + ${service.details} "/>
+                                                </p>
+                                            </span>
 
-</div>
-</body>
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Client Info</div>
+                                            <p>
+                                                <strong>First Name : </strong>
+                                                <span th:text = "${organizerEvent.first_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Last Name : </strong>
+                                                <span th:text = "${organizerEvent.last_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Email : </strong>
+                                                <span th:text = "${organizerEvent.email}"/>
+                                            </p>
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Event Details</div>
+                                            <p>
+                                                <strong>Location : </strong>
+                                                <span th:text = "${organizerEvent.venue}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Count : </strong>
+                                                <span th:text = "${organizerEvent.head_count}"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="align-box" style="margin: 50px 0 20px 0;">
+                                        <form th:action="@{/acceptEvent}" th:object="${organizerEvent}" method="post">
+                                            <input type="hidden" name="event_id" th:value="${organizerEvent.event_id}"/>
+                                            <input type="hidden" name="client_email" th:value="${organizerEvent.email}"/>
+                                            <button class="btn" type="submit">Accept</button>
+                                        </form>
+                                        <form th:action="@{/rejectEvent}" th:object="${organizerEvent}" method="post">
+                                            <input type="hidden" name="event_id" th:value="${organizerEvent.event_id}"/>
+                                            <input type="hidden" name="client_email" th:value="${organizerEvent.email}"/>
+                                            <button class="btn-secondary" type="submit">Reject</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </div>
+
+                    <div id="Upcoming" class="content">
+                        <th:block th:if="${#lists.isEmpty(UpcomingEvents)}">
+                            <h5 style="color: red;">No events!</h5>
+                        </th:block>
+                        <th:block th:if="${not #lists.isEmpty(UpcomingEvents)}">
+                            <div class="verticalTab" >
+                                <div th:each="organizerEvent, iter :${UpcomingEvents}">
+                                    <button class="verticalLinks" th:id="${iter.index} == 0 ? 'defaultUpcoming'" th:attr = "onclick=|activeVerticalSelectedTab(event, 'Upcoming_${organizerEvent.event_id}')|" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date}"></button>
+                                </div>
+                            </div>
+                            <th:block th:each="organizerEvent, iter :${UpcomingEvents}">
+                                <div th:attr="id=|Upcoming_${organizerEvent.event_id}|" class="verticalTabContent">
+                                    <h3 class="align-center" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date} + ' | ' + ${organizerEvent.venue}"></h3>
+                                    <hr>
+                                    <div class="align-box">
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Services</div>
+                                            <span th:each="service:${organizerEvent.services}">
+                                                <p>
+                                                    <strong th:text = "${service.service_type}"/>
+                                                    <p th:text="'Time: ' + ${service.service_time} "/>
+                                                    <p th:text="'Cost: ' + ${service.cost} "/>
+                                                    <p th:text="'Details: ' + ${service.details} "/>
+                                                </p>
+                                            </span>
+
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Client Info</div>
+                                            <p>
+                                                <strong>First Name : </strong>
+                                                <span th:text = "${organizerEvent.first_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Last Name : </strong>
+                                                <span th:text = "${organizerEvent.last_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Email : </strong>
+                                                <span th:text = "${organizerEvent.email}"/>
+                                            </p>
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Event Details</div>
+                                            <p>
+                                                <strong>Location : </strong>
+                                                <span th:text = "${organizerEvent.venue}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Count : </strong>
+                                                <span th:text = "${organizerEvent.head_count}"/>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </div>
+
+                    <div id="Completed" class="content">
+                        <th:block th:if="${#lists.isEmpty(CompletedEvents)}">
+                            <h5 style="color: red;">No events!</h5>
+                        </th:block>
+                        <th:block th:if="${not #lists.isEmpty(CompletedEvents)}">
+                            <div class="verticalTab" >
+                                <div th:each="organizerEvent, iter :${CompletedEvents}">
+                                    <button class="verticalLinks" th:id="${iter.index} == 0 ? 'defaultCompleted'" th:attr = "onclick=|activeVerticalSelectedTab(event, 'Completed_${organizerEvent.event_id}')|" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date}"></button>
+                                </div>
+                            </div>
+                            <th:block th:each="organizerEvent, iter :${CompletedEvents}">
+                                <div th:attr="id=|Completed_${organizerEvent.event_id}|" class="verticalTabContent">
+                                    <h3 class="align-center" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date} + ' | ' + ${organizerEvent.venue}"></h3>
+                                    <hr>
+                                    <div class="align-box">
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Services</div>
+                                            <span th:each="service:${organizerEvent.services}">
+                                                <p>
+                                                    <strong th:text = "${service.service_type}"/>
+                                                    <p th:text="'Time: ' + ${service.service_time} "/>
+                                                    <p th:text="'Cost: ' + ${service.cost} "/>
+                                                    <p th:text="'Details: ' + ${service.details} "/>
+                                                </p>
+                                            </span>
+
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Client Info</div>
+                                            <p>
+                                                <strong>First Name : </strong>
+                                                <span th:text = "${organizerEvent.first_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Last Name : </strong>
+                                                <span th:text = "${organizerEvent.last_name}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Email : </strong>
+                                                <span th:text = "${organizerEvent.email}"/>
+                                            </p>
+                                        </div>
+                                        <div class="align-box-content">
+                                            <div class="box-content-header">Event Details</div>
+                                            <p>
+                                                <strong>Location : </strong>
+                                                <span th:text = "${organizerEvent.venue}"/>
+                                            </p>
+                                            <p>
+                                                <strong>Count : </strong>
+                                                <span th:text = "${organizerEvent.head_count}"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <th:block th:if="${#lists.isEmpty(organizerEvent.services)}">
+                                        <h5 style="color: red;">No orders are placed yet!</h5>
+                                    </th:block>
+                                    <th:block th:if="${not #lists.isEmpty(organizerEvent.services)}">
+                                        <h3>Client Review</h3>
+                                        <table>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th>Review</th>
+                                                <th>Rating</th>
+                                            </tr>
+                                            <th:block th:each="service:${organizerEvent.services}">
+                                                <tr>
+                                                    <td th:text="${service.service_type}"/>
+                                                    <td th:text="${service.review}"/>
+                                                    <td th:text="${service.rating}"/>
+                                                </tr>
+                                            </th:block>
+                                        </table>
+                                    </th:block>
+
+                                </div>
+                            </th:block>
+                        </th:block>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function activeSelectedTab(event, selectedTab) {
+              var tabIndex = 0;
+              var content = document.getElementsByClassName("content");
+              for (tabIndex = 0; tabIndex < content.length; tabIndex++) {
+                content[tabIndex].style.display = "none";
+              }
+              var links = document.getElementsByClassName("links");
+              for (tabIndex = 0; tabIndex < links.length; tabIndex++) {
+                links[tabIndex].classList.remove("active");
+              }
+              document.getElementById(selectedTab).style.display = "flex";
+              event.currentTarget.classList.add("active");
+              if (selectedTab == 'Pending') {
+                document.getElementById("defaultPending").click();
+              } else if (selectedTab == 'Upcoming') {
+                document.getElementById("defaultUpcoming").click();
+              } else if (selectedTab == 'Completed') {
+                document.getElementById("defaultCompleted").click();
+              }
+            }
+
+            function activeVerticalSelectedTab(event, selectedTab) {
+              var vTabIndex = 0;
+              var verticalTabContent = document.getElementsByClassName("verticalTabContent");
+              for (vTabIndex = 0; vTabIndex < verticalTabContent.length; vTabIndex++) {
+                verticalTabContent[vTabIndex].style.display = "none";
+              }
+              var verticalLinks = document.getElementsByClassName("verticalLinks");
+              for (vTabIndex = 0; vTabIndex < verticalLinks.length; vTabIndex++) {
+                verticalLinks[vTabIndex].classList.remove("active");
+              }
+              document.getElementById(selectedTab).style.display = "block";
+              event.currentTarget.classList.add("active");
+            }
+            document.getElementById("default").click();
+
+        </script>
+    </body>
 </html>

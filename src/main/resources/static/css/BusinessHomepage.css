@@ -1,0 +1,172 @@
+body {
+  background-image: url("/images/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+.container {
+  margin-top: 80px !important;
+  margin: 0 auto;
+  max-width: 1600px;
+}
+.left {
+  padding: 10px 20px;
+  flex: 1 1 70%;
+  margin: 50px 0;
+  border-radius: 10px;
+  box-shadow: 10px 10px 40px -7px rgb(0 0 0 / 75%);
+  background: #eeecf5;
+  color: black;
+}
+
+.btn {
+  background-color: #002244;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  width: 250px;
+  padding: 15px;
+  cursor: pointer;
+}
+.btn:hover {
+  border: 1px solid black;
+}
+
+.btn-secondary {
+  background-color: white;
+  border: 1px solid #002244;
+  color: #002244;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+  width: 250px;
+  padding: 15px;
+  cursor: pointer;
+}
+.logo-container {
+  text-align: center;
+  margin-top: 25px;
+}
+.event-logo {
+  width: 180px;
+  height: 2%;
+}
+
+.tab {
+  overflow: hidden;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  border: 1px solid #002244;
+  margin-right: 10px;
+}
+
+.tab button:hover {
+  color: #fff;
+  background-color: #00538C;
+  font-weight: 600;
+}
+
+.tab button.active {
+  background-color: #002244;
+  color: #fff;
+  font-weight: 600;
+}
+
+.content {
+  display: none;
+  padding: 45px 0;
+  border-top: none;
+}
+
+.verticalTab {
+  float: left;
+  border-right: 3px solid #002244;
+  width: 20%;
+}
+
+.verticalTab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.verticalTab button:hover {
+  border: 2px solid #00538C;
+  border-right: none;
+  font-weight: 600;
+}
+
+.verticalTab button.active {
+  border: 2px solid #002244;
+  border-right: none;
+  font-weight: 600;
+}
+
+.verticalTabContent {
+  float: left;
+  padding: 0px 30px;
+  border-right: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+}
+
+.align-center {
+text-align: center
+}
+
+.align-box {
+display: flex;
+   justify-content: space-around;
+}
+
+.align-box-content {
+        border: 1px solid;
+        margin: 20px;
+        box-shadow: 10px 10px 40px -7px rgb(0 0 0 / 75%);
+        width: 20%;
+        text-align: center;
+        padding: 10px;
+        font-size: 20px
+}
+
+.box-content-header {
+    font-weight: 600;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #002244;
+  text-align: center;
+  padding: 10px;
+}
+

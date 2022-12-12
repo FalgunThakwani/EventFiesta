@@ -3,6 +3,8 @@ package group11.EventFiesta.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MySQLDBPersistence implements IDBPersistence {
 
@@ -13,11 +15,11 @@ public class MySQLDBPersistence implements IDBPersistence {
         connectionPool = DBConnectionPool.getInstance(properties);
     }
 
-    public ArrayList<HashMap<String, Object>> loadData(String query) throws Exception {
+    public List<Map<String, Object>> loadData(String query) throws Exception {
         Connection connection = connectionPool.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        ArrayList<HashMap<String, Object>> rows = new ArrayList<HashMap<String, Object>>();
+        List<Map<String, Object>> rows = new ArrayList<>();
         try {
             statement = connection.prepareStatement(query);
 
@@ -25,7 +27,7 @@ public class MySQLDBPersistence implements IDBPersistence {
 
             while (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
-                HashMap<String, Object> row = new HashMap<>();
+                Map<String, Object> row = new HashMap<>();
                 int column_count = rsmd.getColumnCount();
                 for (int i = 0; i < column_count; i++) {
                     row.put(rsmd.getColumnName(i + 1), resultSet.getObject(i + 1));
@@ -45,15 +47,13 @@ public class MySQLDBPersistence implements IDBPersistence {
         return rows;
     }
 
-    public ArrayList<HashMap<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
+    public List<Map<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
         Connection connection = connectionPool.getConnection();
         CallableStatement statement = null;
         ResultSet resultSet = null;
-        ArrayList<HashMap<String, Object>> rows = new ArrayList<HashMap<String, Object>>();
+        List<Map<String, Object>> rows = new ArrayList<>();
 
         try {
-            // statement = connection.prepareCall("{call " + storedProcedure + "(?, ?, ?,
-            // ?)}");
             statement = connection.prepareCall(spPrepareStatement(storedProcedure, params));
             int pi = 1;
             for (Object param : params) {
@@ -66,11 +66,9 @@ public class MySQLDBPersistence implements IDBPersistence {
                 resultSet = statement.getResultSet();
                 while (resultSet.next()) {
                     ResultSetMetaData rsmd = resultSet.getMetaData();
-                    HashMap<String, Object> row = new HashMap<>();
+                    Map<String, Object> row = new HashMap<>();
                     int column_count = rsmd.getColumnCount();
                     for (int i = 0; i < column_count; i++) {
-                        // System.out.println(rsmd.getTableName(i+1));
-                        // System.out.println(rsmd.getColumnName(i+1));
                         row.put(rsmd.getColumnName(i + 1), resultSet.getObject(i + 1));
                     }
                     rows.add(row);
@@ -80,8 +78,7 @@ public class MySQLDBPersistence implements IDBPersistence {
             System.out.println("Exception in loadData():  " + exception.getMessage());
             exception.printStackTrace();
         } finally {
- if (resultSet != null) {
-
+            if (resultSet != null) {
                 resultSet.close();
             }
             statement.close();

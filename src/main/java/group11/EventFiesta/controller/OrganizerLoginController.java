@@ -29,13 +29,6 @@ public class OrganizerLoginController {
         model.addAttribute("organizer", new Organizer());
         return "OrganizerLogin";
     }
-
-    @GetMapping("/organizerDetails")
-    public String getOrganizerDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("organizer", new Organizer());
-        return "OrganizerDetails";
-    }
-
     @PostMapping("/handleOrganizerLogin")
     public String handleOrganizerLogin(Model model, @ModelAttribute Organizer organizer, HttpServletRequest request) {
         OrganizerLogin organizerLogin = new OrganizerLogin();

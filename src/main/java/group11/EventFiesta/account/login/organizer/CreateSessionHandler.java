@@ -21,8 +21,9 @@ public class CreateSessionHandler extends LoginHandler {
         if (session == null) {
             session = req.getSession(true);
             session.setAttribute("isOrganizer", true);
+            session.setAttribute("accountId", organizer.getAccountId());
+            session.setAttribute("accountEmail", organizer.getEmail());
             System.out.println("Created session!");
-//            LoginState state = new
         }
         return new LoginSuccess(organizer);
     }

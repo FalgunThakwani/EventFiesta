@@ -8,6 +8,8 @@ import group11.EventFiesta.model.Account;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SecretQuestionHandler implements IForgotPassword {
 
@@ -26,7 +28,7 @@ public class SecretQuestionHandler implements IForgotPassword {
 
     @Override
     public IState validate(Account account){
-        ArrayList<HashMap<String, Object>> data = null;
+        List<Map<String, Object>> data = null;
         try {
             data = idbPersistence.loadData("getFromDBUsingWhere", params);
         } catch (Exception e) {
