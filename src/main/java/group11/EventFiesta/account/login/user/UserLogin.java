@@ -1,4 +1,4 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;

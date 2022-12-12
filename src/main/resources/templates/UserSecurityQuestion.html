@@ -28,7 +28,7 @@
                 <p><input maxlength="50" name="securityanswer" type="text" required th:field="*{securityAnswer}"/></p>
                 <p><input class="btn" name="Login" type="submit" value="Continue"/></p>
             </form>
-            <p><a href="/">Back to Home</a></p>
+            <p><a href="/home">Back to Home</a></p>
             <div th:if="${statusMsg} != null">
                 <p style="color: red" data-th-text="${statusMsg}"/>
             </div>

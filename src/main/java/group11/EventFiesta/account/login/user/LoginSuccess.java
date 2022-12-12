@@ -1,6 +1,6 @@
-package group11.EventFiesta.user;
+package group11.EventFiesta.account.login.user;
 
-public class LoginSuccess extends LoginState{
+public class LoginSuccess extends LoginState {
     @Override
     public void setLoginStatus() {
        loginStatus = "Successfully Logged In !!";

@@ -3,8 +3,9 @@ package group11.EventFiesta.model;
 public abstract class Account {
 
     Integer otp;
-
     Boolean org = false;
+    String secretQuestion;
+    String secretAnswer;
 
     public abstract Boolean getOrg();
 
@@ -31,4 +32,22 @@ public abstract class Account {
     public void setOtp(Integer otp) {
         this.otp = otp;
     }
+
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+
+    public String getSecretAnswer() {
+        return secretAnswer;
+    }
+
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
+    }
+
+
 }
