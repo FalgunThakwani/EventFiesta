@@ -1,4 +1,4 @@
-package group11.EventFiesta.UserEventChecklist;
+package group11.EventFiesta.security;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

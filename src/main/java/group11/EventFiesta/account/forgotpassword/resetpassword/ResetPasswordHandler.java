@@ -1,14 +1,10 @@
 package group11.EventFiesta.account.forgotpassword.resetpassword;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
-import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.Account;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ResetPasswordHandler implements IForgotPassword {
 

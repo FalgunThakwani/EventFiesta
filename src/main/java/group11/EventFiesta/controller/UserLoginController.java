@@ -3,8 +3,6 @@ package group11.EventFiesta.controller;
 import group11.EventFiesta.account.login.user.LoginState;
 import group11.EventFiesta.account.login.user.UserLogin;
 import group11.EventFiesta.model.User;
-import group11.EventFiesta.user.LoginState;
-import group11.EventFiesta.user.UserLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
