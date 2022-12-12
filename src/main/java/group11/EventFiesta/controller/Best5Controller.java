@@ -29,29 +29,15 @@ public class Best5Controller {
         questionnaire.setGuestCount(10);
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
-        System.out.println(servicesAndScores.size());
+        System.out.println(servicesAndScores);
         GetBestNOptions getBestNOptions = new GetBestNOptions();
         List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
+        for (int i = 0; i < bestFiveGroups.size(); i++) {
+            bestFiveGroups.get(i).setId(i);
+        }
         System.out.println("bestFiveGroups: " + bestFiveGroups);
         model.addAttribute("bestFiveOptions", bestFiveGroups);
         return "BestFiveOptions";
     }
-
-//    @GetMapping("/bestFiveOptions")
-//    public String getBestFiveOptions(RedirectAttributes requestAttribute, Model model) {
-////        UserEventQuestionnaire questionnaire = (UserEventQuestionnaire) model.getAttribute("userEventObject");
-//         UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-//         questionnaire.setBudget(100);
-//         questionnaire.setCity("Halifax");
-//         questionnaire.setService("Catering,Decoration");
-//        HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire, dPersistence);
-//        Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
-//        System.out.println(servicesAndScores);
-//        GetBestNOptions getBestNOptions = new GetBestNOptions();
-//        List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
-//        System.out.println("bestFiveGroups: " + bestFiveGroups);
-//        model.addAttribute("bestFiveOptions", bestFiveGroups);
-//        return "BestFiveOptions";
-//    }
 
 }

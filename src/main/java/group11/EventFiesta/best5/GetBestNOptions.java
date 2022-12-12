@@ -20,11 +20,15 @@ public class GetBestNOptions {
         }
         List<GroupComponent> allGroups = new ArrayList<>();
         getAllGroups(servicesAndProviders, allGroups, new OrganizerGroup());
+        System.out.println(allGroups);
         List<GroupComponent> bestNGroups = getBestNGroups(allGroups, n);
         return bestNGroups;
     }
 
     public List<GroupComponent> getBestNGroups(List<GroupComponent> allGroups, Integer n) {
+        for (GroupComponent component : allGroups) {
+            component.calculateScore();
+        }
         Collections.sort(allGroups, Collections.reverseOrder());
         System.out.println(allGroups);
         List<GroupComponent> bestFiveGroups = allGroups.stream().limit(n).collect(Collectors.toList());

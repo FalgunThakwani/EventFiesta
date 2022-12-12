@@ -1,9 +1,7 @@
 package group11.EventFiesta.best5;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -71,6 +69,14 @@ public class DecoratedOrganizerService extends BaseDecorator {
                 ", contact_hours_from='" + contact_hours_from + "'" +
                 ", contact_hours_to='" + contact_hours_to + "'" +
                 ", helperForDB='" + helperForDB + "'" +
+                " serviceName='" + serviceName + "'" +
+                ", orgranizerId='" + orgranizerId + "'" +
+                ", serviceId='" + id + "'" +
+                ", budget='" + budget + "'" +
+                ", headCount='" + headCount + "'" +
+                ", event='" + event + "'" +
+                ", dateTime='" + dateTime + "'" +
+                ", score='" + score + "'" +
                 "}";
     }
 
