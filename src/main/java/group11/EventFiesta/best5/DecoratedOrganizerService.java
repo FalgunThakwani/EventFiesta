@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import java.util.HashMap;
-
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import java.util.List;
+import java.util.Map;
 
 public class DecoratedOrganizerService extends BaseDecorator {
 
-    private IDBPersistence connection;
     protected Integer organizerId;
     protected String organizerName;
     protected String firstName;
@@ -21,13 +20,13 @@ public class DecoratedOrganizerService extends BaseDecorator {
     protected String pincode;
     protected LocalDateTime contact_hours_from;
     protected LocalDateTime contact_hours_to;
-    protected OrganizerService org;
+    private IHelperForDB helperForDB;
 
-    public DecoratedOrganizerService(GroupComponent organizerService, IDBPersistence connection) {
+    public DecoratedOrganizerService(GroupComponent organizerService, IHelperForDB helperForDB) {
         super(organizerService);
-        org = (OrganizerService) organizerService;
+        OrganizerService org = (OrganizerService) organizerService;
         this.organizerId = org.orgranizerId;
-        this.connection = connection;
+        this.helperForDB = helperForDB;
         getDetailsFromDB();
     }
 
@@ -37,18 +36,12 @@ public class DecoratedOrganizerService extends BaseDecorator {
     }
 
     private void getDetailsFromDB() {
-        try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
-                    .loadData("sp_getOrganizerDetails", org.orgranizerId);
-            buildObject(resultSet);
-        } catch (Exception e) {
-            System.out.println("Error in getting organizer details form DB");
-            e.printStackTrace();
-        }
+        List<Map<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
+        buildObject(resultSet);
     }
 
     /// Use builder pattern to do this kind of stuff please
-    private void buildObject(ArrayList<HashMap<String, Object>> resultSet) {
+    private void buildObject(List<Map<String, Object>> resultSet) {
         if (resultSet.size() > 0) {
             organizerName = resultSet.get(0).get("name").toString();
             firstName = resultSet.get(0).get("first_name").toString();
@@ -61,6 +54,24 @@ public class DecoratedOrganizerService extends BaseDecorator {
             contact_hours_from = (LocalDateTime) resultSet.get(0).get("contact_hours_from");
             contact_hours_to = (LocalDateTime) resultSet.get(0).get("contact_hours_to");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " organizerId='" + organizerId + "'" +
+                ", organizerName='" + organizerName + "'" +
+                ", firstName='" + firstName + "'" +
+                ", lastName='" + lastName + "'" +
+                ", email='" + email + "'" +
+                ", phoneNumber='" + phoneNumber + "'" +
+                ", province='" + province + "'" +
+                ", city='" + city + "'" +
+                ", pincode='" + pincode + "'" +
+                ", contact_hours_from='" + contact_hours_from + "'" +
+                ", contact_hours_to='" + contact_hours_to + "'" +
+                ", helperForDB='" + helperForDB + "'" +
+                "}";
     }
 
 }

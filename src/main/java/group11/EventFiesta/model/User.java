@@ -3,7 +3,7 @@ package group11.EventFiesta.model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User implements Account {
+public class User extends Account {
     private Integer userId;
     private String firstName;
     private String lastName;
@@ -12,6 +12,14 @@ public class User implements Account {
     private String confirmPassword;
     private String securityQuestion;
     private String securityAnswer;
+
+    public Boolean getOrg() {
+        return org;
+    }
+
+    public void setOrg(Boolean org) {
+        this.org = org;
+    }
 
     public String getFirstName() {
         return this.firstName;
@@ -67,6 +75,14 @@ public class User implements Account {
 
     public void setSecurityAnswer(String securityAnswer) {
         this.securityAnswer = securityAnswer;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override

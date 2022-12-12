@@ -16,23 +16,23 @@
         <fieldset class="field-set-override">
             <legend>Please select an Event:</legend>
             <div>
-                <input type="radio" id="Birthday" value="Birthday" name="event" th:field="*{event}" >
+                <input type="radio" id="Birthday" value="Birthday" name="event" th:field="*{event}" required>
                 <label for="Birthday">Birthday</label>
             </div>
             <div>
-                <input type="radio" id="Wedding" value="Wedding" name="event" th:field="*{event}" >
+                <input type="radio" id="Wedding" value="Wedding" name="event" th:field="*{event}" required>
                 <label for="Wedding">Wedding</label>
             </div>
             <div>
-                <input type="radio" id="Anniversary" value="Anniversary" name="event" th:field="*{event}">
+                <input type="radio" id="Anniversary" value="Anniversary" name="event" th:field="*{event}" required>
                 <label for="Anniversary">Anniversary</label>
             </div>
             <div>
-                <input type="radio" id="BabyShower" value="BabyShower" name="event" th:field="*{event}">
+                <input type="radio" id="BabyShower" value="BabyShower" name="event" th:field="*{event}" required>
                 <label for="BabyShower">Baby Shower</label>
             </div>
             <div>
-                <input type="radio" id="OfficeParty" value="OfficeParty" name="event" th:field="*{event}">
+                <input type="radio" id="OfficeParty" value="OfficeParty" name="event" th:field="*{event}" required>
                 <label for="OfficeParty">Office Party</label>
             </div>
         </fieldset>
@@ -40,7 +40,7 @@
     <div>
         <fieldset class="field-set-override">
             <legend>Please select Province:</legend>
-            <select title="province"  class="dropdown" th:field="*{province}">
+            <select title="province"  class="dropdown" th:field="*{province}" required>
                 <option value=""></option>
                 <option value="NS">Nova Scotia</option>
             </select>
@@ -49,7 +49,7 @@
     <div>
         <fieldset class="field-set-override">
             <legend>Please select City:</legend>
-            <select title="city"  class="dropdown" th:field="*{city}">
+            <select title="city"  class="dropdown" th:field="*{city}" required>
                 <option value=""></option>
                 <option value="Halifax">Halifax</option>
                 <option value="Sydney">Sydney</option>
@@ -59,7 +59,7 @@
     <div>
         <fieldset class="field-set-override">
             <legend>Please select Date and time:</legend>
-            <input type="datetime-local" name="eventdatetime" class="date-format" th:field="*{dateTime}">
+            <input type="datetime-local" name="eventdatetime" class="date-format" th:field="*{dateTime}" required>
         </fieldset>
     </div>
         <div style="text-align: end;"><input class="btn" name="Proceed" type="submit" value="Proceed"/></div>

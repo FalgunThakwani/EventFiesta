@@ -24,7 +24,7 @@
 
                 <p><input maxlength="25" name="password" type="password" th:field="*{password}" required/></p>
 
-                <p align="center"><a href="/forgotPassword">Forgot Password?</a></p>
+                <p align="center"><a href="/userForgotPassword">Forgot Password?</a></p>
 
                 <div th:if="${statusMsg} != null">
                     <p style="color: red" data-th-text="${statusMsg}"/>
@@ -35,6 +35,7 @@
 
             <p>Not registered yet? <a href="/signup">Create an account</a></p>
             <p>Are you a vendor? Try <a href="/organizerLogin">Business Login</a></p>
+            <p><a href="/home">Back to Home</a></p>
         </div>
     </div>
     <div class="split right">

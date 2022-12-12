@@ -1,9 +1,8 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.account.login.user.LoginState;
+import group11.EventFiesta.account.login.user.UserLogin;
 import group11.EventFiesta.model.User;
-import group11.EventFiesta.user.LoginState;
-import group11.EventFiesta.user.UserLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,15 +24,20 @@ public class UserLoginController {
             return "UserLogin";
         }
 
+        @GetMapping("/userLogout")
+        public String getUserLogout(Model model, HttpServletRequest request, HttpServletResponse response) {
+            UserLogin userLogin = new UserLogin();
+            userLogin.logout(request);
+            model.addAttribute("user", new User());
+            return "UserLogin";
+         }
+
         @PostMapping("/handleUserLogin")
-        public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request)
-        {
+        public String handleUserLogin(Model model, @ModelAttribute User user, HttpServletRequest request) {
             model.addAttribute("user", user);
-            // Todo: logic for checking username and password
             System.out.println(user.getEmail());
             System.out.println(user.getPassword());
             UserLogin userLogin = new UserLogin();
-
             LoginState loginState = userLogin.login(user, request);
             model.addAttribute("statusMsg", loginState.getLoginStatus());
             System.out.println(loginState.getLoginStatus());
@@ -41,5 +45,5 @@ public class UserLoginController {
             return loginState.getNextHtml();
         }
 
-    }
+}
 

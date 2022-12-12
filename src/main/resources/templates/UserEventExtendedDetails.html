@@ -52,28 +52,28 @@
     <div>
         <fieldset class="field-set-override">
             <legend>Please Provide Overall Budget:</legend>
-            <input maxlength="25" name="budget" required="required" type="number" th:field="*{budget}"/>
+            <input maxlength="25" name="budget" type="number" required th:field="*{budget}"/>
         </fieldset>
     </div>
     <div>
         <fieldset class="field-set-override">
             <legend>Please Provide Guest Count:</legend>
-            <input maxlength="25" name="guestCount" required="required" type="number" th:field="*{guestCount}" />
+            <input maxlength="25" name="guestCount" type="number" required th:field="*{guestCount}"  />
         </fieldset>
     </div>
     <div>
         <fieldset class="field-set-override">
             <legend>Please select an Event Area:</legend>
             <div>
-                <input type="radio" id="inside" value="inside" name="eventArea" th:field="*{eventArea}">
+                <input type="radio" id="inside" value="inside" name="eventArea" th:field="*{eventArea}" required>
                 <label for="inside">Inside Area</label>
             </div>
             <div>
-                <input type="radio" id="outside" value="outside" name="eventArea" th:field="*{eventArea}">
+                <input type="radio" id="outside" value="outside" name="eventArea" th:field="*{eventArea}" required>
                 <label for="outside">Outside Area</label>
             </div>
             <div>
-                <input type="radio" id="terrace" value="terrace" name="eventArea" th:field="*{eventArea}">
+                <input type="radio" id="terrace" value="terrace" name="eventArea" th:field="*{eventArea}" required>
                 <label for="terrace">Terrace Area</label>
             </div>
         </fieldset>

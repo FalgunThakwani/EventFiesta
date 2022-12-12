@@ -8,7 +8,6 @@ public class UserEventQuestionnaire {
     private String dateTime;
     private String service;
     private int budget;
-
     private int guestCount;
     private String eventArea;
 
@@ -24,6 +23,7 @@ public class UserEventQuestionnaire {
         this.guestCount = guestCount;
         this.eventArea = eventArea;
     }
+    
     public String getEvent() {
         return event;
     }

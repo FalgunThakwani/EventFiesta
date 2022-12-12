@@ -1,5 +1,6 @@
 package group11.EventFiesta.controller;
 
+import group11.EventFiesta.model.User;
 import group11.EventFiesta.model.UserEventQuestionnaire;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
-@SessionAttributes({ "userEventQuestionnaire" })
+@SessionAttributes({"userEventQuestionnaire"})
 @Controller
 public class UserEventDetailsController {
 
@@ -20,8 +22,7 @@ public class UserEventDetailsController {
 
     @PostMapping("/handleAddUserEvents")
     public String handleUserEventQuestionnaireSubmission(Model model,
-            @ModelAttribute UserEventQuestionnaire userEventQuestionnaire) {
-
+                                                         @ModelAttribute UserEventQuestionnaire userEventQuestionnaire) {
         model.addAttribute("userEventQuestionnaire", userEventQuestionnaire);
         return "UserEventExtendedDetails";
     }

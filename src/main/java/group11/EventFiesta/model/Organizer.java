@@ -5,10 +5,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Organizer implements Account {
+public class Organizer extends Account {
 
-
+    public Organizer() {
+        org = true;
+    }
     private Integer organizerId;
+
+    private Boolean org = true;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -21,11 +26,24 @@ public class Organizer implements Account {
     private String province;
     private String pincode;
     private String fromcontact;
+
     private String tocontact;
     private List<Service> service;
 
+    private String securityQuestion;
+
+    private String securityAnswer;
+
     public List<Service> getService() {
         return service;
+    }
+
+    public Boolean getOrg() {
+        return org;
+    }
+
+    public void setOrg(Boolean org) {
+        this.org = org;
     }
 
     public void setService(List<Service> service) {
@@ -145,6 +163,30 @@ public class Organizer implements Account {
         return organizerId;
     }
 
+    public Integer getOrganizerId() {
+        return organizerId;
+    }
+
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
+    }
+
     @Override
     public boolean verifyEmailAddress() {
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -155,8 +197,22 @@ public class Organizer implements Account {
     @Override
     public String toString() {
         return "Organizer{" +
-                "email='" + email + '\'' +
+                "organizerId=" + organizerId +
+                ", org=" + org +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", business='" + business + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", businessNo=" + businessNo +
+                ", address='" + address + '\'' +
+                ", City='" + City + '\'' +
+                ", province='" + province + '\'' +
+                ", pincode='" + pincode + '\'' +
+                ", fromcontact='" + fromcontact + '\'' +
+                ", tocontact='" + tocontact + '\'' +
+                ", service=" + service +
                 '}';
     }
 }
