@@ -14,6 +14,8 @@ public abstract class BaseDecorator extends OrganizerService {
         this.orgranizerId = organizerService.orgranizerId;
         this.id = organizerService.id;
         this.serviceName = organizerService.serviceName;
+        this.price = organizerService.price;
+        this.rating = organizerService.rating;
     }
 
     @Override
