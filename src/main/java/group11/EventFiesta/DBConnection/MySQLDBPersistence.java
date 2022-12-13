@@ -133,4 +133,9 @@ public class MySQLDBPersistence implements IDBPersistence {
         return saveData(query, params);
     }
 
+    @Override
+    public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
+        return null;
+    }
+
 }

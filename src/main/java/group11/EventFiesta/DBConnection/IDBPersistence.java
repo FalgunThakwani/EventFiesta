@@ -13,4 +13,5 @@ public interface IDBPersistence {
 
     public Integer updateData(String storedProcedure, Object... params) throws Exception;
 
+    List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception;
 }
