@@ -42,7 +42,7 @@ public class CalculateScoreForService implements ICalculateScore {
         if (resultSet.size() > 0) {
             total = total / (resultSet.size() * 10);
         }
-        return total;
+        return total; //todo set this to organizer service?
     }
 
     public Double ratingsByExperince() {

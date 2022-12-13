@@ -58,11 +58,11 @@ public class EventManager {
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
                 DecoratedOrganizerService service = (DecoratedOrganizerService) organizerService;
                 String status = "Pending";
-                params = new Object[]{eventId, service.getId(), service.getBudget(), status};
+                params = new Object[]{eventId, service.getId(), service.getPrice(), status};
                 outParams = new int[]{};
                 idbPersistence.insertData("addService", params, outParams);
-                String mailSubject = "Event confirmed!";
-                String mailBody = "Event has been confirmed by the Organizer";
+                String mailSubject = "Event Fiesta - New event!";
+                String mailBody = "You have a new event. Login to your account to take an action.";
                 Mail mail = new Mail(mailSubject, mailBody);
                 mail.setRecipent(service.getEmail());
                 mail.sendMail(mailProtocol);
