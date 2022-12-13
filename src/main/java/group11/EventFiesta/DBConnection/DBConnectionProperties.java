@@ -1,5 +1,7 @@
 package group11.EventFiesta.DBConnection;
 
+import group11.EventFiesta.application.PropertiesReader;
+
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -30,10 +32,9 @@ public class DBConnectionProperties {
     }
 
     private void loadDBProperties(String db) {
-        Properties dbProp = new Properties();
         try {
-            InputStream applicationProperties = this.getClass().getClassLoader().getResourceAsStream("application.properties");
-            dbProp.load(applicationProperties);
+            PropertiesReader propertiesReader = PropertiesReader.getInstance();
+            Properties dbProp = propertiesReader.getProperties();
             url = dbProp.getProperty(db + ".datasource.url");
             username = dbProp.getProperty(db + ".datasource.username");
             password = dbProp.getProperty(db + ".datasource.password");

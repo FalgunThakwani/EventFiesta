@@ -1,10 +1,12 @@
 package group11.EventFiesta.authentication;
 
+import group11.EventFiesta.application.PropertiesReader;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
+import java.util.Properties;
 
 @Configuration
 public class FilterRegistration {
@@ -15,13 +17,10 @@ public class FilterRegistration {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(authenticationFilter());
         registration.addUrlPatterns("/*");
-        // add the urls which does not need authentication here
-        registration.addInitParameter("EXCLUDE_URL_PATTERN",
-                "/.*.png|/.*.jpg|/.*.css|/home|/organizer/login|/handleOrganizerLogin|/signup|/handleUserSignUp|/userLogin|/handleUserLogin|" +
-                        "/aboutUs|/ourServices|/blog|/contactUs|/OrganizerForgotPasswordOTP|/OrganizerResetPassword|/organizerGetOTP|/organizerEnterOTP|" +
-        "/organizerValidateOTP|/UserForgotPasswordOTP|/UserResetPassword|/userGetOTP|/userEnterOTP|/userValidateOTP|/UserForgotPasswordOTP|" +
-                        "/userForgotPassword|/userResetPassword|/userSecurityQuestion|/handleUserResetPassword|/handleUserSecurityQuestion|/handleUserForgotPasswordWithSecurityQuestion|" +
-                "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion");
+        PropertiesReader propertiesReader = PropertiesReader.getInstance();
+        Properties applicationProperties = propertiesReader.getProperties();
+        System.out.println(applicationProperties);
+        registration.addInitParameter("EXCLUDE_URL_PATTERN", applicationProperties.getProperty("event_fiesta.excluded_url"));
         registration.setName("authenticationFilter");
         registration.setOrder(1);
         return registration;

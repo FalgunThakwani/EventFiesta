@@ -14,8 +14,10 @@ public class CreateSessionHandler extends LoginHandler {
         {
             session = req.getSession(true);
             session.setAttribute("isUser", true);
+            System.out.println(user.getAccountId());
+            session.setAttribute("accountId", user.getAccountId());
             session.setAttribute("email", user.getEmail());
-            System.out.println("Session Created!");
+            System.out.println("Session Created! "+session.getAttribute("accountId"));
         }
         return new LoginSuccess();
 
