@@ -64,4 +64,9 @@ public class MockUserEventChecklistPersistence implements IDBPersistence
         checklist.get(0).put("status", 0);
         return 1;
     }
+
+    @Override
+    public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
+        return null;
+    }
 }
