@@ -1,96 +1,53 @@
-body {
-  background-image: url("/images/background.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+body{
+  
+    background: #074257;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-a {
-  color: #002d62;
-  font-weight: 700;
+a{
+  color:white
 }
-input[name="firstName"] {
-  min-height: 30px;
-}
-input[name="lastName"] {
-  min-height: 30px;
-}
-input[name="email"] {
+input[name="email"]{
   width: 410px;
-  min-height: 30px;
 }
-input[name="password"] {
+input[name="password"]{
   width: 410px;
-  min-height: 30px;
 }
-input[name="confirm password"] {
+input[name="confirm password"]{
   width: 410px;
-  min-height: 30px;
 }
-input[name="securityAnswer"] {
+input[name="security answer"]{
   width: 410px;
-  min-height: 30px;
 }
 .split {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  top: 0;
-  overflow-x: hidden;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-input[name="Sign Up"] {
-  background-color: #002244;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 15px;
-  width: 250px;
-  height: 40px;
-  margin-left: 100px;
+  height: 100% ;
+    width: 50%;
+   position: fixed;
+       /* z-index: 1; */
+    top: 0;
+    overflow-x: hidden;
+  }
+input[name="Sign Up"]
+  {
+    background-color: #03774d;
+    border: none;
+    color: white;
+    /* padding: 20px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    width: 250px;
+    
+    height: 40px;
+    margin-left:100px;
   margin-top: 30px;
-}
-.left {
-  left: 20px;
-  top: 65px;
-}
+    
+  }
+  .left {
+    /* margin: 75px; */
 
-.right {
-  right: 0;
-}
-.image {
-  object-fit: cover;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-.btn {
-  cursor: pointer;
-  border: none;
-  background: none;
-  width: 20px;
-  height: 20px;
-}
-input[type="submit"].btn:hover {
-  border: 1px solid black;
-}
-.dropdown {
-  width: 420px;
-  min-height: 40px;
-}
-.align-content {
-  display: flex;
-  align-items: center;
-}
-
-.checkbox-size {
-  width: 18px;
-  height: 18px;
     left:75px;
     top: 20px;
     

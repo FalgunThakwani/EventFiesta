@@ -3,23 +3,16 @@ package group11.EventFiesta.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class MySQLDBPersistence implements IDBPersistence {
 
-    private DBConnectionPool connectionPool;
+    public ArrayList<HashMap<String, Object>> loadData(String query) throws Exception {
 
-    public MySQLDBPersistence() {
-        DBConnectionProperties properties = DBConnectionProperties.getInstance("mysql");
-        connectionPool = DBConnectionPool.getInstance(properties);
-    }
-
-    public List<Map<String, Object>> loadData(String query) throws Exception {
+        DBConnectionPool connectionPool = DBConnectionPool.getInstance();
         Connection connection = connectionPool.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        List<Map<String, Object>> rows = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> rows = new ArrayList();
         try {
             statement = connection.prepareStatement(query);
 
@@ -27,7 +20,7 @@ public class MySQLDBPersistence implements IDBPersistence {
 
             while (resultSet.next()) {
                 ResultSetMetaData rsmd = resultSet.getMetaData();
-                Map<String, Object> row = new HashMap<>();
+                HashMap<String, Object> row = new HashMap<>();
                 int column_count = rsmd.getColumnCount();
                 for (int i = 0; i < column_count; i++) {
                     row.put(rsmd.getColumnName(i + 1), resultSet.getObject(i + 1));
@@ -47,13 +40,17 @@ public class MySQLDBPersistence implements IDBPersistence {
         return rows;
     }
 
-    public List<Map<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
+    public ArrayList<HashMap<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
+
+        DBConnectionPool connectionPool = DBConnectionPool.getInstance();
         Connection connection = connectionPool.getConnection();
         CallableStatement statement = null;
         ResultSet resultSet = null;
-        List<Map<String, Object>> rows = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> rows = new ArrayList();
 
         try {
+            // statement = connection.prepareCall("{call " + storedProcedure + "(?, ?, ?,
+            // ?)}");
             statement = connection.prepareCall(spPrepareStatement(storedProcedure, params));
             int pi = 1;
             for (Object param : params) {
@@ -66,9 +63,11 @@ public class MySQLDBPersistence implements IDBPersistence {
                 resultSet = statement.getResultSet();
                 while (resultSet.next()) {
                     ResultSetMetaData rsmd = resultSet.getMetaData();
-                    Map<String, Object> row = new HashMap<>();
+                    HashMap<String, Object> row = new HashMap<>();
                     int column_count = rsmd.getColumnCount();
                     for (int i = 0; i < column_count; i++) {
+                        // System.out.println(rsmd.getTableName(i+1));
+                        // System.out.println(rsmd.getColumnName(i+1));
                         row.put(rsmd.getColumnName(i + 1), resultSet.getObject(i + 1));
                     }
                     rows.add(row);
@@ -78,30 +77,21 @@ public class MySQLDBPersistence implements IDBPersistence {
             System.out.println("Exception in loadData():  " + exception.getMessage());
             exception.printStackTrace();
         } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
+            resultSet.close();
             statement.close();
             connection.close();
         }
         return rows;
     }
 
-    public Integer saveData(String query, Object... params) throws Exception {
+    public Integer saveData(String query) throws Exception {
         Connection connection;
-
-        CallableStatement statement = null;
-
+        PreparedStatement statement = null;
         Integer result = -1;
         try {
+            DBConnectionPool connectionPool = DBConnectionPool.getInstance();
             connection = connectionPool.getConnection();
-
-            statement = connection.prepareCall(query);
-
-            int pi = 1;
-            for (Object param : params) {
-                statement.setObject(pi++, param);
-            }
+            statement = connection.prepareStatement(query);
 
             result = statement.executeUpdate();
         } catch (Exception exception) {
@@ -113,7 +103,7 @@ public class MySQLDBPersistence implements IDBPersistence {
         return result;
     }
 
-    private String spPrepareStatement(String storedProcedure, Object[] params) {
+    private String spPrepareStatement(String storedProcedure, Object... params) {
         String prepareCallString = "{call " + storedProcedure + " (";
         for (Object param : params) {
             prepareCallString += "?,";
@@ -123,67 +113,6 @@ public class MySQLDBPersistence implements IDBPersistence {
         prepareCallString = buffer.toString();
         prepareCallString += ")}";
         return prepareCallString;
-    }
-
-    private String spPrepareStatement(String storedProcedure, Object[] params, int[] outputParams) {
-        String prepareCallString = "{call " + storedProcedure + " (";
-        for (Object param : params) {
-            prepareCallString += "?,";
-        }
-        for (Object param : outputParams) {
-            prepareCallString += "?,";
-        }
-        StringBuffer buffer = new StringBuffer(prepareCallString);
-        buffer.deleteCharAt(prepareCallString.length() - 1);
-        prepareCallString = buffer.toString();
-        prepareCallString += ")}";
-        return prepareCallString;
-    }
-
-    public Integer updateData(String storedProcedure, Object... params) throws Exception {
-        String query = spPrepareStatement(storedProcedure, params);
-
-        System.out.println("Constructed query for stored procedure: " + query);
-
-        return saveData(query, params);
-    }
-
-    public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
-        Connection connection = connectionPool.getConnection();
-        CallableStatement statement = null;
-        ResultSet resultSet = null;
-        List<Object> returnValues = new ArrayList<>();
-
-        try {
-            statement = connection.prepareCall(spPrepareStatement(insertProcedure, inputParams, outputParams));
-            int parameterIndex = 1;
-            for (Object param : inputParams) {
-                statement.setObject(parameterIndex++, param);
-            }
-            int outParamIndex = parameterIndex;
-            for (int param : outputParams) {
-                System.out.println(parameterIndex);
-                statement.registerOutParameter(parameterIndex++, param);
-            }
-
-            boolean hasResult = statement.execute();
-            System.out.println(hasResult);
-
-                for (int i = outParamIndex, j = 0; j < outputParams.length; i++, j++) {
-                    System.out.println(outParamIndex + " " + statement.getObject(outParamIndex));
-                    returnValues.add(statement.getObject(outParamIndex));
-                }
-        } catch (Exception exception) {
-            System.out.println("Exception in loadData():  " + exception.getMessage());
-            exception.printStackTrace();
-        } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            statement.close();
-            connection.close();
-        }
-        return returnValues;
     }
 
 }

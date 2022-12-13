@@ -19,9 +19,7 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`OrganizerSensitive` (
   `encrypted_password` VARCHAR(45) NOT NULL,
   `private_key` VARCHAR(45) NOT NULL,
   `private_key_expiry` DATE NOT NULL,
-  `otp` INT,
-  `otp_time` BIGINT(50),
-
+  `islogout` TINYINT NOT NULL,
   PRIMARY KEY (`organizer_id`),
   INDEX `fk_OrganizerSensitive_OrganizerInfo1_idx` (`organizer_id` ASC),
   CONSTRAINT `fk_OrganizerSensitive_OrganizerInfo1`
@@ -44,12 +42,11 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`UserSensitive` (
   `security_question` VARCHAR(240) NOT NULL,
   `security_answer` VARCHAR(45) NOT NULL,
   `sign_up_date` DATE NOT NULL,
-  `last_login` DATE NOT NULL,
+  `last login` DATE NOT NULL,
   `encrypted_password` VARCHAR(45) NOT NULL,
   `private_key` VARCHAR(45) NOT NULL,
   `private_key_expiry` DATE NOT NULL,
-  `otp` INT,
-  `otp_time` BIGINT(50),
+  `islogout` TINYINT NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_UserSensitive_UserInfo_idx` (`user_id` ASC),
@@ -79,7 +76,6 @@ CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`EventDetails` (
 CREATE TABLE IF NOT EXISTS `CSCI5308_11_DEVINT`.`EventServices` (
   `service_id` INT NOT NULL AUTO_INCREMENT,
   `event_id` INT NOT NULL,
-  `service_type` VARCHAR(45) NULL DEFAULT NULL,
   `details` VARCHAR(45) NULL DEFAULT NULL,
   `organizer_id` INT NOT NULL,
   `cost` INT NULL DEFAULT NULL,

@@ -3,7 +3,7 @@ package group11.EventFiesta.model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User extends Account {
+public class User implements Account {
     private Integer userId;
     private String firstName;
     private String lastName;
@@ -12,14 +12,6 @@ public class User extends Account {
     private String confirmPassword;
     private String securityQuestion;
     private String securityAnswer;
-
-    public Boolean getOrg() {
-        return org;
-    }
-
-    public void setOrg(Boolean org) {
-        this.org = org;
-    }
 
     public String getFirstName() {
         return this.firstName;
@@ -77,14 +69,6 @@ public class User extends Account {
         this.securityAnswer = securityAnswer;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean verifyEmailAddress() {
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -102,17 +86,4 @@ public class User extends Account {
         this.userId = id;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", securityQuestion='" + securityQuestion + '\'' +
-                ", securityAnswer='" + securityAnswer + '\'' +
-                '}';
-    }
 }
