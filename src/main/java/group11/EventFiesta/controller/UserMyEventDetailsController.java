@@ -1,6 +1,6 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.UserMyEventDetails;
 import group11.EventFiesta.model.UserEvent;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
 package group11.EventFiesta.register;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
 
