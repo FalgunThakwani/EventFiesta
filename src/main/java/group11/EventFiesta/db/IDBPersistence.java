@@ -13,4 +13,4 @@ public interface IDBPersistence {
 
     List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception;
 
-    }
+}

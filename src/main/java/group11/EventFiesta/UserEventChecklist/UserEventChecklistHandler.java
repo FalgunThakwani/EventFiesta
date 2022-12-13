@@ -13,7 +13,7 @@ public class UserEventChecklistHandler
         this.idbPersistence = dbPersistence;
     }
 
-    public List<TodoChecklist> getChecklist(String eventID) throws Exception {
+    public List<TodoChecklist> getChecklist(int eventID) throws Exception {
         Object[] params = new Object[]{"EventCheckList","*", "event_id", eventID};
         List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
         List<TodoChecklist> userEventToDoList = new ArrayList<>();
@@ -21,6 +21,7 @@ public class UserEventChecklistHandler
             for (int i = 0; i < data.size(); i++) {
                 Map<String, Object> row = data.get(i);
                 TodoChecklist userEventChecklist = new TodoChecklist();
+                userEventChecklist.setEventID((Integer) row.get("event_id"));
                 userEventChecklist.setId((Integer) row.get("checklist_item_id"));
                 userEventChecklist.setName((String) row.get("checklist_item_name"));
                 userEventChecklist.setStatus((Integer) row.get("status"));
@@ -30,12 +31,12 @@ public class UserEventChecklistHandler
         return userEventToDoList;
     }
 
-    public List<TodoChecklist> addItemToChecklist(String eventID, String checklistItemName){
-        //int checklistItemID = new Random().nextInt(1000000);
+    public List<TodoChecklist> addItemToChecklist(int eventID, String checklistItemName){
         Object[] params = new Object[]{checklistItemName,eventID,new Date(), 0};
+        String query = "{call sp_storeUserEventChecklistData (?,?,?,?)}";
         try {
-            List<Map<String, Object>> data = idbPersistence.loadData("sp_storeUserEventChecklistData", params);
-            return this.getChecklist("123");
+            Integer data = idbPersistence.saveData(query, params );
+            return this.getChecklist(eventID);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +47,6 @@ public class UserEventChecklistHandler
         try
         {
             int result = idbPersistence.updateData("update_event_checklist", id);
-            System.out.println("Remove Item Count: " + result);
             return result > 0;
         }
         catch (Exception e)
