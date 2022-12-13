@@ -3,15 +3,15 @@ package group11.EventFiesta.controller;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
 import group11.EventFiesta.UserEventChecklist.UserEventChecklistHandler;
 import group11.EventFiesta.model.TodoChecklist;
+import group11.EventFiesta.model.UserEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.LinkedList;
 import java.util.List;
 
+@SessionAttributes({"userEvent"})
 @Controller
 @RequestMapping("/todo")
 public class TodoChecklistController
@@ -19,10 +19,13 @@ public class TodoChecklistController
     private List<TodoChecklist> todoList = new LinkedList<>();
 
     @GetMapping("/load")
-    public String getTodoList(Model model) throws Exception
+    public String getTodoList(Model model, @ModelAttribute UserEvent userEvent) throws Exception
     {
+
+        int eventID= userEvent.getEventID();
+
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
-        List<TodoChecklist> userEventToDoList = userEventChecklistHandler.getChecklist("123");
+        List<TodoChecklist> userEventToDoList = userEventChecklistHandler.getChecklist(eventID);
         todoList.clear();
         for(TodoChecklist item: userEventToDoList)
         {
@@ -44,16 +47,18 @@ public class TodoChecklistController
     @PostMapping("/add")
     public String add(@ModelAttribute("todoItem") TodoChecklist item, Model model) throws Exception
     {
-        System.out.println("Todo Item to add " + item.toString());
+        UserEvent userEvent = (UserEvent) model.getAttribute("userEvent");
+
+        int eventID = userEvent.getEventID();
+
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
-        List<TodoChecklist> userEventToDoList = userEventChecklistHandler.addItemToChecklist("123", item.getName());
+        List<TodoChecklist> userEventToDoList = userEventChecklistHandler.addItemToChecklist(userEvent.getEventID(), item.getName());
         return "redirect:/todo/load";
     }
 
     @PostMapping("/remove")
     public String remove(@ModelAttribute("todoItem") TodoChecklist item, Model model)
     {
-        System.out.println("Item to remove" + item.toString());
         TodoChecklist itemToDelete = null;
         for(TodoChecklist element: todoList)
         {

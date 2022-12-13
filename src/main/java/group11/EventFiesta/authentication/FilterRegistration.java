@@ -21,7 +21,7 @@ public class FilterRegistration {
                         "/aboutUs|/ourServices|/blog|/contactUs|/OrganizerForgotPasswordOTP|/OrganizerResetPassword|/organizerGetOTP|/organizerEnterOTP|" +
         "/organizerValidateOTP|/UserForgotPasswordOTP|/UserResetPassword|/userGetOTP|/userEnterOTP|/userValidateOTP|/UserForgotPasswordOTP|" +
                         "/userForgotPassword|/userResetPassword|/userSecurityQuestion|/handleUserResetPassword|/handleUserSecurityQuestion|/handleUserForgotPasswordWithSecurityQuestion|" +
-                "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion;");
+                "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion");
         registration.setName("authenticationFilter");
         registration.setOrder(1);
         return registration;
