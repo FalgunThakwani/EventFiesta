@@ -1,10 +1,10 @@
 package group11.EventFiesta.account.signup.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
+import group11.EventFiesta.security.EncryptPassword;
 
 import java.sql.Date;
 import java.text.ParseException;
