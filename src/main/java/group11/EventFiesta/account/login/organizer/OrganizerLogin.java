@@ -2,7 +2,7 @@ package group11.EventFiesta.account.login.organizer;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
-import group11.EventFiesta.ILogin;
+import group11.EventFiesta.account.ILogin;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Account;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +12,7 @@ public class OrganizerLogin implements ILogin {
     /*@Override*/
     public IState login(Account organizer, HttpServletRequest request) {
         try {
+            request.getSession().invalidate();
             IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
             Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
             ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence, params);

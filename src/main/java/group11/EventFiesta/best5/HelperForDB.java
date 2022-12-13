@@ -2,6 +2,8 @@ package group11.EventFiesta.best5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
@@ -12,20 +14,22 @@ public class HelperForDB implements IHelperForDB {
     IDBPersistence connection = new MySQLDBPersistence();
 
     @Override
-    public ArrayList<HashMap<String, Object>> getRatingsForService(Integer serviceId) {
+    public List<Map<String, Object>> getRatingsForService(Integer serviceId) {
+        List<Map<String, Object>> resultSet = new ArrayList<>();
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            resultSet = connection
                     .loadData("sp_getRatings", serviceId);
             return resultSet;
         } catch (Exception e) {
             System.out.println("Error in getting Ratings for services");
             e.printStackTrace();
-            return new ArrayList<>();
+            return resultSet;
         }
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getOrganizersFromDB(UserEventQuestionnaire userEventQuestionnaire) {
+    public List<Map<String, Object>> getOrganizersFromDB(UserEventQuestionnaire userEventQuestionnaire) {
+        List<Map<String, Object>> resultSet = new ArrayList<>();
         float twentyPercentOfBudget = ((userEventQuestionnaire.getBudget() * 20) / 100);
         float budget_l = userEventQuestionnaire.getBudget() - twentyPercentOfBudget;
         float budget_u = userEventQuestionnaire.getBudget() + twentyPercentOfBudget;
@@ -36,7 +40,7 @@ public class HelperForDB implements IHelperForDB {
         Object[] params = { userEventQuestionnaire.getCity(), userEventQuestionnaire.getService(), budget_l, budget_u,
                 guestCount };
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            resultSet = connection
                     .loadData("getOrganizersMatchingUserQuestionare", params);
             return resultSet;
         } catch (Exception e) {
@@ -44,13 +48,13 @@ public class HelperForDB implements IHelperForDB {
             e.printStackTrace();
         }
 
-        return new ArrayList<>();
+        return resultSet;
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getOrganizerDetailsFromDB(Integer organizerID) {
+    public List<Map<String, Object>> getOrganizerDetailsFromDB(Integer organizerID) {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getOrganizerDetails", organizerID);
             return resultSet;
         } catch (Exception e) {
@@ -61,9 +65,9 @@ public class HelperForDB implements IHelperForDB {
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getServiceHistory(Integer serviceID) {
+    public List<Map<String, Object>> getServiceHistory(Integer serviceID) {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getServiceHistory", serviceID);
             return resultSet;
         } catch (Exception e) {
@@ -74,9 +78,9 @@ public class HelperForDB implements IHelperForDB {
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getTotalEventsRatio() {
+    public List<Map<String, Object>> getTotalEventsRatio() {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getTotalEventsRatio", "event_id");
             return resultSet;
         } catch (Exception e) {
@@ -87,9 +91,9 @@ public class HelperForDB implements IHelperForDB {
     }
 
     @Override
-    public ArrayList<HashMap<String, Object>> getBudgetForService(Integer serviceId) {
+    public List<Map<String, Object>> getBudgetForService(Integer serviceId) {
         try {
-            ArrayList<HashMap<String, Object>> resultSet = connection
+            List<Map<String, Object>> resultSet = connection
                     .loadData("sp_getBudgetForService", serviceId);
             return resultSet;
         } catch (Exception e) {

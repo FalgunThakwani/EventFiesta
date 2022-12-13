@@ -3,25 +3,11 @@ package group11.EventFiesta.mail;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class Mail {
 
-    static Properties eventFiestaMailCredentials;
-
-    static {
-        try {
-            eventFiestaMailCredentials = new Properties();
-            InputStream applicationProperties = Mail.class.getClassLoader().getResourceAsStream("application.properties");
-            eventFiestaMailCredentials.load(applicationProperties);
-            System.out.println(eventFiestaMailCredentials);
-        } catch (IOException exception) {
-            System.out.println("Exteption while loading mail credentials: " + exception.getMessage());
-        }
-    }
-
+    private static EventFiestaMailCredentials eventFiestaMailCredentials = new EventFiestaMailCredentials();
     private String recipent;
 
     private String subject;
@@ -35,13 +21,19 @@ public class Mail {
         this.recipent = recipent;
         this.subject = subject;
         this.body = body;
-        this.from = eventFiestaMailCredentials.getProperty("event_fiesta.default_email.email");
+        this.from = eventFiestaMailCredentials.getEmail();
+        setAuthentication();
+    }
+
+    public Mail(String subject, String body) {
+        this.subject = subject;
+        this.body = body;
+        this.from = eventFiestaMailCredentials.getEmail();
         setAuthentication();
     }
 
     public void setAuthentication() {
-        authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getProperty("event_fiesta.default_email.email"),
-                eventFiestaMailCredentials.getProperty("event_fiesta.default_email.app_password"));
+        authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getEmail(), eventFiestaMailCredentials.getAppPassword());
 
     }
     public String getRecipent() {
@@ -64,9 +56,13 @@ public class Mail {
         return authenticator;
     }
 
-    public Boolean sendMail(MailHandler mailHandler) {
+    public void setRecipent(String recipent) {
+        this.recipent = recipent;
+    }
+
+    public Boolean sendMail(MailProtocol mailProtocol) {
         Boolean status = true;
-        Properties properties = mailHandler.getMailProperties();
+        Properties properties = mailProtocol.getMailProperties();
         Session session = Session.getInstance(properties, getAuthenticator());
         try {
             MimeMessage message = new MimeMessage(session);

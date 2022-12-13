@@ -1,8 +1,7 @@
 package group11.EventFiesta.account.signup.organizer;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.security.EncryptPassword;
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.Organizer;
@@ -10,10 +9,7 @@ import group11.EventFiesta.model.Organizer;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class OrganizerSignUp extends ISignup {
 
@@ -24,7 +20,7 @@ public class OrganizerSignUp extends ISignup {
     }
     @Override
     public boolean validateUser(Account organizer) throws Exception {
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("getFromDBUsingWhere", new Object[]{"OrganizerInfo", "email", "email", organizer.getEmail()});
+        List<Map<String, Object>> resultSet = connection.loadData("getFromDBUsingWhere", new Object[]{"OrganizerInfo", "email", "email", organizer.getEmail()});
         if (resultSet.size() > 0) {
             return true;
         }
@@ -35,7 +31,7 @@ public class OrganizerSignUp extends ISignup {
     public void storeInfo(Account object) throws Exception {
         Organizer org = (Organizer) object;
         Object[] params = createParams(org);
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_storeOrganizerData", params);
+        List<Map<String, Object>> resultSet = connection.loadData("sp_storeOrganizerData", params);
     }
 
     private Object[] createParams(Organizer org) {

@@ -2,23 +2,14 @@ package group11.EventFiesta.mail;
 
 import java.util.Properties;
 
-public abstract class MailHandler {
+public abstract class SMTPProtocol extends MailProtocol {
 
-    String host;
-
-    Integer port;
-
-    Integer timeout = 3000;
-
-    public MailHandler(String host, Integer port) {
-        this.host = host;
-        this.port = port;
+    public SMTPProtocol(String host, Integer port) {
+        super(host, port);
     }
 
-    public MailHandler(String host, Integer port, Integer timeout) {
-        this.host = host;
-        this.port = port;
-        this.timeout = timeout;
+    public SMTPProtocol(String host, Integer port, Integer timeout) {
+        super(host, port, timeout);
     }
 
     public Properties getMailProperties() {

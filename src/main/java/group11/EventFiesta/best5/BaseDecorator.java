@@ -12,7 +12,7 @@ public abstract class BaseDecorator extends OrganizerService {
         this.budget = organizerService.budget;
         this.headCount = organizerService.headCount;
         this.orgranizerId = organizerService.orgranizerId;
-        this.serviceId = organizerService.serviceId;
+        this.id = organizerService.id;
         this.serviceName = organizerService.serviceName;
     }
 

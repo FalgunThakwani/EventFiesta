@@ -19,7 +19,7 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
     }
 
     private void init() {
-        ArrayList<HashMap<String, Object>> resultSet = helperForDB.getOrganizersFromDB(userEventQuestionnaire);
+        List<Map<String, Object>> resultSet = helperForDB.getOrganizersFromDB(userEventQuestionnaire);
         setOrganizerServiceObject(resultSet);
     }
 
@@ -40,11 +40,11 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
         return listOfAllOrganizers;
     }
 
-    public void setOrganizerServiceObject(ArrayList<HashMap<String, Object>> resultSet) {
+    public void setOrganizerServiceObject(List<Map<String, Object>> resultSet) {
         for (int i = 0; i < resultSet.size(); i++) {
             OrganizerService organizerService = new OrganizerService();
             organizerService.orgranizerId = Integer.parseInt(resultSet.get(i).get("organizer_id").toString());
-            organizerService.serviceId = Integer.parseInt(resultSet.get(i).get("service_id").toString());
+            organizerService.id = Integer.parseInt(resultSet.get(i).get("service_id").toString());
             organizerService.serviceName = resultSet.get(i).get("service_type").toString();
             organizerService.budget = (double) userEventQuestionnaire.getBudget();
             organizerService.headCount = (double) userEventQuestionnaire.getGuestCount();

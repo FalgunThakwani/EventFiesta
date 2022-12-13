@@ -1,17 +1,15 @@
 package group11.EventFiesta.account.signup.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.EncryptPassword;
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
+import group11.EventFiesta.security.EncryptPassword;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 
 public class UserSignUp extends ISignup {
     private IDBPersistence connection;
@@ -22,7 +20,7 @@ public class UserSignUp extends ISignup {
 
     @Override
     public boolean validateUser(Account user) throws Exception {
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_checkUserExists", user.getEmail());
+        List<Map<String, Object>> resultSet = connection.loadData("sp_checkUserExists", user.getEmail());
         if (resultSet.size() > 0) {
             return true;
         }

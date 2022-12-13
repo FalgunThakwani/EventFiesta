@@ -102,4 +102,17 @@ public class User extends Account {
         this.userId = id;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", securityQuestion='" + securityQuestion + '\'' +
+                ", securityAnswer='" + securityAnswer + '\'' +
+                '}';
+    }
 }

@@ -85,6 +85,7 @@ public class EInviteHandler {
             graphics.setFont(new Font(Font.SERIF, Font.ITALIC, 30));
             graphics.drawString(getFormatedDate(), topX, centerY + bottomY);
             graphics.drawString(getFormatedTime(), centerX - 20, centerY + bottomY + 50);
+            graphics.drawString(eObject.getVenue(), centerX - 20, centerY + bottomY + 100);
 
             // drawTitle(graphics);
 

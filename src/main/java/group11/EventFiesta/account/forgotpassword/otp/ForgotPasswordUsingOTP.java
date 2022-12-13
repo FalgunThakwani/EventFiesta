@@ -5,8 +5,8 @@ import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.Account;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ForgotPasswordUsingOTP implements IForgotPassword {
 
@@ -21,7 +21,7 @@ public class ForgotPasswordUsingOTP implements IForgotPassword {
         try {
             Integer otp = account.getOtp();
             System.out.println(otp);
-            ArrayList<HashMap<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
+            List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
             System.out.println(data);
             if (data.size() > 0) {
                 Integer originalOTP = Integer.parseInt(data.get(0).get("otp").toString());
