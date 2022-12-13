@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link th:href="@{/css/userlogin.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<div class="userlogincontainer">
+    <div class="split left">
+        <div class="left-container">
+            <div style="text-align: center;">
+                <img th:src="@{/images/login-icon.png}" class="lock-image">
+            </div>
+            <p><span style="font-size:38px;">Sign In</span></p>
+            <form th:action="@{/handleUserLogin}" th:object="${user}" method="post">
+
+                <p>Email*</p>
+
+                <p><input maxlength="50" name="email" type="email" th:field="*{email}" required/></p>
+
+                <p>Password*</p>
+
+                <p><input maxlength="25" name="password" type="password" th:field="*{password}" required/></p>
+
+                <p align="center"><a href="/userForgotPassword">Forgot Password?</a></p>
+
+                <div th:if="${statusMsg} != null">
+                    <p style="color: red" data-th-text="${statusMsg}"/>
+                </div>
+
+                <p><input class="btn" name="Login" type="submit" value="Login"/></p>
+            </form>
+
+            <p>Not registered yet? <a href="/signup">Create an account</a></p>
+            <p>Are you a vendor? Try <a href="/organizerLogin">Business Login</a></p>
+            <p><a href="/home">Back to Home</a></p>
+        </div>
+    </div>
+    <div class="split right">
+        <img th:src="@{/images/userlogin.jpg}" class="image">
+    </div>
+</div>
+</body>
+</html>

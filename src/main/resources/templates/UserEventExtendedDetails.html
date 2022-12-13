@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event Details</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserEventExtendedDetails.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+<div class="container">
+    <h1 style="text-align: center;">Please Provide More Information For Event</h1>
+    <form th:action="@{/handleAddUserEventsExtended}" th:object="${userEventQuestionnaire}" method="post" class="container">
+    <div>
+        <fieldset class="field-set-override" aria-required="true">
+            <legend>Please select Required Service:</legend>
+            <div>
+                <input type="checkbox" id="Decoration" value="Decoration" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Decoration">Decoration</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Catering" value="Catering" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Catering">Catering</label>
+            </div>
+            <div>
+                <input type="checkbox" id="MusicSystem" value="MusicSystem" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="MusicSystem">Music System</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Dance" value="Dance" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Dance">Dance</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Singers" value="Singers" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Singers">Singers</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Anchors" value="Anchors" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Anchors">Anchors / Host</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Games" value="Games" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="Games">Games</label>
+            </div>
+            <div>
+                <input type="checkbox" id="MakeUp" value="MakeUp" name="service" class="checkbox-size" th:field="*{service}">
+                <label for="MakeUp">MakeUp</label>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset class="field-set-override">
+            <legend>Please Provide Overall Budget:</legend>
+            <input maxlength="25" name="budget" type="number" required th:field="*{budget}"/>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset class="field-set-override">
+            <legend>Please Provide Guest Count:</legend>
+            <input maxlength="25" name="guestCount" type="number" required th:field="*{guestCount}"  />
+        </fieldset>
+    </div>
+    <div>
+        <fieldset class="field-set-override">
+            <legend>Please select an Event Area:</legend>
+            <div>
+                <input type="radio" id="inside" value="inside" name="eventArea" th:field="*{eventArea}" required>
+                <label for="inside">Inside Area</label>
+            </div>
+            <div>
+                <input type="radio" id="outside" value="outside" name="eventArea" th:field="*{eventArea}" required>
+                <label for="outside">Outside Area</label>
+            </div>
+            <div>
+                <input type="radio" id="terrace" value="terrace" name="eventArea" th:field="*{eventArea}" required>
+                <label for="terrace">Terrace Area</label>
+            </div>
+        </fieldset>
+    </div>
+        <div style="text-align: end;"><input class="btn" name="Submit" type="submit" value="Submit"/></div>
+    </form>
+</div>
+</body>
+</html>

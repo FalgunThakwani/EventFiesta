@@ -1,5 +1,6 @@
 package group11.EventFiesta;
 
+import group11.EventFiesta.security.EncryptPassword;
 import group11.EventFiesta.model.Account;
 
 public abstract class ISignup {
@@ -9,14 +10,12 @@ public abstract class ISignup {
     public abstract boolean validateUser(Account object) throws Exception;
 
     /// Store information in db object specific
-    public abstract void storeInfo(Account object);
+    public abstract void storeInfo(Account object) throws Exception;
 
-    ///This method will encrypt the recieved password
+    /// This method will encrypt the recieved password
     public String encryptReceivedPassword(String password, String key) {
         String encryptedPWD = EncryptPassword.getEncryptedPwd(password, key);
         return encryptedPWD;
     }
-
-    ///Create 
 
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserHomepage.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+<div class="container">
+    <div class="left">
+        <h3 style="text-align: center;">Let's Setup an event for you</h3>
+        <div class="logo-container">
+            <div>
+                <p style="font-weight: 600;">Event Fiesta Provides end-to-end solution for the planning of events like wedding, birthday, anniversary baby shower etc.</p>
+                <p style="font-weight: 600;">Please use the below Add New Event to create an event based on your need.</p>
+            </div>
+            <img th:src="@{/images/logo-event-1.jpg}">
+        </div>
+        <p style="text-align: center;margin-top: 1em;"><a class="btn" href="/addUserEvents">Add New Event</a></p>
+    </div>
+    <div class="right">
+        <h3 style="text-align: center;">My Events</h3>
+        <div class="logo-container">
+            <div>
+                <p style="font-weight: 600;">Please use the below user Event to view an event based on your need.</p>
+            </div>
+        </div>
+        <p style="text-align: center;margin-top: 1em;"><a class="btn" href="/viewUserEvents">User Event</a></p>
+    </div>
+</div>
+
+</body>
+</html>

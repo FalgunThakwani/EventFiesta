@@ -1,60 +1,68 @@
 package group11.EventFiesta.model;
 
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Organizer implements Account {
+public class Organizer extends Account {
 
-    private String userId;
+    public Organizer() {
+        org = true;
+    }
+    private Integer organizerId;
+
+    private Boolean org = true;
+
     private String firstName;
     private String lastName;
     private String email;
     private String business;
     private String password;
     private String confirmPassword;
-    private float charge;
-
-    public float getCharge() {
-        return charge;
-    }
-
-    public void setCharge(float charge) {
-        this.charge = charge;
-    }
-
     private int businessNo;
     private String address;
     private String City;
     private String province;
     private String pincode;
-    private Date fromcontact;
-    private Date tocontact;
-    private List<String> service;
+    private String fromcontact;
 
-    public List<String> getService() {
+    private String tocontact;
+    private List<Service> service;
+
+    private String securityQuestion;
+
+    private String securityAnswer;
+
+    public List<Service> getService() {
         return service;
     }
 
-    public void setService(List<String> service) {
+    public Boolean getOrg() {
+        return org;
+    }
+
+    public void setOrg(Boolean org) {
+        this.org = org;
+    }
+
+    public void setService(List<Service> service) {
         this.service = service;
     }
 
-    public Date getFromcontact() {
+    public String getFromcontact() {
         return fromcontact;
     }
 
-    public void setFromcontact(Date fromcontact) {
+    public void setFromcontact(String fromcontact) {
         this.fromcontact = fromcontact;
     }
 
-    public Date getTocontact() {
+    public String getTocontact() {
         return tocontact;
     }
 
-    public void setTocontact(Date tocontact) {
+    public void setTocontact(String tocontact) {
         this.tocontact = tocontact;
     }
 
@@ -99,14 +107,6 @@ public class Organizer implements Account {
         this.businessNo = businessNo;
     }
 
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getFirstName() {
         return this.firstName;
     }
@@ -126,8 +126,6 @@ public class Organizer implements Account {
     public String getEmail() {
         return this.email;
     }
-
-    private Integer organizerId;
 
     public void setEmail(String email) {
         this.email = email;
@@ -165,6 +163,30 @@ public class Organizer implements Account {
         return organizerId;
     }
 
+    public Integer getOrganizerId() {
+        return organizerId;
+    }
+
+    public void setOrganizerId(Integer organizerId) {
+        this.organizerId = organizerId;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
+    }
+
     @Override
     public boolean verifyEmailAddress() {
         Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -175,8 +197,22 @@ public class Organizer implements Account {
     @Override
     public String toString() {
         return "Organizer{" +
-                "email='" + email + '\'' +
+                "organizerId=" + organizerId +
+                ", org=" + org +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", business='" + business + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", businessNo=" + businessNo +
+                ", address='" + address + '\'' +
+                ", City='" + City + '\'' +
+                ", province='" + province + '\'' +
+                ", pincode='" + pincode + '\'' +
+                ", fromcontact='" + fromcontact + '\'' +
+                ", tocontact='" + tocontact + '\'' +
+                ", service=" + service +
                 '}';
     }
 }

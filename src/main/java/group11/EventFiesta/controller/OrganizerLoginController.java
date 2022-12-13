@@ -1,8 +1,8 @@
 package group11.EventFiesta.controller;
 
+import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Organizer;
-import group11.EventFiesta.organizer.LoginState;
-import group11.EventFiesta.organizer.OrganizerLogin;
+import group11.EventFiesta.account.login.organizer.OrganizerLogin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class OrganizerLoginController {
 
-    @GetMapping("/organizer/login")
+    @GetMapping("/organizerLogin")
     public String getOrganizerLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("organizer", new Organizer());
-        System.out.println(request.getRequestURI());
+        System.out.println("getOrganizerLogin: " + model.getAttribute("organizer"));
         return "OrganizerLogin";
     }
 
@@ -29,23 +29,13 @@ public class OrganizerLoginController {
         model.addAttribute("organizer", new Organizer());
         return "OrganizerLogin";
     }
-
-    @GetMapping("/organizerDetails")
-    public String getOrganizerDetails(Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("organizer", new Organizer());
-        System.out.println(request.getRequestURI());
-        return "OrganizerDetails";
-    }
-
     @PostMapping("/handleOrganizerLogin")
     public String handleOrganizerLogin(Model model, @ModelAttribute Organizer organizer, HttpServletRequest request) {
-        System.out.println("inside handleOrganizerLogin()" );
         OrganizerLogin organizerLogin = new OrganizerLogin();
-        LoginState loginState = organizerLogin.login(organizer, request);
-        model.addAttribute("statusMsg", loginState.getLoginStatus());
-        System.out.println(loginState.getLoginStatus());
-        System.out.println(loginState.getNextHtml());
-        return loginState.getNextHtml();
+        System.out.println("handleOrganizerLogin: " + organizer);
+        IState loginState = organizerLogin.login(organizer, request);
+        model.addAttribute("statusMsg", loginState.getStatus());
+        return loginState.getNextPage();
     }
 
 }
