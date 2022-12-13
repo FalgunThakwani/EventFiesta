@@ -8,7 +8,7 @@
         <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
     </head>
     <body>
-        <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+        <th:block th:include="fragments/organizerloggedInHeader :: organizerloggedInHeader"></th:block>
         <div class="container">
             <div>
                 <h1 style="text-align: center;">My events</h1>
@@ -42,9 +42,7 @@
                                             <span th:each="service:${organizerEvent.services}">
                                                 <p>
                                                     <strong th:text = "${service.service_type}"/>
-                                                    <p th:text="'Time: ' + ${service.service_time} "/>
                                                     <p th:text="'Cost: ' + ${service.cost} "/>
-                                                    <p th:text="'Details: ' + ${service.details} "/>
                                                 </p>
                                             </span>
 
@@ -114,9 +112,7 @@
                                             <span th:each="service:${organizerEvent.services}">
                                                 <p>
                                                     <strong th:text = "${service.service_type}"/>
-                                                    <p th:text="'Time: ' + ${service.service_time} "/>
                                                     <p th:text="'Cost: ' + ${service.cost} "/>
-                                                    <p th:text="'Details: ' + ${service.details} "/>
                                                 </p>
                                             </span>
 
@@ -174,9 +170,7 @@
                                             <span th:each="service:${organizerEvent.services}">
                                                 <p>
                                                     <strong th:text = "${service.service_type}"/>
-                                                    <p th:text="'Time: ' + ${service.service_time} "/>
                                                     <p th:text="'Cost: ' + ${service.cost} "/>
-                                                    <p th:text="'Details: ' + ${service.details} "/>
                                                 </p>
                                             </span>
 
@@ -209,7 +203,7 @@
                                         </div>
                                     </div>
                                     <th:block th:if="${#lists.isEmpty(organizerEvent.services)}">
-                                        <h5 style="color: red;">No orders are placed yet!</h5>
+                                        <h5 style="color: red;">No service reviews!</h5>
                                     </th:block>
                                     <th:block th:if="${not #lists.isEmpty(organizerEvent.services)}">
                                         <h3>Client Review</h3>
