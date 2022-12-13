@@ -3,21 +3,24 @@ package group11.EventFiesta.account.forgotpassword.otp;
 import group11.EventFiesta.account.forgotpassword.AccountState;
 import group11.EventFiesta.model.Account;
 
-public class MailNotSent extends AccountState {
-    MailNotSent(Account account) {
+public class OTPExpired  extends AccountState {
+
+    public OTPExpired(Account account) {
         super(account);
     }
+
     @Override
     public void setStatus() {
-        setStatus("Mail could not be sent due to an error");
+        setStatus("OTP expired!");
     }
 
     @Override
     public void setNextPage() {
-        String nextPage = "redirect:/userForgotPassword";
+        String nextPage = "redirect:/UserForgotPasswordOTP";
         if (account.getOrg()) {
-            nextPage = "redirect:/organizerForgotPassword";
+            nextPage = "redirect:/OrganizerForgotPasswordOTP";
         }
+        System.out.println(nextPage);
         setNextPage(nextPage);
     }
 }

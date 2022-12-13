@@ -1,6 +1,6 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.account.forgotpassword.securityquestion.SecretQuestionHandler;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

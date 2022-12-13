@@ -1,7 +1,6 @@
 package group11.EventFiesta.UserEventChecklist;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.*;
 
 import java.util.*;

@@ -1,21 +1,15 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.IState;
-import group11.EventFiesta.account.forgotpassword.AccountState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
-import group11.EventFiesta.account.forgotpassword.otp.ForgotPasswordUsingOTP;
 import group11.EventFiesta.account.forgotpassword.securityquestion.SecretQuestionHandler;
 import group11.EventFiesta.account.forgotpassword.securityquestion.VerifyEmailHandler;
-import group11.EventFiesta.account.login.user.AccountCheckHandler;
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

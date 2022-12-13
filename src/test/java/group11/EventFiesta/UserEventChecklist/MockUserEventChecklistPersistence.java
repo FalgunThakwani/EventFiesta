@@ -1,6 +1,6 @@
 package group11.EventFiesta.UserEventChecklist;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,5 +63,10 @@ public class MockUserEventChecklistPersistence implements IDBPersistence
     {
         checklist.get(0).put("status", 0);
         return 1;
+    }
+
+    @Override
+    public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
+        return null;
     }
 }
