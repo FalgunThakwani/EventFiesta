@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Events</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserHomepage.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+<p>Your events</p>
+<div class = "container">
+    <table>
+        <thead>
+        <tr>
+            <th> Events </th>
+            <th>  </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${events.isEmpty()}">
+            <td colspan="2"> No Events Executed. </td>
+        </tr>
+        <tr th:each="event : ${events}">
+            <td><span th:text="${event.eventType}">  </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -33,7 +33,6 @@ public class UserLoginController {
             System.out.println(user.getEmail());
             System.out.println(user.getPassword());
             UserLogin userLogin = new UserLogin();
-
             LoginState loginState = userLogin.login(user, request);
             model.addAttribute("statusMsg", loginState.getLoginStatus());
             System.out.println(loginState.getLoginStatus());

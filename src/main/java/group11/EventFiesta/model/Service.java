@@ -2,6 +2,33 @@ package group11.EventFiesta.model;
 
 public class Service {
     private String name;
+    private int ServiceId;
+    private String serviceType;
+    private String status;
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public int getServiceId() {
+        return ServiceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        ServiceId = serviceId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Service(){}
     public Service(String name, float cost) {
