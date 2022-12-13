@@ -2,7 +2,7 @@ package group11.EventFiesta.account.login.user;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
-import group11.EventFiesta.ILogin;
+import group11.EventFiesta.account.ILogin;
 import group11.EventFiesta.model.Account;
 
 import javax.servlet.http.HttpServletRequest;

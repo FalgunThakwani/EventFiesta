@@ -6,12 +6,12 @@ import group11.EventFiesta.model.*;
 
 import java.util.*;
 
-public class UserEventChecklistHandler{
-
+public class UserEventChecklistHandler
+{
     IDBPersistence idbPersistence;
 
-    public UserEventChecklistHandler() {
-        this.idbPersistence = new MySQLDBPersistence();
+    public UserEventChecklistHandler(IDBPersistence dbPersistence) {
+        this.idbPersistence = dbPersistence;
     }
 
     public List<TodoChecklist> getChecklist(String eventID) throws Exception {
