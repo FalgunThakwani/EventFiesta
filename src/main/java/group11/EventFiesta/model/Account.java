@@ -1,18 +1,53 @@
 package group11.EventFiesta.model;
 
-public interface Account {
+public abstract class Account {
 
-    boolean verifyEmailAddress();
+    Integer otp;
+    Boolean org = false;
+    String secretQuestion;
+    String secretAnswer;
 
-    String getEmail();
+    public abstract Boolean getOrg();
 
-    void setEmail(String email);
+    public abstract void setOrg(Boolean org) ;
 
-    String getPassword();
+    public abstract boolean verifyEmailAddress();
 
-    Integer getAccountId();
+    public abstract String getEmail();
 
-    void setAccountId(Integer id);
+    public abstract void setEmail(String email);
 
-    void setPassword(String password);
+    public abstract String getPassword();
+
+    public abstract Integer getAccountId();
+
+    public abstract void setAccountId(Integer id);
+
+    public abstract void setPassword(String password);
+
+    public Integer getOtp() {
+        return otp;
+    }
+
+    public void setOtp(Integer otp) {
+        this.otp = otp;
+    }
+
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+
+    public String getSecretAnswer() {
+        return secretAnswer;
+    }
+
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
+    }
+
+
 }

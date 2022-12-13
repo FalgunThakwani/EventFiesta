@@ -8,7 +8,6 @@ public class UserEventQuestionnaire {
     private String dateTime;
     private String service;
     private int budget;
-
     private int guestCount;
     private String eventArea;
 
@@ -24,6 +23,7 @@ public class UserEventQuestionnaire {
         this.guestCount = guestCount;
         this.eventArea = eventArea;
     }
+    
     public String getEvent() {
         return event;
     }
@@ -88,4 +88,17 @@ public class UserEventQuestionnaire {
         this.eventArea = eventArea;
     }
 
+    @Override
+    public String toString() {
+        return "UserEventQuestionnaire{" +
+                "event='" + event + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", dateTime='" + dateTime + '\'' +
+                ", service='" + service + '\'' +
+                ", budget=" + budget +
+                ", guestCount=" + guestCount +
+                ", eventArea='" + eventArea + '\'' +
+                '}';
+    }
 }

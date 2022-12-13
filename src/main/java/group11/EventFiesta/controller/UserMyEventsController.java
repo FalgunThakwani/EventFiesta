@@ -1,7 +1,7 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.UserMyEvents;
 import group11.EventFiesta.model.User;
 import group11.EventFiesta.model.UserEvents;

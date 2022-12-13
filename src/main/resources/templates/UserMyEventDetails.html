@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Event Details</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserEventDetails.css}" rel="stylesheet">
+<!--    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">-->
+</head>
+    <body>
+        <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+
+        <h1 style="text-align: center;">Here Is Your Event Details</h1>
+
+        <form th:object="${userEvent}" class="form-container">
+
+            <table>
+                <tr>
+                    <td>
+                        <div>
+                            <h3><p th:text="'Event Type : ' + *{eventType}"></p></h3>
+                            <h3><p th:text="'Event Location : ' + *{eventVenue}"></p></h3>
+                            <h3><p th:text="'Guest Count : ' + *{guestCount}"></p></h3>
+
+                            <h2>Services Registered</h2>
+                            <div class="view" th:each="item : ${userEvent.service}">
+                                <h3><p th:text="'Service Type : ' + ${item.type}"></p></h3>
+                                <h3><p th:text="'Organizer Details : Name - ' + ${item.organizer.firstName} + ' ' + ${item.organizer.lastName} + ' & Email - ' + ${item.organizer.email}"></p></h3>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <a href="/todo/load">
+                            <img th:src="@{/images/to-do-list-apps.png}" style="width:150px; height:150px" >
+                            </a>
+                            <br/>
+                            <img th:src="@{/images/guest-list.png}" style="width:150px; height:150px">
+                            <br/>
+                            <a href="/einvite">
+                            <img th:src="@{/images/e-invite.jpg}" style="width:150px; height:150px">
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

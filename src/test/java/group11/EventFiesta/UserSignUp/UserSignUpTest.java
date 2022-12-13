@@ -1,14 +1,14 @@
 package group11.EventFiesta.UserSignUp;
 
+import group11.EventFiesta.account.signup.user.UserSignUp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import group11.EventFiesta.ISignup;
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
-import group11.EventFiesta.user.UserSignUp;
 
 public class UserSignUpTest {
     private IDBPersistence dbPersistence = new MySQLDBPersistence();
@@ -27,5 +27,9 @@ public class UserSignUpTest {
         Assertions.assertEquals(signupTest.validateUser(user), false);
     }
 
+    // @Test
+    // public void storeInfo() throws Exception {
+    // // signupTest.storeInfo(user);
+    // }
 
 }

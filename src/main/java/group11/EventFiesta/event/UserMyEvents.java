@@ -1,6 +1,7 @@
 package group11.EventFiesta.event;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+//import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.Service;
 import group11.EventFiesta.model.UserEvents;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMyEvents implements IEvents{
     private IDBPersistence connection;
@@ -18,12 +20,12 @@ public class UserMyEvents implements IEvents{
     @Override
     public ArrayList<UserEvents> loadEvents(int userId) throws Exception {
         Object[] params = createParams(userId);
-        ArrayList<HashMap<String, Object>> resultSet = connection.loadData("sp_getUserEvents", params);
+        List<Map<String, Object>> resultSet = connection.loadData("sp_getUserEvents", params);
         ArrayList<UserEvents> eventsList = new ArrayList<UserEvents>();
 //        List<Integer> eventIds = new ArrayList<Integer>();
         HashMap<Integer, UserEvents> events = new HashMap<>();
         for(int i=0;i< resultSet.size(); i++){
-            HashMap<String, Object> row = resultSet.get(i);
+            Map<String, Object> row = resultSet.get(i);
 //            int columns = row.size();
 //            System.out.println(row);
             UserEvents currentEvent;
