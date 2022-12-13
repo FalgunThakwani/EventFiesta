@@ -16,7 +16,7 @@
         <div class="container">
             <div class="left">
                 <div class="tab">
-                    <button class="links" onclick="activeSelectedTab(event, 'Options')"  id="default">Options</button>
+                    <button class="links invisible" onclick="activeSelectedTab(event, 'Options')"  id="default">Options</button>
                 </div>
                 <div id="Options" class="content">
                     <th:block th:if="${#lists.isEmpty(bestFiveOptions)}">
@@ -30,26 +30,25 @@
                         </div>
                         <th:block th:each="option, iter :${bestFiveOptions}">
                             <div th:attr="id=|Option_${option.id}|" class="verticalTabContent">
-                                <h3 class="align-center" th:text="' Option - ' + ${option.id}"></h3>
+                                <h3 class="align-center" th:text="' Option - ' + ${option.id} + ' | overal score - ' + ${option.score}"></h3>
                                 <hr>
-                                <th:block th:each="service:${option.organizerServices}">
-                                    <div class="align-box">
+                                <div class="align-box">
+                                    <th:block th:each="service:${option.organizerServices}">
                                         <div class="align-box-content">
-                                            <div class="box-content-header" th:text="${service.serviceName}"/>
+                                            <div class="box-content-header" th:text="' ' + ${service.serviceName} + ' by '+ ${service.organizerName}" />
                                             <p>
-                                                <strong th:text = "${service.organizer_id}"/>
-                                                <p th:text="'score: ' + ${service.score} "/>
+                                                <p th:text="'Score (of 10): ' + ${service.score} "/>
                                                 <p th:text="'Budget: ' + ${service.budget} "/>
                                                 <p th:text="'Head Count: ' + ${service.headCount} "/>
                                             </p>
                                         </div>
-                                    </div>
-                                </th:block>
-                                <div class="align-box" style="margin: 50px 0 20px 0;">
+                                    </th:block>
+                                </div>
+                                <div class="align-center" style="margin: 50px 0 20px 0;">
                                     <form th:action="@{/acceptOption}" th:object="${option}" method="post">
-                                        <input type="hidden" name="id" th:value="${option.id}"/>
+                                        <input type="hidden" name="optionId" th:value="${option.id}"/>
                                         <button class="btn" type="submit">Accept</button>
-                                    </form>=
+                                    </form>
                                 </div>
                             </div>
                         </th:block>

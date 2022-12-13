@@ -39,6 +39,13 @@ public class Mail {
         setAuthentication();
     }
 
+    public Mail(String subject, String body) {
+        this.subject = subject;
+        this.body = body;
+        this.from = eventFiestaMailCredentials.getProperty("event_fiesta.default_email.email");
+        setAuthentication();
+    }
+
     public void setAuthentication() {
         authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getProperty("event_fiesta.default_email.email"),
                 eventFiestaMailCredentials.getProperty("event_fiesta.default_email.app_password"));
@@ -62,6 +69,10 @@ public class Mail {
 
     public Authenticator getAuthenticator() {
         return authenticator;
+    }
+
+    public void setRecipent(String recipent) {
+        this.recipent = recipent;
     }
 
     public Boolean sendMail(MailProtocol mailProtocol) {

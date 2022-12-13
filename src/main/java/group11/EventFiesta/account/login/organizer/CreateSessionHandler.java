@@ -18,6 +18,7 @@ public class CreateSessionHandler extends LoginHandler {
         System.out.println("Inside CreateSessionHandler.execute()");
         HttpServletRequest req = request;
         HttpSession session = req.getSession(false);
+        System.out.println("CreateSessionHandler");
         if (session == null) {
             session = req.getSession(true);
             session.setAttribute("isOrganizer", true);

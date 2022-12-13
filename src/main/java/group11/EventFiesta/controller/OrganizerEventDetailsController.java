@@ -66,7 +66,7 @@ public class OrganizerEventDetailsController {
     }
 
     @PostMapping("/acceptEvent")
-    public String acceptEvent(Model model, @RequestParam("event_id") Integer eventId,@RequestParam("client_email") String email, HttpServletRequest request) {
+    public String acceptEvent(Model model, @RequestParam("event_id") Integer eventId, @RequestParam("client_email") String email, HttpServletRequest request) {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
@@ -76,8 +76,8 @@ public class OrganizerEventDetailsController {
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
-            EventManager eventManager = new EventManager(idbPersistence);
-            eventManager.updateEvent(params, mail, gmailSslSmtpProtocol);
+            EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
+            eventManager.updateEvent(params, mail);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,8 +95,8 @@ public class OrganizerEventDetailsController {
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
-            EventManager eventManager = new EventManager(idbPersistence);
-            eventManager.updateEvent(params, mail, gmailSslSmtpProtocol);
+            EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
+            eventManager.updateEvent(params, mail);
         } catch (Exception e) {
             e.printStackTrace();
         }

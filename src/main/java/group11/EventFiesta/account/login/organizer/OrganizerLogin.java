@@ -12,6 +12,7 @@ public class OrganizerLogin implements ILogin {
     /*@Override*/
     public IState login(Account organizer, HttpServletRequest request) {
         try {
+            request.getSession().invalidate();
             IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
             Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
             ILoginHandler accounCheckHandler = new AccountCheckHandler(mySQLDBPersistence, params);

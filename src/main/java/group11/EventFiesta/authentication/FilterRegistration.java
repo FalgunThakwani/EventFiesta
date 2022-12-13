@@ -22,7 +22,7 @@ public class FilterRegistration {
         "/organizerValidateOTP|/UserForgotPasswordUsingOTP|/UserResetPassword|/userGetOTP|/userEnterOTP|/userValidateOTP|/forgotPasswordWithOTP|" +
                         "/userForgotPassword|/userResetPassword|/userSecurityQuestion|/handleUserResetPassword|/handleUserSecurityQuestion|/handleUserForgotPasswordWithSecurityQuestion|" +
                 "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion|" +
-                        "/bestOrganizers|");
+                        "");
         registration.setName("authenticationFilter");
         registration.setOrder(1);
         return registration;

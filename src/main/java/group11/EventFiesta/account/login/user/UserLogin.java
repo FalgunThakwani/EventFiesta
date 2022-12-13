@@ -11,6 +11,7 @@ public class UserLogin implements ILogin {
     @Override
     public LoginState login(Account user, HttpServletRequest request) {
         try {
+            request.getSession().invalidate();
             IDBPersistence mySQLDBPersistence = new MySQLDBPersistence();
             ILoginHandler accountCheckHandler = new AccountCheckHandler(mySQLDBPersistence);
             ILoginHandler verifyPasswordHandler = new VerifyPasswordHandler(mySQLDBPersistence);
