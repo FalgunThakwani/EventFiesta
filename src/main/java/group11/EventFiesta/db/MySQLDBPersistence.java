@@ -1,4 +1,4 @@
-package group11.EventFiesta.DBConnection;
+package group11.EventFiesta.db;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.best5.*;
 import group11.EventFiesta.event.EventManager;
 import group11.EventFiesta.mail.Mail;
@@ -26,15 +26,9 @@ import javax.servlet.http.HttpSession;
 public class Best5Controller {
 
     @GetMapping("/bestOrganizers")
-    public String getBest5Organizers(RedirectAttributes requestAttribute,
-                                     Model model) {
-        // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
-        // model.getAttribute("userEventObject");
-        UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-        questionnaire.setBudget(1000);
-        questionnaire.setCity("Halifax");
-        questionnaire.setService("Catering,Decoration");
-        questionnaire.setGuestCount(10);
+    public String getBest5Organizers(RedirectAttributes requestAttribute, Model model) {
+         UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
+         model.getAttribute("userEventObject");
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);

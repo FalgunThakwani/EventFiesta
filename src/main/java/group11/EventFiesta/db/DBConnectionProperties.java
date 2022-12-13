@@ -1,8 +1,7 @@
-package group11.EventFiesta.DBConnection;
+package group11.EventFiesta.db;
 
 import group11.EventFiesta.application.PropertiesReader;
 
-import java.io.InputStream;
 import java.util.Properties;
 
 public class DBConnectionProperties {

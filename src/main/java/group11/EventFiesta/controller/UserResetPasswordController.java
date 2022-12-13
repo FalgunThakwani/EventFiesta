@@ -1,10 +1,9 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
-import group11.EventFiesta.account.forgotpassword.otp.GenerateOTP;
 import group11.EventFiesta.account.forgotpassword.resetpassword.GenerateNewEncryptedPassword;
 import group11.EventFiesta.account.forgotpassword.resetpassword.ResetPasswordHandler;
 import group11.EventFiesta.model.User;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SessionAttributes({"user"})
 @Controller

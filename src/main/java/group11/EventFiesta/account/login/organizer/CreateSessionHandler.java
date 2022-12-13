@@ -15,14 +15,12 @@ public class CreateSessionHandler extends LoginHandler {
     }
     @Override
     public IState execute(Account organizer) throws Exception {
-        System.out.println("Inside CreateSessionHandler.execute()");
         HttpSession session = request.getSession(false);
         if (session == null) {
             session = request.getSession(true);
             session.setAttribute("isOrganizer", true);
             session.setAttribute("accountId", organizer.getAccountId());
             session.setAttribute("accountEmail", organizer.getEmail());
-            System.out.println("Created session!");
         }
         return new LoginSuccess(organizer);
     }

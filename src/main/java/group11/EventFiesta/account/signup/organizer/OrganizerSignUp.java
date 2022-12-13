@@ -1,7 +1,7 @@
 package group11.EventFiesta.account.signup.organizer;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.security.EncryptPassword;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.security.EncryptData;
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.Organizer;
@@ -35,7 +35,7 @@ public class OrganizerSignUp extends ISignup {
     }
 
     private Object[] createParams(Organizer org) {
-        String key = EncryptPassword.getNextSalt();
+        String key = EncryptData.getNextSalt();
         String EncryptedPass = encryptReceivedPassword(org.getPassword(), key);
         System.out.println(org.getFromcontact());
 

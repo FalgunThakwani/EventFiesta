@@ -1,13 +1,5 @@
 package group11.EventFiesta;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
-import group11.EventFiesta.mail.SMTPProtocol;
-import group11.EventFiesta.mail.SSLSMTPProtocol;
-import group11.EventFiesta.model.Account;
-import group11.EventFiesta.model.Organizer;
-import group11.EventFiesta.account.forgotpassword.otp.OTPHandler;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class OTPHandlerTest {

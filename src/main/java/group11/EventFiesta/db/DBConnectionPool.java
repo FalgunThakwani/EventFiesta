@@ -1,4 +1,4 @@
-package group11.EventFiesta.DBConnection;
+package group11.EventFiesta.db;
 
 
 import org.apache.commons.dbcp.BasicDataSource;

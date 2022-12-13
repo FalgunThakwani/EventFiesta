@@ -1,7 +1,7 @@
 package group11.EventFiesta.controller.forgotpassword;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.*;
 import group11.EventFiesta.account.forgotpassword.otp.ForgotPasswordUsingOTP;
 import group11.EventFiesta.account.forgotpassword.otp.GenerateOTP;

@@ -1,6 +1,6 @@
 package group11.EventFiesta.account.forgotpassword.otp;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.login.organizer.AccountCheckHandler;
 import group11.EventFiesta.account.login.organizer.ILoginHandler;
