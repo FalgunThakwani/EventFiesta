@@ -88,4 +88,17 @@ public class UserEventQuestionnaire {
         this.eventArea = eventArea;
     }
 
+    @Override
+    public String toString() {
+        return "UserEventQuestionnaire{" +
+                "event='" + event + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", dateTime='" + dateTime + '\'' +
+                ", service='" + service + '\'' +
+                ", budget=" + budget +
+                ", guestCount=" + guestCount +
+                ", eventArea='" + eventArea + '\'' +
+                '}';
+    }
 }

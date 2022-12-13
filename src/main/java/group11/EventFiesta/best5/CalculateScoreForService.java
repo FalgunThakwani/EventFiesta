@@ -1,7 +1,6 @@
 package group11.EventFiesta.best5;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +24,7 @@ public class CalculateScoreForService implements ICalculateScore {
     }
 
     public Double calculateRatingsForService() {
+        System.out.println("calculateRatingsForService");
         Double totalScore = defaultScore;
         Double reviewScore = ratingsByReviews();
         Double experinceScore = ratingsByExperince();
@@ -34,7 +34,7 @@ public class CalculateScoreForService implements ICalculateScore {
     }
 
     public Double ratingsByReviews() {
-        List<Map<String, Object>> resultSet = helperForDB.getRatingsForService(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getRatingsForService(service.id);
         Double total = defaultScore;
         for (int i = 0; i < resultSet.size(); i++) {
             total += (Integer) resultSet.get(i).get("rating");
@@ -46,7 +46,7 @@ public class CalculateScoreForService implements ICalculateScore {
     }
 
     public Double ratingsByExperince() {
-        List<Map<String, Object>> resultSet = helperForDB.getServiceHistory(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getServiceHistory(service.id);
         Double total = defaultScore;
         Double x = 0.0;
         Double y = 0.0;
@@ -65,7 +65,7 @@ public class CalculateScoreForService implements ICalculateScore {
 
     public Double ratingsByBudget() {
         Double total = defaultScore;
-        List<Map<String, Object>> resultSet = helperForDB.getBudgetForService(service.serviceId);
+        List<Map<String, Object>> resultSet = helperForDB.getBudgetForService(service.id);
         Double budget = service.budget;
         Double twentyPercentOfBudget = ((budget * 20) / 100);
         Double budget_l = budget - twentyPercentOfBudget;

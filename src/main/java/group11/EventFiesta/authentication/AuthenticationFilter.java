@@ -39,7 +39,7 @@ public class AuthenticationFilter implements Filter {
 
         if (session == null) {
             System.out.println(req.getContextPath());
-            res.sendRedirect(req.getContextPath() + "/organizer/login");
+            res.sendRedirect(req.getContextPath() + "/organizerLogin");
         } else {
             filterchain.doFilter(request, response);
         }

@@ -11,4 +11,6 @@ public abstract class GroupComponent implements Comparable<GroupComponent> {
 
     public abstract void add(GroupComponent child);
 	public abstract void remove(GroupComponent child);
+
+    public abstract void setId(Integer id);
 }

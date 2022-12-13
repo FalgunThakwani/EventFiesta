@@ -113,9 +113,24 @@ public class MySQLDBPersistence implements IDBPersistence {
         return result;
     }
 
-    private String spPrepareStatement(String storedProcedure, Object... params) {
+    private String spPrepareStatement(String storedProcedure, Object[] params) {
         String prepareCallString = "{call " + storedProcedure + " (";
         for (Object param : params) {
+            prepareCallString += "?,";
+        }
+        StringBuffer buffer = new StringBuffer(prepareCallString);
+        buffer.deleteCharAt(prepareCallString.length() - 1);
+        prepareCallString = buffer.toString();
+        prepareCallString += ")}";
+        return prepareCallString;
+    }
+
+    private String spPrepareStatement(String storedProcedure, Object[] params, int[] outputParams) {
+        String prepareCallString = "{call " + storedProcedure + " (";
+        for (Object param : params) {
+            prepareCallString += "?,";
+        }
+        for (Object param : outputParams) {
             prepareCallString += "?,";
         }
         StringBuffer buffer = new StringBuffer(prepareCallString);
@@ -133,9 +148,42 @@ public class MySQLDBPersistence implements IDBPersistence {
         return saveData(query, params);
     }
 
-    @Override
     public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
-        return null;
+        Connection connection = connectionPool.getConnection();
+        CallableStatement statement = null;
+        ResultSet resultSet = null;
+        List<Object> returnValues = new ArrayList<>();
+
+        try {
+            statement = connection.prepareCall(spPrepareStatement(insertProcedure, inputParams, outputParams));
+            int parameterIndex = 1;
+            for (Object param : inputParams) {
+                statement.setObject(parameterIndex++, param);
+            }
+            int outParamIndex = parameterIndex;
+            for (int param : outputParams) {
+                System.out.println(parameterIndex);
+                statement.registerOutParameter(parameterIndex++, param);
+            }
+
+            boolean hasResult = statement.execute();
+            System.out.println(hasResult);
+
+                for (int i = outParamIndex, j = 0; j < outputParams.length; i++, j++) {
+                    System.out.println(outParamIndex + " " + statement.getObject(outParamIndex));
+                    returnValues.add(statement.getObject(outParamIndex));
+                }
+        } catch (Exception exception) {
+            System.out.println("Exception in loadData():  " + exception.getMessage());
+            exception.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            statement.close();
+            connection.close();
+        }
+        return returnValues;
     }
 
 }

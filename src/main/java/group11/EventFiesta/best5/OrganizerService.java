@@ -6,12 +6,13 @@ public class OrganizerService extends GroupComponent {
 
     protected String serviceName;// catering, decoration, auditorium
     protected Integer orgranizerId;
-    protected Integer serviceId;
+
+    protected Integer id;
     protected Double budget;
     protected Double headCount;
     protected String event;
     protected String dateTime;
-    private Double score;
+    protected Double score = 0.0;
     private ICalculateScore calculator;
 
     public OrganizerService() {
@@ -25,9 +26,12 @@ public class OrganizerService extends GroupComponent {
     }
 
     public Double calculateScore() {
-        Double scoreByRatings = 1.0 * calculator.calculateRatingsForService();
-        System.out.println(scoreByRatings);
-        return scoreByRatings;
+        System.out.println("Inside OrganizerService.calculateScore()");
+        if( score == 0.0 ) {
+            score = 1.0 * calculator.calculateRatingsForService();
+        }
+        System.out.println(score);
+        return score;
     }
 
     @Override
@@ -35,7 +39,7 @@ public class OrganizerService extends GroupComponent {
         return "{" +
                 " serviceName='" + serviceName + "'" +
                 ", orgranizerId='" + orgranizerId + "'" +
-                ", serviceId='" + serviceId + "'" +
+                ", serviceId='" + id + "'" +
                 ", budget='" + budget + "'" +
                 ", headCount='" + headCount + "'" +
                 ", event='" + event + "'" +
@@ -43,6 +47,40 @@ public class OrganizerService extends GroupComponent {
                 ", score='" + score + "'" +
                 "}";
     }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public Integer getOrgranizerId() {
+        return orgranizerId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Double getBudget() {
+        return budget;
+    }
+
+    public Double getHeadCount() {
+        return headCount;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+
 
     @Override
     public void add(GroupComponent child) {
@@ -52,6 +90,11 @@ public class OrganizerService extends GroupComponent {
     @Override
     public void remove(GroupComponent child) {
         // DO NOTHING I AM A LEAF
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
