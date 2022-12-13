@@ -17,11 +17,15 @@ public class FilterRegistration {
         registration.addUrlPatterns("/*");
         // add the urls which does not need authentication here
         registration.addInitParameter("EXCLUDE_URL_PATTERN",
-                "/.*.png|/.*.jpg|/.*.css|/home|/organizer/login|/handleOrganizerLogin|/signup|/handleUserSignUp|/userLogin|/handleUserLogin|" +
-                        "/aboutUs|/ourServices|/blog|/contactUs|/OrganizerForgotPasswordUsingOTP|/OrganizerResetPassword|/organizerGetOTP|/organizerEnterOTP|" +
-        "/organizerValidateOTP|/UserForgotPasswordUsingOTP|/UserResetPassword|/userGetOTP|/userEnterOTP|/userValidateOTP|/forgotPasswordWithOTP|" +
-                        "/userForgotPassword|/userResetPassword|/userSecurityQuestion|/handleUserResetPassword|/handleUserSecurityQuestion|/handleUserForgotPasswordWithSecurityQuestion|" +
-                "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion");
+                "/.*.png|/.*.jpg|/.*.css|/home|/organizer/login|/handleOrganizerLogin|/signup|/handleUserSignUp|/userLogin|/handleUserLogin|"
+                        +
+                        "/aboutUs|/ourServices|/blog|/contactUs|/OrganizerForgotPasswordUsingOTP|/OrganizerResetPassword|/organizerGetOTP|/organizerEnterOTP|"
+                        +
+                        "/organizerValidateOTP|/UserForgotPasswordUsingOTP|/UserResetPassword|/userGetOTP|/userEnterOTP|/userValidateOTP|/forgotPasswordWithOTP|"
+                        +
+                        "/userForgotPassword|/userResetPassword|/userSecurityQuestion|/handleUserResetPassword|/handleUserSecurityQuestion|/handleUserForgotPasswordWithSecurityQuestion|"
+                        +
+                        "/organizerForgotPassword|/organizerResetPassword|/organizerSecurityQuestion|/handleOrganizerForgotPasswordWithSecurityQuestion|/handleOrganizerResetPassword|/handleOrganizerSecurityQuestion|/einvite|/bestOrganizers|/handleInvite|/einviteTest");
         registration.setName("authenticationFilter");
         registration.setOrder(1);
         return registration;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event Details</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserEventExtendedDetails.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+<div class="container">
+    <h1 style="text-align: center;">Design your Eloctronic Invite:</h1>
+    <form th:action="@{/handleEInvite}" th:object="${eInvite}" method="post" class="container">
+    <div>
+      <label>Ceremony Name</label>
+      <input maxlength="20" name="ceremonyName" required="required" type="text"
+                      th:field="*{ceremonyName}" />
+                      <br> <br>
+        <label>Host Name 1 *</label>
+        <input maxlength="20" name="eventHost1" required="required" type="text"
+                                                                    th:field="*{eventHost1}" />  <br> <br>
+        <label>Host Name 2 (Optional)</label>
+        <input maxlength="20" name="eventHost2" type="text" th:field="*{eventHost2}" />    <br> <br> 
+        
+        <label>Time of event</label>
+        <input maxlength="20" name="time" type="time" th:field="*{timeOfEvent}"  >  <br> <br>
+    </div>
+        <div><input class="btn" name="Submit" type="submit" value="Submit"/></div>
+    </form>
+</div>
+</body>
+</html>

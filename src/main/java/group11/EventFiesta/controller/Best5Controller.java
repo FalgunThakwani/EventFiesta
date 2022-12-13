@@ -6,9 +6,13 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import group11.EventFiesta.EInvite.EInviteHandler;
+import group11.EventFiesta.EInvite.EInviteModel;
 import group11.EventFiesta.best5.GroupComponent;
 import group11.EventFiesta.best5.HandleUserQuestionnaire;
 import group11.EventFiesta.model.UserEventQuestionnaire;
@@ -31,5 +35,7 @@ public class Best5Controller {
         System.out.println(servicesAndScores.size());
         return "home";
     }
+
+   
 
 }

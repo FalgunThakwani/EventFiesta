@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link th:href="@{/css/signup.css}" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon">
+</head>
+<body>
+<div class="signupcontainer">
+    <div class="split left">
+        <p><span style="font-size:38px;">Design you Electronic Invite</span></p>
+        <form th:action="@{/handleInvite}" th:object="${eInviteModel}" method="post">
+            <input maxlength="20" name="ceremonyName" required="required" type="text"
+            th:field="*{ceremonyName}" />   <br> <br>
+            <input maxlength="20" name="eventHost1" required="required" type="text" th:field="*{eventHost1}" />  <br> <br>
+        <input maxlength="20" name="eventHost2" type="text" th:field="*{eventHost2}" />    <br> <br> 
+        <input maxlength="20" name="timeOfEvent" type="datetime-local" th:field="*{timeOfEvent}"  >
+            <p><input class="btn" name="Sign Up" type="submit" value="Sign Up" /></p>
+        </form>
+    </div>
+    <div class="split right">
+        <img th:src="@{/images/signupimage.jpg}" class="image">
+    </div>
+</div>
+</body>
+</html>
