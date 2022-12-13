@@ -2,6 +2,7 @@ package group11.EventFiesta.model;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class UserEvents {
     private int userId;
@@ -13,6 +14,15 @@ public class UserEvents {
     private int headCount;
     private int serviceId;
     private String serviceType;
+    private ArrayList<Service> services = new ArrayList<Service>();
+
+    public ArrayList<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(ArrayList<Service> services) {
+        this.services = services;
+    }
 
     public String getServiceType() {
         return serviceType;
@@ -103,5 +113,9 @@ public class UserEvents {
 
     public void setHeadCount(int headCount) {
         this.headCount = headCount;
+    }
+
+    public void addService(Service service){
+        this.services.add(service);
     }
 }

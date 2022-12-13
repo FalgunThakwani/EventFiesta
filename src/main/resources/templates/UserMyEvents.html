@@ -14,7 +14,8 @@
         <thead>
         <tr>
             <th> Events </th>
-            <th>  </th>
+            <th> Services </th>
+            <th> Status</th>
         </tr>
         </thead>
         <tbody>
@@ -22,7 +23,17 @@
             <td colspan="2"> No Events Executed. </td>
         </tr>
         <tr th:each="event : ${events}">
-            <td><span th:text="${event.eventType}">  </span></td>
+            <td><a th:href="@{'/userMyEventDetails?eventId=' + ${event.eventId}}"><span th:text="${event.eventType}" /></a></td>
+            <td>
+                <ul th:each="service : ${event.services}">
+                    <li th:text="${service.serviceType}"></li>
+                </ul>
+            </td>
+            <td>
+                <ul th:each="service : ${event.services}">
+                    <li th:text="${service.status}"></li>
+                </ul>
+            </td>
         </tr>
         </tbody>
     </table>
