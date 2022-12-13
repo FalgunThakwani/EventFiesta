@@ -76,9 +76,4 @@ public class MockUserEventChecklistPersistence implements IDBPersistence
     public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
         return null;
     }
-
-    @Override
-    public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
-        return null;
-    }
 }
