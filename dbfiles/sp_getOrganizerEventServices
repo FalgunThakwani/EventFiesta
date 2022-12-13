@@ -1,5 +1,0 @@
-CREATE DEFINER=`CSCI5308_11_DEVINT_USER`@`%` PROCEDURE `getOrganizerEventServices`(IN e_id INT, IN stat varchar(50), IN o_id INT)
-BEGIN
-	select EventServices.service_id, EventServices.event_id, EventServices.status, EventServices.cost
-    from EventServices where EventServices.event_id = E_ID and EventServices.status = stat and EventServices.service_id in (select service_id from OrganizerDetails where organizer_id = o_id);
-END
