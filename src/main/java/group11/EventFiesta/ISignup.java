@@ -1,5 +1,6 @@
 package group11.EventFiesta;
 
+import group11.EventFiesta.security.EncryptPassword;
 import group11.EventFiesta.model.Account;
 
 public abstract class ISignup {

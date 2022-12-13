@@ -1,7 +1,7 @@
 package group11.EventFiesta.account.forgotpassword.resetpassword;
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.security.EncryptPassword;
 
 import java.util.ArrayList;
 import java.util.HashMap;

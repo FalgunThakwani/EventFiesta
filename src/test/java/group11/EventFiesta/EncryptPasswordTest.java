@@ -1,5 +1,6 @@
 package group11.EventFiesta;
 
+import group11.EventFiesta.security.EncryptPassword;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

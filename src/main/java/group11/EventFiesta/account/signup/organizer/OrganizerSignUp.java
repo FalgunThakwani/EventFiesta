@@ -1,8 +1,7 @@
 package group11.EventFiesta.account.signup.organizer;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.EncryptPassword;
+import group11.EventFiesta.security.EncryptPassword;
 import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.Organizer;
