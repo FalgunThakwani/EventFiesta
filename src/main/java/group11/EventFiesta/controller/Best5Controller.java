@@ -28,24 +28,22 @@ public class Best5Controller {
     @GetMapping("/bestOrganizers")
     public String getBest5Organizers(RedirectAttributes requestAttribute,
             Model model) {
-        // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
-        // model.getAttribute("userEventObject");
-        UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-        questionnaire.setBudget(1000);
-        questionnaire.setCity("Halifax");
-        questionnaire.setService("Catering,Decoration");
-        questionnaire.setGuestCount(10);
+        UserEventQuestionnaire questionnaire = (UserEventQuestionnaire) model.getAttribute("userEventObject");
+        // UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
+        // questionnaire.setBudget(1000);
+        // questionnaire.setCity("Halifax");
+        // questionnaire.setService("Catering,Decoration");
+        // questionnaire.setGuestCount(10);
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);
-        // GetBestNOptions getBestNOptions = new GetBestNOptions();
-        // List<GroupComponent> bestFiveGroups =
-        // getBestNOptions.getBestNGroups(servicesAndScores, 5);
-        // for (int i = 0; i < bestFiveGroups.size(); i++) {
-        // bestFiveGroups.get(i).setId(i);
-        // }
-        // System.out.println("bestFiveGroups: " + bestFiveGroups);
-        // model.addAttribute("bestFiveOptions", bestFiveGroups);
+        GetBestNOptions getBestNOptions = new GetBestNOptions();
+        List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
+        for (int i = 0; i < bestFiveGroups.size(); i++) {
+            bestFiveGroups.get(i).setId(i);
+        }
+        System.out.println("bestFiveGroups: " + bestFiveGroups);
+        model.addAttribute("bestFiveOptions", bestFiveGroups);
         return "BestFiveOptions";
     }
 
