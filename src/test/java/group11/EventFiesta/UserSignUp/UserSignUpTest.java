@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import group11.EventFiesta.ISignup;
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
 

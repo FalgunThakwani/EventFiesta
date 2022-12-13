@@ -1,4 +1,4 @@
-package group11.EventFiesta;
+package group11.EventFiesta.best5;
 
 import group11.EventFiesta.best5.GetBestNOptions;
 import group11.EventFiesta.best5.GroupComponent;

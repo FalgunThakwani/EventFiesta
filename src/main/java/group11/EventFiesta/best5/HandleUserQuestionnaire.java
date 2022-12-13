@@ -56,7 +56,6 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
             GroupComponent decoratedComponent = new DecoratedOrganizerService(organizerService, helperForDB);
             organizersList.add(decoratedComponent);
         }
-        // organizersList.get(1).calculateScore();
     }
 
 }

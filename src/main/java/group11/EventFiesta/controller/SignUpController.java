@@ -1,8 +1,8 @@
 package group11.EventFiesta.controller;
 
 import group11.EventFiesta.ISignup;
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.signup.user.UserSignUp;
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.Service;

@@ -1,9 +1,9 @@
 package group11.EventFiesta.event;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.best5.DecoratedOrganizerService;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.best5.GroupComponent;
 import group11.EventFiesta.best5.OrganizerGroup;
-import group11.EventFiesta.best5.OrganizerService;
 import group11.EventFiesta.mail.Mail;
 import group11.EventFiesta.mail.MailProtocol;
 import group11.EventFiesta.model.UserEventQuestionnaire;
@@ -55,12 +55,12 @@ public class EventManager {
         if (returnValues != null && returnValues.size() > 0) {
             Integer eventId = Integer.parseInt(returnValues.get(0).toString());
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
-                OrganizerService service = (OrganizerService) organizerService;
+                DecoratedOrganizerService service = (DecoratedOrganizerService) organizerService;
                 String status = "Pending";
                 params = new Object[]{eventId, service.getId(), service.getBudget(), status};
                 outParams = new int[]{};
                 returnValues = idbPersistence.insertData("addService", params, outParams);
-                //mail.setRecipent(organizerService.se)//todo get organizer email for each service
+                mail.setRecipent(service.getEmail());
                 System.out.println(returnValues);
             }
         }

@@ -6,7 +6,6 @@ public class InvalidAccount extends LoginState {
     public InvalidAccount(Account account) {
         super(account);
         System.out.println("Invalid account");
-        System.out.println("InvalidAccount: " + this.account);
     }
     @Override
     public void setStatus() {
@@ -15,7 +14,6 @@ public class InvalidAccount extends LoginState {
 
     @Override
     public void setNextPage() {
-        System.out.println("setNextPage: " + account);
         if(account.getOrg()) {
             nextPage = "OrganizerLogin";
         } else {

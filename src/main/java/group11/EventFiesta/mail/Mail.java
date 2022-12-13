@@ -61,6 +61,7 @@ public class Mail {
     }
 
     public Boolean sendMail(MailProtocol mailProtocol) {
+        System.out.println("Inside send mail");
         Boolean status = true;
         Properties properties = mailProtocol.getMailProperties();
         Session session = Session.getInstance(properties, getAuthenticator());

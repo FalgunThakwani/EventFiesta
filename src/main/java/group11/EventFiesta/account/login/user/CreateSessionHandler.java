@@ -10,6 +10,7 @@ public class CreateSessionHandler extends LoginHandler {
     public LoginState execute(Account user, HttpServletRequest request) throws Exception {
         HttpServletRequest req = request;
         HttpSession session = req.getSession(false);
+        System.out.println("Before session: "+session);
         if(session == null)
         {
             session = req.getSession(true);
@@ -19,6 +20,8 @@ public class CreateSessionHandler extends LoginHandler {
             session.setAttribute("email", user.getEmail());
             System.out.println("Session Created! "+session.getAttribute("accountId"));
         }
+        session.setAttribute("userId", user.getAccountId());
+        System.out.println("After Session.");
         return new LoginSuccess();
 
     }
