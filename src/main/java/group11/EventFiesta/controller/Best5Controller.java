@@ -55,14 +55,11 @@ public class Best5Controller {
                 HttpSession session = request.getSession();
                 Integer user_id = Integer.parseInt(session.getAttribute("accountId").toString());
 
-                String mailSubject = "Event confirmed!";
-                String mailBody = "Event has been confirmed by the Organizer";
                 MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
 
-                Mail mail = new Mail(mailSubject, mailBody);
                 IDBPersistence idbPersistence = new MySQLDBPersistence();
                 EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
-                eventManager.addEvent(userEventQuestionnaire, selectedGroup, user_id, mail);
+                eventManager.addEvent(userEventQuestionnaire, selectedGroup, user_id);
             } catch (Exception exception) {
                 System.out.println("Exception in acceptOption()");
             }
