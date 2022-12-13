@@ -21,7 +21,7 @@ import group11.EventFiesta.model.UserEventQuestionnaire;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@SessionAttributes({"userEventQuestionnaire", "bestFiveOptions"})
+@SessionAttributes({ "userEventQuestionnaire", "bestFiveOptions" })
 @Controller
 public class Best5Controller {
 
@@ -43,9 +43,10 @@ public class Best5Controller {
     }
 
     @PostMapping("/acceptOption")
-    public String acceptOption(@SessionAttribute("userEventQuestionnaire")  UserEventQuestionnaire userEventQuestionnaire,
-                               @SessionAttribute("bestFiveOptions") ArrayList<GroupComponent> bestFiveOptions,
-                               @RequestParam Integer optionId, HttpServletRequest request) {
+    public String acceptOption(
+            @SessionAttribute("userEventQuestionnaire") UserEventQuestionnaire userEventQuestionnaire,
+            @SessionAttribute("bestFiveOptions") ArrayList<GroupComponent> bestFiveOptions,
+            @RequestParam Integer optionId, HttpServletRequest request) {
         System.out.println("Inside acceptOption");
         System.out.println(userEventQuestionnaire);
         System.out.println(bestFiveOptions);
