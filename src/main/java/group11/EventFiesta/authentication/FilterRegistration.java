@@ -17,7 +17,6 @@ public class FilterRegistration {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(authenticationFilter());
         registration.addUrlPatterns("/*");
-        // add the urls which does not need authentication here
         PropertiesReader propertiesReader = PropertiesReader.getInstance();
         Properties applicationProperties = propertiesReader.getProperties();
         System.out.println(applicationProperties);
