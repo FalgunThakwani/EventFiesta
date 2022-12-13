@@ -17,7 +17,7 @@ public class ValidatedOTP extends AccountState {
     @Override
     public void setNextPage() {
         String nextPage = "userResetPassword";
-        if (account.getOrg()) {
+        if (account.getIsOrganizer()) {
             nextPage = "organizerResetPassword";
         }
         System.out.println(nextPage);

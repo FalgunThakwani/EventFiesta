@@ -12,7 +12,7 @@ public class IncorrectOTP extends AccountState {
     @Override
     public void setNextPage() {
         String nextPage = "UserEnterOTP";
-        if (account.getOrg()) {
+        if (account.getIsOrganizer()) {
             nextPage = "OrganizerEnterOTP";
         }
         setNextPage(nextPage);
