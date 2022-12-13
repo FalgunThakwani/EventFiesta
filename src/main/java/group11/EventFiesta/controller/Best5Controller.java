@@ -21,13 +21,13 @@ import group11.EventFiesta.model.UserEventQuestionnaire;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@SessionAttributes({"userEventQuestionnaire", "bestFiveOptions"})
+@SessionAttributes({ "userEventQuestionnaire", "bestFiveOptions" })
 @Controller
 public class Best5Controller {
 
     @GetMapping("/bestOrganizers")
     public String getBest5Organizers(RedirectAttributes requestAttribute,
-                                     Model model) {
+            Model model) {
         // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
         // model.getAttribute("userEventObject");
         UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
@@ -38,20 +38,22 @@ public class Best5Controller {
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);
-        GetBestNOptions getBestNOptions = new GetBestNOptions();
-        List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
-        for (int i = 0; i < bestFiveGroups.size(); i++) {
-            bestFiveGroups.get(i).setId(i);
-        }
-        System.out.println("bestFiveGroups: " + bestFiveGroups);
-        model.addAttribute("bestFiveOptions", bestFiveGroups);
+        // GetBestNOptions getBestNOptions = new GetBestNOptions();
+        // List<GroupComponent> bestFiveGroups =
+        // getBestNOptions.getBestNGroups(servicesAndScores, 5);
+        // for (int i = 0; i < bestFiveGroups.size(); i++) {
+        // bestFiveGroups.get(i).setId(i);
+        // }
+        // System.out.println("bestFiveGroups: " + bestFiveGroups);
+        // model.addAttribute("bestFiveOptions", bestFiveGroups);
         return "BestFiveOptions";
     }
 
     @PostMapping("/acceptOption")
-    public String acceptOption(@SessionAttribute("userEventQuestionnaire")  UserEventQuestionnaire userEventQuestionnaire,
-                               @SessionAttribute("bestFiveOptions") ArrayList<GroupComponent> bestFiveOptions,
-                               @RequestParam Integer optionId, HttpServletRequest request) {
+    public String acceptOption(
+            @SessionAttribute("userEventQuestionnaire") UserEventQuestionnaire userEventQuestionnaire,
+            @SessionAttribute("bestFiveOptions") ArrayList<GroupComponent> bestFiveOptions,
+            @RequestParam Integer optionId, HttpServletRequest request) {
         System.out.println("Inside acceptOption");
         System.out.println(userEventQuestionnaire);
         System.out.println(bestFiveOptions);
