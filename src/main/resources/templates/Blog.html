@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <link th:href="@{/css/home.css}" rel="stylesheet" />
+  <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
+  <link th:href="@{/css/UserEventDetails.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+<div class="container">
+  <h1 style="text-align: center;">REVIEWS</h1>
+  <form th:object="${userReviews}" class="form-container">
+    <div>
+      <fieldset th:each="item: ${userReviews}">
+        <p th:text="'Review ID: ' + ${item.reviewId}"></p>
+        <p th:text="'Rating: ' + ${item.rating}"></p>
+        <p th:text="'Review: ' + ${item.review}"></p>
+      </fieldset>
+    </div>
+  </form>
+</div>
+</body>
+</html>

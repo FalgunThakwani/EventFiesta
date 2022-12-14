@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>User My Event Feedbacks</title>
+  <link th:href="@{/css/home.css}" rel="stylesheet">
+  <link th:href="@{/css/UserEventDetails.css}" rel="stylesheet">
+</head>
+<body>
+    <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+
+    <h1 style="text-align: center;">Please Provide Rating & Feedback To Organizer Service</h1>
+
+    <form th:action="@{/handleUserMyEventFeedback}" th:object="${userReview}" method="post" class="form-container">
+        <table>
+            <tr>
+                <td>
+                    <div>
+                      <h3><p th:text="'Event ID : ' + *{eventId}"></p></h3>
+                      <h3><p th:text="'Service ID : ' + *{serviceId}"></p></h3>
+                      <h3><p th:text="'Service Type : ' + *{serviceType}"></p></h3>
+
+                      <h2>Rating</h2>
+                      <p><input maxlength="1" name="rating" type="number" th:field="*{rating}" required/></p>
+                        <h2>Feedback</h2>
+                      <p><textarea name="feedback" rows="10" cols="80" th:field="*{review}" required></textarea></p>
+                        <p><input class="btn" name="Login" type="submit" value="Submit"/></p>
+                    </div>
+                    <div th:if="${statusMsg} != null">
+                        <p style="color: red" data-th-text="${statusMsg}"/>
+                    </div>
+                </td>
+                <td>
+                    <img th:src="@{/images/feedback.jpg}" style="width:600px; height:500px">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

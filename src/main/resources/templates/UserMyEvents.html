@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>User Events</title>
@@ -32,6 +33,11 @@
             <td>
                 <ul th:each="service : ${event.services}">
                     <li th:text="${service.status}"></li>
+                </ul>
+            </td>
+            <td>
+                <ul th:each="service : ${event.services}">
+                    <li> <span th:if="${service.status}=='Complete'"><a th:href="@{'/userMyEventFeedback?eventId=' + ${event.eventId} + '&serviceId=' + ${service.serviceId} + '&serviceType=' + ${service.serviceType}}">Click here to provide feedback</a></span></li>
                 </ul>
             </td>
         </tr>

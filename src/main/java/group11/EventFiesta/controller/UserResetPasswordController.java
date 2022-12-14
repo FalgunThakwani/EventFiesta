@@ -9,46 +9,49 @@ import group11.EventFiesta.account.forgotpassword.resetpassword.ResetPasswordHan
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
-@SessionAttributes({"user"})
+import java.util.List;
+import java.util.Map;
+
+
 @Controller
 public class UserResetPasswordController {
     @GetMapping("/userResetPassword")
-    public String getResetPasswordPage(Model model, @ModelAttribute User user)
+    public String getResetPasswordPage(Model model, @ModelAttribute User user, @RequestParam("email") String email)
     {
-        System.out.println("In userResetPassword " + user.getUserId());
-
         model.addAttribute("user", user);
+        user.setEmail(email);
         return "UserResetPassword";
     }
 
     @PostMapping("/handleUserResetPassword")
     public String handleResetPassword(Model model, @ModelAttribute User user) throws Exception {
         model.addAttribute("user", user);
-        System.out.println("user id is : " + user.getUserId());
-        System.out.println("user password is : " + user.getPassword());
-        System.out.println("user confirm password is : " + user.getConfirmPassword());
-        int user_id = user.getUserId();
+        String email = user.getEmail();
         String newPassword = user.getPassword();
-        if(user.getPassword().equals(user.getConfirmPassword()))
-        {
-            IDBPersistence idbPersistence = new MySQLDBPersistence();
-            Object [] params1 = new Object[] {"UserSensitive", "private_key", "user_id", user_id};
-            GenerateNewEncryptedPassword generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params1);
-            String newEncryptedPassword = generateNewEncryptedPassword.getEncryptedPassword(newPassword);
-            if(newEncryptedPassword.equals("FAILURE"))
-            {
-                 model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
+
+        if(user.getPassword().equals(user.getConfirmPassword())) {
+            Object[] params = new Object[]{"UserInfo", "user_id", "email", email};
+            GenerateNewEncryptedPassword generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params);
+            List<Map<String, Object>> result = generateNewEncryptedPassword.getID();
+            if (result.size() > 0) {
+                Map<String, Object> row = result.get(0);
+                int user_id = (int) row.get("user_id");
+                Object[] params1 = new Object[]{"UserSensitive", "private_key", "user_id", user_id};
+                generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params1);
+                String newEncryptedPassword = generateNewEncryptedPassword.getEncryptedPassword(newPassword);
+                if (newEncryptedPassword.equals("FAILURE")) {
+                    model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
+                } else {
+                    Object[] params2 = new Object[]{"UserSensitive", "encrypted_password", newEncryptedPassword, "user_id", user_id};
+                    IForgotPassword resetPasswordHandler = new ResetPasswordHandler(new MySQLDBPersistence(), params2);
+                    IState state = resetPasswordHandler.validate(user);
+                    model.addAttribute("statusMsg", state.getStatus());
+                }
             }
-            else {
-                Object[] params2 = new Object[]{"UserSensitive", "encrypted_password", newEncryptedPassword, "user_id", user_id};
-                IForgotPassword resetPasswordHandler = new ResetPasswordHandler(new MySQLDBPersistence(), params2);
-                IState state = resetPasswordHandler.validate(user);
-                model.addAttribute("statusMsg", state.getStatus());
+            else{
+                model.addAttribute("statusMsg", "FAILURE.. PLEASE TRY AGAIN");
             }
         }
         else

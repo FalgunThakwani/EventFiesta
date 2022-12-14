@@ -113,7 +113,7 @@ public class MySQLDBPersistence implements IDBPersistence {
         return result;
     }
 
-    private String spPrepareStatement(String storedProcedure, Object[] params) {
+    public String spPrepareStatement(String storedProcedure, Object[] params) {
         String prepareCallString = "{call " + storedProcedure + " (";
         for (Object param : params) {
             prepareCallString += "?,";

@@ -5,6 +5,24 @@ public class Reviews {
     private float rating;
     private String review;
     private Integer serviceId;
+    private String serviceType;
+    private Integer eventId;
+
+    public Integer getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Integer eventId) {
+        this.eventId = eventId;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
 
     public Integer getReviewId() {
         return this.reviewId;
