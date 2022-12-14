@@ -1,4 +1,4 @@
-package group11.EventFiesta;
+package group11.EventFiesta.signUp;
 
 import group11.EventFiesta.security.EncryptData;
 import group11.EventFiesta.model.Account;

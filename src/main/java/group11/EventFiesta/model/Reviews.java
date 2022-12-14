@@ -8,6 +8,7 @@ public class Reviews {
     private String serviceType;
     private Integer eventId;
 
+    
     public Integer getEventId() {
         return eventId;
     }
