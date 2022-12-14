@@ -11,7 +11,10 @@
 <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
 
 <div class="container">
-    <h1 style="text-align: center;">Add / Manage TODO Checklist</h1>
+    <h1 style="text-align: center;">Add / Manage TODO Checklist
+        <input class="btn" name="add" type="submit" value="Add"/>  <a th:href="@{'/userMyEventDetails?eventId=' + ${eventId}}"><input class="btn" name="back" type="submit" value="Back To Event Details" /></a>
+    </h1>
+
     <div class="todoapp">
         <div class="todoappLeft">
             <div>
@@ -23,7 +26,6 @@
                 <label>Please Enter the Description to add ToDo Item</label>
                 <div class="input-adjust">
                     <input class="new-todo" name="name" placeholder="Add Description" th:field="*{name}">
-                    <input class="btn" name="add" type="submit" value="Add"/>
                 </div>
             </form>
             <section class="main">

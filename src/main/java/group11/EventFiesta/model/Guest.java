@@ -1,5 +1,7 @@
 package group11.EventFiesta.model;
 
+import java.math.BigInteger;
+
 public class Guest {
     private int guestId;
     private String guestName;
@@ -29,7 +31,7 @@ public class Guest {
         this.contactNo = contactNo;
     }
 
-    public boolean isInvited() {
+    public boolean getInvited() {
         return invited;
     }
 
@@ -37,7 +39,7 @@ public class Guest {
         this.invited = invited;
     }
 
-    public boolean isRsvp() {
+    public boolean getRsvp() {
         return rsvp;
     }
 

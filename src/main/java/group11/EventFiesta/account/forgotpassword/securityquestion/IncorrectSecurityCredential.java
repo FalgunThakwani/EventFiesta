@@ -14,7 +14,6 @@ public class IncorrectSecurityCredential extends AccountState {
         setStatus("Security Details not validated successfully!");
     }
 
-
     @Override
     public void setNextPage() {
 

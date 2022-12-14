@@ -1,14 +1,21 @@
 package group11.EventFiesta.account.login.user;
 
+import group11.EventFiesta.model.Account;
+
 public class LoginSuccess extends LoginState {
-    @Override
-    public void setLoginStatus() {
-       loginStatus = "Successfully Logged In !!";
+
+    LoginSuccess(Account account) {
+        super(account);
     }
 
     @Override
-    public void setNextHtml() {
-        nextHtml = "UserHomepage";
-        //return "redirect:/resetPassword";
+    public void setStatus() {
+        status = "Successfully Logged In !!";
     }
+
+    @Override
+    public void setNextPage() {
+        nextPage = "redirect:/userHome";
+    }
+
 }

@@ -10,6 +10,7 @@
 <body>
 <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
 <h1 style="text-align: center;">Your Events</h1>
+<a th:href="@{'/userHome'}"><input class="btn" name="back" type="submit" value="Back To Home" /></a>
 <div class = "container">
     <table>
         <thead>

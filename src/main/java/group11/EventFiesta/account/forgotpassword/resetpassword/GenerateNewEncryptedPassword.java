@@ -16,10 +16,6 @@ public class GenerateNewEncryptedPassword {
         this.params = params;
     }
 
-    public GenerateNewEncryptedPassword() {
-
-    }
-
     public List<Map<String, Object>> getID() throws Exception {
         List<Map<String, Object>> data = null;
         data = idbPersistence.loadData("getFromDBUsingWhere", params);
@@ -36,7 +32,6 @@ public class GenerateNewEncryptedPassword {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(data);
         if (data.size() > 0) {
             Map<String, Object> row = data.get(0);
             String saltFromDB = row.get("private_key").toString();
