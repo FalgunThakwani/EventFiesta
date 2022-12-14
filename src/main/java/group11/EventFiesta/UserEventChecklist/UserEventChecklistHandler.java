@@ -45,7 +45,6 @@ public class UserEventChecklistHandler
         buffer.deleteCharAt(query.length() - 1);
         query = buffer.toString();
         query += ")}";
-        System.out.println(query);
 
         try {
             Integer data = idbPersistence.saveData(query, params );
