@@ -16,6 +16,7 @@ public class EventManager {
 
     IDBPersistence idbPersistence;
     MailProtocol mailProtocol;
+
     public EventManager(IDBPersistence idbPersistence) {
         this.idbPersistence = idbPersistence;
     }
@@ -45,7 +46,7 @@ public class EventManager {
         return eventDetails;
     }
 
-    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId, Mail mail) throws Exception {
+    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId) throws Exception {
         String venue = eventDetails.getCity() + ", " + eventDetails.getProvince();
         Object[] params = new Object[]{userId, eventDetails.getEvent(), venue, eventDetails.getDateTime(),
                 eventDetails.getBudget(), eventDetails.getGuestCount()};
@@ -57,11 +58,14 @@ public class EventManager {
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
                 DecoratedOrganizerService service = (DecoratedOrganizerService) organizerService;
                 String status = "Pending";
-                params = new Object[]{eventId, service.getId(), service.getBudget(), status};
+                params = new Object[]{eventId, service.getId(), service.getPrice(), status};
                 outParams = new int[]{};
-                returnValues = idbPersistence.insertData("addService", params, outParams);
+                idbPersistence.insertData("addService", params, outParams);
+                String mailSubject = "Event Fiesta - New event!";
+                String mailBody = "You have a new event. Login to your account to take an action.";
+                Mail mail = new Mail(mailSubject, mailBody);
                 mail.setRecipent(service.getEmail());
-                System.out.println(returnValues);
+                mail.sendMail(mailProtocol);
             }
         }
     }

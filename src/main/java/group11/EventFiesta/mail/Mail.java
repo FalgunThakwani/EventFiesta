@@ -32,7 +32,7 @@ public class Mail {
         setAuthentication();
     }
 
-    public void setAuthentication() {
+    private void setAuthentication() {
         authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getEmail(), eventFiestaMailCredentials.getAppPassword());
 
     }
@@ -52,7 +52,7 @@ public class Mail {
         return from;
     }
 
-    public Authenticator getAuthenticator() {
+    private Authenticator getAuthenticator() {
         return authenticator;
     }
 

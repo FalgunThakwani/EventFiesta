@@ -28,7 +28,7 @@ public class SecurityQuestionTest
         user.setSecretQuestion("question");
         user.setPassword("password");
         user.setEmail("testuser@test.com");
-        user.setOrg(false);
+        user.setIsOrganizer(false);
 
         try
         {
@@ -56,7 +56,7 @@ public class SecurityQuestionTest
         user.setSecretQuestion("question");
         user.setPassword("password");
         user.setEmail("unknown@test.com");
-        user.setOrg(false);
+        user.setIsOrganizer(false);
 
         try
         {

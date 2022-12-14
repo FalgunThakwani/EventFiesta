@@ -71,7 +71,7 @@ public class OrganizerEventDetailsController {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
             Object[] params = new Object[]{eventId, organizerId, "Upcoming"};
-            String mailSubject = "Event confirmed!";
+            String mailSubject = "Event Fiesta - Event confirmed!";
             String mailBody = "Event has been confirmed by the Organizer";
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);
@@ -90,7 +90,7 @@ public class OrganizerEventDetailsController {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
             Object[] params = new Object[]{eventId, organizerId, "Rejected"};
-            String mailSubject = "Event not confirmed!";
+            String mailSubject = "Event Fiesta - Event not confirmed!";
             String mailBody = "Event was rejected by the Organizer";
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);

@@ -27,9 +27,9 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
         Map<String, List<GroupComponent>> listOfAllOrganizers = new HashMap<String, List<GroupComponent>>();
         String[] servicesByUser = userEventQuestionnaire.getService().split(",");
         for (int j = 0; j < servicesByUser.length; j++) {
+            List<GroupComponent> organizerOfferingSameService = new ArrayList<GroupComponent>();
             for (int i = 0; i < organizersList.size(); i++) {
                 DecoratedOrganizerService service = (DecoratedOrganizerService) organizersList.get(i);
-                List<GroupComponent> organizerOfferingSameService = new ArrayList<GroupComponent>();
                 if (servicesByUser[j].equalsIgnoreCase(service.serviceName)) {
                     organizerOfferingSameService.add(service);
                     listOfAllOrganizers.put(servicesByUser[j], organizerOfferingSameService);
@@ -46,6 +46,9 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
             organizerService.orgranizerId = Integer.parseInt(resultSet.get(i).get("organizer_id").toString());
             organizerService.id = Integer.parseInt(resultSet.get(i).get("service_id").toString());
             organizerService.serviceName = resultSet.get(i).get("service_type").toString();
+            organizerService.price = Double.parseDouble(resultSet.get(i).get("price").toString());
+//            organizerService.rating = Double.parseDouble(resultSet.get(i).get("rating").toString());
+
             organizerService.budget = (double) userEventQuestionnaire.getBudget();
             organizerService.headCount = (double) userEventQuestionnaire.getGuestCount();
             organizerService.dateTime = userEventQuestionnaire.getDateTime();

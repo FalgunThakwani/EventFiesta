@@ -25,7 +25,7 @@ public class GetBestNOptions {
         return bestNGroups;
     }
 
-    public List<GroupComponent> getBestNGroups(List<GroupComponent> allGroups, Integer n) {
+    private List<GroupComponent> getBestNGroups(List<GroupComponent> allGroups, Integer n) {
         for (GroupComponent component : allGroups) {
             component.calculateScore();
         }
@@ -35,7 +35,7 @@ public class GetBestNOptions {
         return bestFiveGroups;
     }
 
-    public void getAllGroups(List<List<GroupComponent>> servicesList, List<GroupComponent> allGroupCombinations, OrganizerGroup organizerGroup) {
+    private void getAllGroups(List<List<GroupComponent>> servicesList, List<GroupComponent> allGroupCombinations, OrganizerGroup organizerGroup) {
         if (servicesList.isEmpty()) {
             OrganizerGroup group = new OrganizerGroup();
             for (GroupComponent organizerService : organizerGroup.organizerServices) {

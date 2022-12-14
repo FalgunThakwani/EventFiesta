@@ -35,7 +35,7 @@ public class OrganizerGroup extends GroupComponent {
     }
 
     public Double getScore() {
-        return score;
+        return Double.parseDouble(String.format("%.2f", score));
     }
 
     public Integer getId() {
