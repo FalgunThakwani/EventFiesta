@@ -25,39 +25,22 @@ public class OrganizerEventDetailsController {
             HttpSession session = request.getSession();
             Integer organizerId = Integer.parseInt(session.getAttribute("accountId").toString());
             System.out.println("organizerId: " + organizerId);
-            String status = "Complete";
-            IDBPersistence idbPersistence = new MySQLDBPersistence();
-            Object[] params = new Object[]{organizerId, status};
-            List<Map<String, Object>> eventDetails = idbPersistence.loadData("getOrganizerEventDetails", params);
-            for (Map<String, Object> event : eventDetails) {
-                Long eventId = Long.parseLong(event.get("event_id").toString());
-                params= new Object[]{eventId, status, organizerId};
-                List<Map<String, Object>> serviceDetails = idbPersistence.loadData("getOrganizerEventServices", params);
-                for (Map<String, Object> service : serviceDetails) {
-                    Long serviceId = Long.parseLong(service.get("service_id").toString());
-                    params= new Object[]{eventId, serviceId};
-                    List<Map<String, Object>> reviewDetails = idbPersistence.loadData("getServiceReviews", params);
-                    if (reviewDetails.size() > 0) {
-                        service.putAll(reviewDetails.get(0));
-                    } else {
-                        service.put("review", "-");
-                        service.put("rating", "-");
-                    }
-                }
-                event.put("services", serviceDetails);
-                System.out.println(serviceDetails);
-            }
-            model.addAttribute("CompletedEvents", new ArrayList<>(eventDetails));
 
+            IDBPersistence idbPersistence = new MySQLDBPersistence();
+            EventManager eventManager = new EventManager(idbPersistence);
+
+            String status = "Complete";
+            List<Map<String, Object>> events = eventManager.getEventServicesAndReviews(organizerId, status);
+            model.addAttribute("CompletedEvents", new ArrayList<>(events));
 
             status = "Upcoming";
-            EventManager eventManager = new EventManager(idbPersistence);
-            List<Map<String, Object>> events = eventManager.getEventServices(organizerId, status);
+            events = eventManager.getEventServices(organizerId, status);
             model.addAttribute("UpcomingEvents", new ArrayList<>(events));
 
             status = "Pending";
             events = eventManager.getEventServices(organizerId, status);
             model.addAttribute("PendingEvents", new ArrayList<>(events));
+
         } catch (Exception exception) {
             System.out.println("Exception in getOrganizerDetails: " + exception.getMessage());
             exception.printStackTrace();
@@ -70,12 +53,39 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
-            Object[] params = new Object[]{eventId, organizerId, "Upcoming"};
+            String newStatus = "Upcoming";
+            String prevStatus = "Pending";
+            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
+
             String mailSubject = "Event Fiesta - Event confirmed!";
             String mailBody = "Event has been confirmed by the Organizer";
-            MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);
+            MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
+
+            EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
+            eventManager.updateEvent(params, mail);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/getOrganizerDetails";
+    }
+
+    @PostMapping("/updateCompleted")
+    public String updateEvenCompleted(Model model, @RequestParam("event_id") Integer eventId, @RequestParam("client_email") String email, HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
+            String newStatus = "Complete";
+            String prevStatus = "Upcoming";
+            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
+
+            String mailSubject = "Event Fiesta - Event completed!";
+            String mailBody = "Event has been marked completed by the Organizer. Contact us if you have an issue.";
+            Mail mail = new Mail(email, mailSubject, mailBody);
+            MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
+            IDBPersistence idbPersistence = new MySQLDBPersistence();
+
             EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
             eventManager.updateEvent(params, mail);
         } catch (Exception e) {
@@ -89,12 +99,16 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
-            Object[] params = new Object[]{eventId, organizerId, "Rejected"};
+            String newStatus = "Rejected";
+            String prevStatus = "Pending";
+            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
+
             String mailSubject = "Event Fiesta - Event not confirmed!";
             String mailBody = "Event was rejected by the Organizer";
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             Mail mail = new Mail(email, mailSubject, mailBody);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
+
             EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
             eventManager.updateEvent(params, mail);
         } catch (Exception e) {

@@ -144,6 +144,13 @@
                                         </div>
                                     </div>
 
+                                    <div class="align-box" style="margin: 50px 0 20px 0;">
+                                        <form th:action="@{/updateCompleted}" th:object="${organizerEvent}" method="post">
+                                            <input type="hidden" name="event_id" th:value="${organizerEvent.event_id}"/>
+                                            <input type="hidden" name="client_email" th:value="${organizerEvent.email}"/>
+                                            <button class="btn" type="submit">Mark as completed</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </th:block>
                         </th:block>

@@ -23,16 +23,6 @@ public class Mail {
         this.from = eventFiestaMailCredentials.getEmail();
     }
 
-    public Mail(String subject, String body) {
-        this.subject = subject;
-        this.body = body;
-        this.from = eventFiestaMailCredentials.getEmail();
-    }
-
-    public void setRecipent(String recipent) {
-        this.recipent = recipent;
-    }
-
     public Boolean sendMail(MailProtocol mailProtocol) {
         System.out.println("Inside send mail");
         Boolean status = true;
@@ -52,4 +42,5 @@ public class Mail {
         }
         return status;
     }
+
 }

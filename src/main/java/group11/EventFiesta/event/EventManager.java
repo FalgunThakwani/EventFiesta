@@ -34,37 +34,75 @@ public class EventManager {
         System.out.println("Updated rows: " + rows);
     }
 
+    public List<Map<String, Object>> getEventServicesAndReviews(Integer organizerId, String status) throws Exception {
+
+        Object[] params = new Object[]{organizerId, status};
+        List<Map<String, Object>> eventDetails = idbPersistence.loadData("getOrganizerEventDetails", params);
+
+        for (Map<String, Object> event : eventDetails) {
+
+            Long eventId = Long.parseLong(event.get("event_id").toString());
+            params = new Object[]{eventId, status, organizerId};
+            List<Map<String, Object>> serviceDetails = idbPersistence.loadData("getOrganizerEventServices", params);
+
+            for (Map<String, Object> service : serviceDetails) {
+                Long serviceId = Long.parseLong(service.get("service_id").toString());
+                params = new Object[]{eventId, serviceId};
+                List<Map<String, Object>> reviewDetails = idbPersistence.loadData("getServiceReviews", params);
+
+                if (reviewDetails.size() > 0) {
+                    service.putAll(reviewDetails.get(0));
+                } else {
+                    service.put("review", "-");
+                    service.put("rating", "-");
+                }
+            }
+
+            event.put("services", serviceDetails);
+            System.out.println(serviceDetails);
+        }
+        return eventDetails;
+    }
+
     public List<Map<String, Object>> getEventServices(Integer organizerId, String status) throws Exception {
+
         Object[] params = new Object[] { organizerId, status };
         List<Map<String, Object>> eventDetails = idbPersistence.loadData("getOrganizerEventDetails", params);
+
         for (Map<String, Object> event : eventDetails) {
             Integer eventId = Integer.parseInt(event.get("event_id").toString());
             params = new Object[] { eventId, status, organizerId };
             List<Map<String, Object>> serviceDetails = idbPersistence.loadData("getOrganizerEventServices", params);
             event.put("services", serviceDetails);
         }
+
         return eventDetails;
     }
 
     public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId) throws Exception {
+
         String venue = eventDetails.getCity() + ", " + eventDetails.getProvince();
         Object[] params = new Object[] { userId, eventDetails.getEvent(), venue, eventDetails.getDateTime(),
                 eventDetails.getBudget(), eventDetails.getGuestCount() };
         int[] outParams = new int[] { Types.INTEGER };
         List<Object> returnValues = idbPersistence.insertData("addEvent", params, outParams);
         System.out.println(returnValues);
+
         if (returnValues != null && returnValues.size() > 0) {
+
             Integer eventId = Integer.parseInt(returnValues.get(0).toString());
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
+
                 DecoratedOrganizerService service = (DecoratedOrganizerService) organizerService;
                 String status = "Pending";
                 params = new Object[]{eventId, service.getId(), service.getPrice(), status};
                 outParams = new int[]{};
                 idbPersistence.insertData("addService", params, outParams);
+
                 String mailSubject = "Event Fiesta - New event!";
                 String mailBody = "You have a new event. Login to your account to take an action.";
-                Mail mail = new Mail(mailSubject, mailBody);
-                mail.setRecipent(service.getEmail());
+                String mailRecipent = service.getEmail();
+                Mail mail = new Mail(mailRecipent, mailSubject, mailBody);
                 mail.sendMail(mailProtocol);
             }
         }
