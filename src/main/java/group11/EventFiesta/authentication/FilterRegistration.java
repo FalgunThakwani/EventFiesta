@@ -13,12 +13,10 @@ public class FilterRegistration {
 
     @Bean
     public FilterRegistrationBean registerAuthenticationFilter() {
-
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(authenticationFilter());
         registration.addUrlPatterns("/*");
-        PropertiesReader propertiesReader = PropertiesReader.getInstance();
-        Properties applicationProperties = propertiesReader.getProperties();
+        Properties applicationProperties = PropertiesReader.getInstance().getProperties();
         System.out.println(applicationProperties);
         registration.addInitParameter("EXCLUDE_URL_PATTERN", applicationProperties.getProperty("event_fiesta.excluded_url"));
         registration.setName("authenticationFilter");
@@ -26,7 +24,7 @@ public class FilterRegistration {
         return registration;
     }
 
-    public Filter authenticationFilter() {
+    private Filter authenticationFilter() {
         return new AuthenticationFilter();
     }
 

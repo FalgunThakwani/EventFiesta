@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class EventFiestaMailCredentials {
 
-    String email;
+    private String email;
 
-    String appPassword;
+    private String appPassword;
 
     public EventFiestaMailCredentials() {
         PropertiesReader propertiesReader = PropertiesReader.getInstance();

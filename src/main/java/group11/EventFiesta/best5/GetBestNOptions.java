@@ -8,34 +8,44 @@ import java.util.stream.Collectors;
 
 public class GetBestNOptions {
 
-    public List<GroupComponent> getBestNGroups(Map<String, List<GroupComponent>> serviceProvidersMap, Integer n) {
-        List<List<GroupComponent>> servicesAndProviders = new ArrayList<>();
-        for (List<GroupComponent> serviceProviders : serviceProvidersMap.values()) {
-            Collections.sort(serviceProviders, Collections.reverseOrder());
-            List<GroupComponent> bestFiveServiceProviders = new ArrayList<>(serviceProviders);
-            if (serviceProviders.size() > n) {
-                bestFiveServiceProviders = serviceProviders.stream().limit(n).collect(Collectors.toList());
-            }
-            servicesAndProviders.add(bestFiveServiceProviders);
-        }
+    public List<GroupComponent> getBestNGroups(Map<String, List<GroupComponent>> serviceProvidersMap, int n) {
+        List<List<GroupComponent>> servicesAndProviders = getBestNServiceProvidersList(serviceProvidersMap, n);
         List<GroupComponent> allGroups = new ArrayList<>();
-        getAllGroups(servicesAndProviders, allGroups, new OrganizerGroup());
+        getAllGroupCombinations(servicesAndProviders, allGroups, new OrganizerGroup());
         System.out.println(allGroups);
         List<GroupComponent> bestNGroups = getBestNGroups(allGroups, n);
         return bestNGroups;
     }
 
-    private List<GroupComponent> getBestNGroups(List<GroupComponent> allGroups, Integer n) {
+    private List<List<GroupComponent>> getBestNServiceProvidersList(Map<String, List<GroupComponent>> serviceProvidersMap, int n) {
+        List<List<GroupComponent>> servicesAndProviders = new ArrayList<>();
+        for (List<GroupComponent> serviceProviders : serviceProvidersMap.values()) {
+            Collections.sort(serviceProviders, Collections.reverseOrder());
+            List<GroupComponent> bestFiveServiceProviders = getFirstNGroups(serviceProviders, n);
+            servicesAndProviders.add(bestFiveServiceProviders);
+        }
+        return servicesAndProviders;
+    }
+
+    private List<GroupComponent> getBestNGroups(List<GroupComponent> allGroups, int n) {
         for (GroupComponent component : allGroups) {
             component.calculateScore();
         }
         Collections.sort(allGroups, Collections.reverseOrder());
         System.out.println(allGroups);
-        List<GroupComponent> bestFiveGroups = allGroups.stream().limit(n).collect(Collectors.toList());
-        return bestFiveGroups;
+        List<GroupComponent> bestNGroups = getFirstNGroups(allGroups, n);
+        return bestNGroups;
     }
 
-    private void getAllGroups(List<List<GroupComponent>> servicesList, List<GroupComponent> allGroupCombinations, OrganizerGroup organizerGroup) {
+    private List<GroupComponent> getFirstNGroups(List<GroupComponent> allGroups, int n) {
+        List<GroupComponent> firstNGroups = new ArrayList<>(allGroups);
+        if (allGroups.size() > n) {
+            firstNGroups = allGroups.stream().limit(n).collect(Collectors.toList());
+        }
+        return firstNGroups;
+    }
+
+    private void getAllGroupCombinations(List<List<GroupComponent>> servicesList, List<GroupComponent> allGroupCombinations, OrganizerGroup organizerGroup) {
         if (servicesList.isEmpty()) {
             OrganizerGroup group = new OrganizerGroup();
             for (GroupComponent organizerService : organizerGroup.organizerServices) {
@@ -49,7 +59,7 @@ public class GetBestNOptions {
         while (!organizerList.isEmpty()) {
             GroupComponent organizerService = organizerList.remove(0);
             organizerGroup.add(organizerService);
-            getAllGroups(servicesList, allGroupCombinations, organizerGroup);
+            getAllGroupCombinations(servicesList, allGroupCombinations, organizerGroup);
             organizerGroup.remove(organizerGroup.organizerServices.get(organizerGroup.organizerServices.size() - 1));
         }
         servicesList.add(0, origList);
