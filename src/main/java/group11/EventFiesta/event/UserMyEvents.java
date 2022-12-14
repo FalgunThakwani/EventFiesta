@@ -5,7 +5,6 @@ import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.Service;
 import group11.EventFiesta.model.UserEvents;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,18 +21,10 @@ public class UserMyEvents implements IEvents{
         Object[] params = createParams(userId);
         List<Map<String, Object>> resultSet = connection.loadData("sp_getUserEvents", params);
         ArrayList<UserEvents> eventsList = new ArrayList<UserEvents>();
-//        List<Integer> eventIds = new ArrayList<Integer>();
         HashMap<Integer, UserEvents> events = new HashMap<>();
         for(int i=0;i< resultSet.size(); i++){
             Map<String, Object> row = resultSet.get(i);
-//            int columns = row.size();
-//            System.out.println(row);
             UserEvents currentEvent;
-//            for(int j=0;j< eventIds.size();j++) {
-//                if (((int) row.get("event_id")) == eventIds.get(j)) {
-//                    currentEvent = eventsList.get(j);
-//                }
-//            }
             if(events.containsKey((int)row.get("event_id"))){
                 currentEvent = events.get((int)row.get("event_id"));
             }else{
