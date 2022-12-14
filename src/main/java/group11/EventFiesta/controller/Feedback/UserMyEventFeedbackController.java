@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.Feedback;
 
 import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.UserMyEventFeedback;

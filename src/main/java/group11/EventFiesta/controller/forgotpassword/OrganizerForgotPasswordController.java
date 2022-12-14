@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.forgotpassword;
 
 import group11.EventFiesta.model.Organizer;
 import org.springframework.stereotype.Controller;

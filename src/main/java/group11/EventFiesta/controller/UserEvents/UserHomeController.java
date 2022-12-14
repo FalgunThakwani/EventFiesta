@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.UserEvents;
 
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,8 @@ public class UserHomeController {
     public String getUserHomePage(@ModelAttribute User user, Model model)
     {
         System.out.println("Inside UserHomeController user: " + user.toString());
-        System.out.println("Logged in user ........." + user.getFirstName());
+        System.out.println("Logged in user id........." + user.getUserId());
+        System.out.println("Logged in user email........." + user.getEmail());
         model.addAttribute("user", user);
         return "UserHomepage";
     }

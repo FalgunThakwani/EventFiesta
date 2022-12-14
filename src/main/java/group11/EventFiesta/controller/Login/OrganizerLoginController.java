@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.Login;
 
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Organizer;

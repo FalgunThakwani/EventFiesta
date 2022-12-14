@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.UserEventChecklist;
 
 import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.UserEventChecklist.UserEventChecklistHandler;

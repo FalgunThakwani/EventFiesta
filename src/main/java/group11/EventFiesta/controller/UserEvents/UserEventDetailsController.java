@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.UserEvents;
 
 import group11.EventFiesta.model.User;
 import group11.EventFiesta.model.UserEventQuestionnaire;

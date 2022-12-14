@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.OrganizerEvents;
 
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;

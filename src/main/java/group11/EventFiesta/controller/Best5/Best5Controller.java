@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.Best5;
 
 import java.util.ArrayList;
 import java.util.List;

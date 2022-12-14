@@ -1,4 +1,4 @@
-package group11.EventFiesta.controller;
+package group11.EventFiesta.controller.SignUp;
 
 
 import group11.EventFiesta.db.IDBPersistence;
