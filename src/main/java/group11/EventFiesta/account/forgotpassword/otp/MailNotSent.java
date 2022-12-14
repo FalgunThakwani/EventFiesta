@@ -14,7 +14,10 @@ public class MailNotSent extends AccountState {
 
     @Override
     public void setNextPage() {
-        setNextPage("ForgotPassword");
+        String nextPage = "redirect:/userForgotPassword";
+        if (account.getIsOrganizer()) {
+            nextPage = "redirect:/organizerForgotPassword";
+        }
+        setNextPage(nextPage);
     }
-
 }

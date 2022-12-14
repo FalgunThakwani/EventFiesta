@@ -1,11 +1,9 @@
 package group11.EventFiesta.account.login.organizer;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Account;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,10 +29,7 @@ public class AccountCheckHandler extends LoginHandler {
             account.setAccountId(accountId);
             return nextHandler.execute(account);
         } else {
-            System.out.println("AccountCheckHandler else " + account);
-            IState state = new InvalidAccount(account);
-            System.out.println("ssss");
-            return state;
+            return new InvalidAccount(account);
         }
     }
 }

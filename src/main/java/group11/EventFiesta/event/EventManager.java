@@ -1,9 +1,9 @@
 package group11.EventFiesta.event;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.best5.DecoratedOrganizerService;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.best5.GroupComponent;
 import group11.EventFiesta.best5.OrganizerGroup;
-import group11.EventFiesta.best5.OrganizerService;
 import group11.EventFiesta.mail.Mail;
 import group11.EventFiesta.mail.MailProtocol;
 import group11.EventFiesta.model.UserEventQuestionnaire;
@@ -46,8 +46,7 @@ public class EventManager {
         return eventDetails;
     }
 
-    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId, Mail mail)
-            throws Exception {
+    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId) throws Exception {
         String venue = eventDetails.getCity() + ", " + eventDetails.getProvince();
         Object[] params = new Object[] { userId, eventDetails.getEvent(), venue, eventDetails.getDateTime(),
                 eventDetails.getBudget(), eventDetails.getGuestCount() };
@@ -57,14 +56,16 @@ public class EventManager {
         if (returnValues != null && returnValues.size() > 0) {
             Integer eventId = Integer.parseInt(returnValues.get(0).toString());
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
-                OrganizerService service = (OrganizerService) organizerService;
+                DecoratedOrganizerService service = (DecoratedOrganizerService) organizerService;
                 String status = "Pending";
-                params = new Object[] { eventId, service.getId(), service.getBudget(), status };
-                outParams = new int[] {};
-                returnValues = idbPersistence.insertData("addService", params, outParams);
-                // mail.setRecipent(organizerService.se)//todo get organizer email for each
-                // service
-                System.out.println(returnValues);
+                params = new Object[]{eventId, service.getId(), service.getPrice(), status};
+                outParams = new int[]{};
+                idbPersistence.insertData("addService", params, outParams);
+                String mailSubject = "Event Fiesta - New event!";
+                String mailBody = "You have a new event. Login to your account to take an action.";
+                Mail mail = new Mail(mailSubject, mailBody);
+                mail.setRecipent(service.getEmail());
+                mail.sendMail(mailProtocol);
             }
         }
     }

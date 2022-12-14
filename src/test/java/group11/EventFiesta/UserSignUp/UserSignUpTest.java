@@ -3,8 +3,14 @@ package group11.EventFiesta.UserSignUp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD
 import group11.EventFiesta.DBConnection.IDBPersistence;
 import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+=======
+import group11.EventFiesta.ISignup;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
+>>>>>>> 4e962db9f11feb2a26ef61d14cb94f223787649c
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
 import group11.EventFiesta.signUp.ISignup;

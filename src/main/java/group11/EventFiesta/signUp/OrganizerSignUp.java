@@ -1,9 +1,8 @@
 package group11.EventFiesta.signUp;
 
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.security.EncryptData;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-
-import group11.EventFiesta.security.EncryptPassword;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.Organizer;
 
@@ -16,12 +15,14 @@ public class OrganizerSignUp extends ISignup {
 
     private IDBPersistence connection;
 
-    public OrganizerSignUp(IDBPersistence connIdbPersistence){
+    public OrganizerSignUp(IDBPersistence connIdbPersistence) {
         this.connection = connIdbPersistence;
     }
+
     @Override
     public boolean validateUser(Account organizer) throws Exception {
-        List<Map<String, Object>> resultSet = connection.loadData("getFromDBUsingWhere", new Object[]{"OrganizerInfo", "email", "email", organizer.getEmail()});
+        List<Map<String, Object>> resultSet = connection.loadData("getFromDBUsingWhere",
+                new Object[] { "OrganizerInfo", "email", "email", organizer.getEmail() });
         if (resultSet.size() > 0) {
             return true;
         }
@@ -36,7 +37,7 @@ public class OrganizerSignUp extends ISignup {
     }
 
     private Object[] createParams(Organizer org) {
-        String key = EncryptPassword.getNextSalt();
+        String key = EncryptData.getNextSalt();
         String EncryptedPass = encryptReceivedPassword(org.getPassword(), key);
         System.out.println(org.getFromcontact());
 
@@ -47,13 +48,17 @@ public class OrganizerSignUp extends ISignup {
             fromDate = formatter.parse(org.getFromcontact());
             toDate = formatter.parse(org.getTocontact());
 
-        }catch (ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        Object[] params = {org.getBusiness(), org.getFirstName(), org.getLastName(), org.getEmail(), EncryptedPass, key, getSQLDateTime(15),
-                org.getBusinessNo(), getSQLDateTime(0), getSQLDateTime(0), org.getAddress(), org.getCity(), org.getProvince(), org.getPincode(),
-                fromDate, toDate, 0, org.getService().get(0).getName(), org.getService().get(0).getCost(), org.getService().get(1).getName(), org.getService().get(1).getCost(), org.getService().get(2).getName(), org.getService().get(2).getCost()};
+        Object[] params = { org.getBusiness(), org.getFirstName(), org.getLastName(), org.getEmail(), EncryptedPass,
+                key, getSQLDateTime(15),
+                org.getBusinessNo(), getSQLDateTime(0), getSQLDateTime(0), org.getAddress(), org.getCity(),
+                org.getProvince(), org.getPincode(),
+                fromDate, toDate, 0, org.getService().get(0).getName(), org.getService().get(0).getCost(),
+                org.getService().get(1).getName(), org.getService().get(1).getCost(), org.getService().get(2).getName(),
+                org.getService().get(2).getCost() };
 
         return params;
     }

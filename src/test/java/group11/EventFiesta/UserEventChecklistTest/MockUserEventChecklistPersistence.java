@@ -1,6 +1,6 @@
 package group11.EventFiesta.UserEventChecklistTest;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;

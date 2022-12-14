@@ -1,6 +1,6 @@
 package group11.EventFiesta.account.forgotpassword.otp;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.login.organizer.LoginHandler;
 import group11.EventFiesta.mail.Mail;
@@ -58,7 +58,7 @@ public class OTPHandler extends LoginHandler {
             newParam[i++] = otpTime;
             newParam[i] = accountId;
             System.out.println(Arrays.toString(newParam));
-            idbPersistence.updateData("updateTwoColumnDBUsingWhere", newParam);//"update OrganizerSensitive set otp = " + otp + ", otp_time = " + otpTime + " where organizer_id= " + accountId); //todo move to stored procedure
+            idbPersistence.updateData("updateTwoColumnDBUsingWhere", newParam);
         } catch (Exception exception) {
             System.out.println("Exception in otphandler: " + exception.getMessage());
         }

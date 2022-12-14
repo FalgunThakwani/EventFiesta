@@ -1,7 +1,7 @@
 package group11.EventFiesta.account.login.organizer;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.security.EncryptPassword;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.security.EncryptData;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.model.Account;
 
@@ -25,9 +25,10 @@ public class VerifyPasswordHandler extends LoginHandler {
             Map<String, Object> row = data.get(0);
             String pwdFromDB = row.get("encrypted_password").toString();
             String saltFromDB = row.get("private_key").toString();
-            String encPwd = EncryptPassword.getEncryptedPwd(organizer.getPassword(), saltFromDB);
+            String encPwd = EncryptData.encryptData(organizer.getPassword(), saltFromDB);
             System.out.println("organizer.getPassword(): " + organizer.getPassword());
             System.out.println("encPwd: " + encPwd);
+            System.out.println("saltFromDB: " + saltFromDB);
             if (pwdFromDB.equals(encPwd)) {
                 return nextHandler.execute(organizer);
             }

@@ -1,6 +1,6 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.UserMyEventDetails;
 import group11.EventFiesta.model.UserEvent;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes({"userEvent"})
+@SessionAttributes({ "userEvent" })
 @Controller
 public class UserMyEventDetailsController {
 
@@ -22,6 +22,5 @@ public class UserMyEventDetailsController {
 
         return "UserMyEventDetails";
     }
-
 
 }

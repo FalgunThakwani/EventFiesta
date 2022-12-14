@@ -8,12 +8,10 @@ import java.util.regex.Pattern;
 public class Organizer extends Account {
 
     public Organizer() {
-        org = true;
+        isOrganizer = true;
     }
     private Integer organizerId;
-
-    private Boolean org = true;
-
+    private Boolean isOrganizer = true;
     private String firstName;
     private String lastName;
     private String email;
@@ -22,7 +20,7 @@ public class Organizer extends Account {
     private String confirmPassword;
     private int businessNo;
     private String address;
-    private String City;
+    private String city;
     private String province;
     private String pincode;
     private String fromcontact;
@@ -38,12 +36,12 @@ public class Organizer extends Account {
         return service;
     }
 
-    public Boolean getOrg() {
-        return org;
+    public Boolean getIsOrganizer() {
+        return isOrganizer;
     }
 
-    public void setOrg(Boolean org) {
-        this.org = org;
+    public void setIsOrganizer(Boolean isOrganizer) {
+        this.isOrganizer = isOrganizer;
     }
 
     public void setService(List<Service> service) {
@@ -84,11 +82,11 @@ public class Organizer extends Account {
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public void setCity(String city) {
-        City = city;
+        this.city = city;
     }
 
     public String getAddress() {
@@ -198,7 +196,7 @@ public class Organizer extends Account {
     public String toString() {
         return "Organizer{" +
                 "organizerId=" + organizerId +
-                ", org=" + org +
+                ", isOrganizer=" + isOrganizer +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -207,7 +205,7 @@ public class Organizer extends Account {
                 ", confirmPassword='" + confirmPassword + '\'' +
                 ", businessNo=" + businessNo +
                 ", address='" + address + '\'' +
-                ", City='" + City + '\'' +
+                ", City='" + city + '\'' +
                 ", province='" + province + '\'' +
                 ", pincode='" + pincode + '\'' +
                 ", fromcontact='" + fromcontact + '\'' +

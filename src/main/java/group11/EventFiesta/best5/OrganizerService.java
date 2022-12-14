@@ -51,6 +51,18 @@ public class OrganizerService extends GroupComponent {
                 "}";
     }
 
+    public Double getRating() {
+        return rating;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public String getServiceName() {
         return serviceName;
     }
@@ -80,7 +92,7 @@ public class OrganizerService extends GroupComponent {
     }
 
     public Double getScore() {
-        return score;
+        return Double.parseDouble(String.format("%.2f", score));
     }
 
     @Override

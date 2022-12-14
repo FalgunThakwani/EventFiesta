@@ -6,24 +6,24 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
 
-public class EncryptPassword {
+public class EncryptData {
 
     private static final Random RANDOM = new SecureRandom();
 
-    public static String getEncryptedPwd(String pwd, String salt){
-        String encPwd = "-";
-        byte[] pwdArray = convertToByteArray(pwd);
+    public static String encryptData(String data, String salt){
+        String encryptedData = "-";
+        byte[] dataArray = convertToByteArray(data);
         byte[] saltArray = convertToByteArray(salt);
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(pwdArray);
+            md.update(dataArray);
             md.update(saltArray);
             byte[] cipher = md.digest();
-            encPwd = convertToString(cipher);
+            encryptedData = convertToString(cipher);
         } catch(Exception ex) {
             ex.printStackTrace();
         }
-        return encPwd;
+        return encryptedData;
     }
 
     private static String convertToString(byte[] byteArray) {
@@ -32,7 +32,6 @@ public class EncryptPassword {
 
     private static byte[] convertToByteArray(String input) {
         byte[] byteArray = input.getBytes(StandardCharsets.UTF_8);
-        System.out.println(Arrays.toString(byteArray));
         return byteArray;
     }
 

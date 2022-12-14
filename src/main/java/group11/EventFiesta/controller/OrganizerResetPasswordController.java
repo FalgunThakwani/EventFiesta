@@ -1,7 +1,7 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.account.forgotpassword.resetpassword.GenerateNewEncryptedPassword;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes({"organizer"})
 @Controller
 public class OrganizerResetPasswordController {
     @GetMapping("/organizerResetPassword")
     public String getResetPasswordPage(Model model, @ModelAttribute Organizer organizer)
     {
+        System.out.println(organizer);
         System.out.println("In organizer ResetPassword " + organizer.getOrganizerId());
 
         model.addAttribute("organizer", organizer);

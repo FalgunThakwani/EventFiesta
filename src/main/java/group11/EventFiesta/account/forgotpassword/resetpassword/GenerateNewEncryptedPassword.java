@@ -1,10 +1,8 @@
 package group11.EventFiesta.account.forgotpassword.resetpassword;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.security.EncryptPassword;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.security.EncryptData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +27,7 @@ public class GenerateNewEncryptedPassword {
         if (data.size() > 0) {
             Map<String, Object> row = data.get(0);
             String saltFromDB = row.get("private_key").toString();
-            String newEncryptedPassword = EncryptPassword.getEncryptedPwd(newPassword, saltFromDB);
+            String newEncryptedPassword = EncryptData.encryptData(newPassword, saltFromDB);
             return newEncryptedPassword;
         }
         return "FAILURE";

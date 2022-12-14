@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
-import group11.EventFiesta.DBConnection.MySQLDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.best5.*;
 import group11.EventFiesta.event.EventManager;
 import group11.EventFiesta.mail.Mail;
@@ -26,21 +26,16 @@ import javax.servlet.http.HttpSession;
 public class Best5Controller {
 
     @GetMapping("/bestOrganizers")
-    public String getBest5Organizers(Model model) {
-        // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
-        // model.getAttribute("userEventObject");
-        UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-        questionnaire.setBudget(1000);
-        questionnaire.setCity("Halifax");
-        questionnaire.setService("Catering,Decoration");
-        questionnaire.setGuestCount(10);
+    public String getBest5Organizers(RedirectAttributes requestAttribute, Model model) {
+         UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
+         model.getAttribute("userEventObject");
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);
         GetBestNOptions getBestNOptions = new GetBestNOptions();
         List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
-        for (int i = 0; i < bestFiveGroups.size(); i++) {
-            bestFiveGroups.get(i).setId(i);
+        for (int id = 1; id <= bestFiveGroups.size(); id++) {
+            bestFiveGroups.get(id - 1).setId(id);
         }
         System.out.println("bestFiveGroups: " + bestFiveGroups);
         model.addAttribute("bestFiveOptions", bestFiveGroups);
@@ -55,24 +50,22 @@ public class Best5Controller {
         System.out.println("Inside acceptOption");
         System.out.println(userEventQuestionnaire);
         System.out.println(bestFiveOptions);
-        if (bestFiveOptions.size() > optionId) {
+        int optionIndex = optionId - 1;
+        if (bestFiveOptions.size() > optionIndex) {
             try {
-                OrganizerGroup selectedGroup = (OrganizerGroup) bestFiveOptions.get(optionId);
+                OrganizerGroup selectedGroup = (OrganizerGroup) bestFiveOptions.get(optionIndex);
                 HttpSession session = request.getSession();
                 Integer user_id = Integer.parseInt(session.getAttribute("accountId").toString());
 
-                String mailSubject = "Event confirmed!";
-                String mailBody = "Event has been confirmed by the Organizer";
                 MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
 
-                Mail mail = new Mail(mailSubject, mailBody);
                 IDBPersistence idbPersistence = new MySQLDBPersistence();
                 EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
-                eventManager.addEvent(userEventQuestionnaire, selectedGroup, user_id, mail);
+                eventManager.addEvent(userEventQuestionnaire, selectedGroup, user_id);
             } catch (Exception exception) {
                 System.out.println("Exception in acceptOption()");
             }
         }
-        return "BestFiveOptions";
+        return "redirect:/userHome";
     }
 }

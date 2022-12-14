@@ -1,11 +1,9 @@
 package group11.EventFiesta.signUp;
 
-
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
-import group11.EventFiesta.security.EncryptPassword;
-
+import group11.EventFiesta.security.EncryptData;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -36,7 +34,7 @@ public class UserSignUp extends ISignup {
     }
 
     private Object[] createParams(User user) {
-        String key = EncryptPassword.getNextSalt();
+        String key = EncryptData.getNextSalt();
         String encryptedPassword = encryptReceivedPassword(user.getPassword(), key);
         Object[] params = { user.getFirstName(), user.getLastName(), user.getEmail(),
                 user.getSecurityQuestion(), user.getSecurityAnswer(), getSqlDateTime(0), getSqlDateTime(0),

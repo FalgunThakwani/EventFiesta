@@ -32,7 +32,7 @@ public class Mail {
         setAuthentication();
     }
 
-    public void setAuthentication() {
+    private void setAuthentication() {
         authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getEmail(), eventFiestaMailCredentials.getAppPassword());
 
     }
@@ -52,7 +52,7 @@ public class Mail {
         return from;
     }
 
-    public Authenticator getAuthenticator() {
+    private Authenticator getAuthenticator() {
         return authenticator;
     }
 
@@ -61,6 +61,7 @@ public class Mail {
     }
 
     public Boolean sendMail(MailProtocol mailProtocol) {
+        System.out.println("Inside send mail");
         Boolean status = true;
         Properties properties = mailProtocol.getMailProperties();
         Session session = Session.getInstance(properties, getAuthenticator());

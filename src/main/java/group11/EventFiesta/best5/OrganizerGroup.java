@@ -35,6 +35,14 @@ public class OrganizerGroup extends GroupComponent {
         return organizerServices;
     }
 
+    public Double getScore() {
+        return Double.parseDouble(String.format("%.2f", score));
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
     public void setId(Integer groupId) {
         this.id = groupId;
     }

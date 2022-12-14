@@ -1,6 +1,6 @@
 package group11.EventFiesta.signUp;
 
-import group11.EventFiesta.security.EncryptPassword;
+import group11.EventFiesta.security.EncryptData;
 import group11.EventFiesta.model.Account;
 
 public abstract class ISignup {
@@ -14,7 +14,7 @@ public abstract class ISignup {
 
     /// This method will encrypt the recieved password
     public String encryptReceivedPassword(String password, String key) {
-        String encryptedPWD = EncryptPassword.getEncryptedPwd(password, key);
+        String encryptedPWD = EncryptData.encryptData(password, key);
         return encryptedPWD;
     }
 

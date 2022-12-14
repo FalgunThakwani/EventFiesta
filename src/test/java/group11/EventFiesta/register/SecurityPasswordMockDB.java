@@ -1,6 +1,6 @@
 package group11.EventFiesta.register;
 
-import group11.EventFiesta.DBConnection.IDBPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
 
@@ -34,7 +34,7 @@ public class SecurityPasswordMockDB implements IDBPersistence
         user.setSecurityAnswer("answer");
         user.setPassword("password");
         user.setEmail("testuser@test.com");
-        user.setOrg(false);
+        user.setIsOrganizer(false);
 
         Map<String, Object> map = new HashMap<>();
 

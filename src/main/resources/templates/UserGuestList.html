@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest List</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/css/UserHomepage.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
+<h1 style="text-align: center;">Guest List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th> Guest Name</th>
+            <th> Contact No</th>
+            <th> Invited</th>
+            <th> RSVP</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="guest, itemStat : *{ugl.guests}">
+            <td><input th:field="*{ugl.guests[__${itemStat.index}__].guestName}" /></td>
+            <td><input th:field="*{ugl.guests[__${itemStat.index}__].contactNo}" /></td>
+            <td><input th:field="*{ugl.guests[__${itemStat.index}__].invited}" /></td>
+            <td><input th:field="*{ugl.guests[__${itemStat.index}__].rsvp}" /></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
