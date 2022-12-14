@@ -20,7 +20,6 @@ public class UserMyEventDetailsController {
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(new MySQLDBPersistence());
         UserEvent userEvent = userMyEventDetails.getUserMyEventDetails(event_id);
         model.addAttribute("userEvent", userEvent);
-
         return "UserMyEventDetails";
     }
 

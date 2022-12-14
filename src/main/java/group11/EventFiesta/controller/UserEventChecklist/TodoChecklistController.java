@@ -27,6 +27,7 @@ public class TodoChecklistController
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
         List<TodoChecklist> userEventToDoList = userEventChecklistHandler.getChecklist(eventID);
         todoList.clear();
+        model.addAttribute("eventId", eventID);
 
         for(TodoChecklist item: userEventToDoList)
         {
