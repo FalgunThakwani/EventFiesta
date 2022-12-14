@@ -22,9 +22,10 @@ public class UserMyEventsController {
     private IDBPersistence dbPersistence = new MySQLDBPersistence();
 
     @GetMapping("/user/myevents")
-    public String getMyEvents(Model model, HttpServletRequest request, @RequestParam("userId") int userId) throws Exception {
+    public String getMyEvents(Model model, HttpServletRequest request) throws Exception {
         model.addAttribute("user", new User());
         HttpSession session = request.getSession(false);
+        int userId = (int)session.getAttribute("accountId");
         System.out.println(userId);
         model.addAttribute("userId", userId);
         UserMyEvents userMyEvents = new UserMyEvents(dbPersistence);
