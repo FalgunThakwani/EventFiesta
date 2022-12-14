@@ -29,9 +29,6 @@ public class OrganizerSecurityQuestionsController {
     {
         int organizer_id;
         String statusMessage;
-        System.out.println("Entered email is : "+ organizer.getEmail());
-        System.out.println("Selected security question is : "+ organizer.getSecurityQuestion());
-        System.out.println("Entered security answer is : "+ organizer.getSecurityAnswer());
         String email = organizer.getEmail();
         Object[] params1 = new Object[]{"OrganizerInfo", "*", "email", email};
         VerifyEmailHandler verifyEmailHandler = new VerifyEmailHandler(new MySQLDBPersistence(), params1);
@@ -56,7 +53,6 @@ public class OrganizerSecurityQuestionsController {
             }
             else
             {
-//                model.addAttribute("organizer", organizer);
                     return "OrganizerSecurityQuestion";
             }
         }

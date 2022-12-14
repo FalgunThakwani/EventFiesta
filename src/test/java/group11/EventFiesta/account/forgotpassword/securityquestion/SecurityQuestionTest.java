@@ -1,8 +1,6 @@
-package group11.EventFiesta.ForgotPasswordTest;
+package group11.EventFiesta.account.forgotpassword.securityquestion;
 
 import group11.EventFiesta.account.IState;
-import group11.EventFiesta.account.forgotpassword.securityquestion.SecretQuestionHandler;
-import group11.EventFiesta.account.forgotpassword.securityquestion.VerifyEmailHandler;
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.User;
 import org.junit.jupiter.api.Assertions;

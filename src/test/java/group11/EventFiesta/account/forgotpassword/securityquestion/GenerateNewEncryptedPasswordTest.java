@@ -1,4 +1,4 @@
-package group11.EventFiesta.ForgotPasswordTest;
+package group11.EventFiesta.account.forgotpassword.securityquestion;
 
 import group11.EventFiesta.security.EncryptData;
 import org.junit.jupiter.api.Assertions;

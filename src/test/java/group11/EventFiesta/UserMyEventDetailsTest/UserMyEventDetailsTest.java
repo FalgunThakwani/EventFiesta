@@ -18,10 +18,8 @@ public class UserMyEventDetailsTest {
         IDBPersistence mockDB = new MockUserMyEventDetailsPersistence();
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(mockDB);
 
-
         try
         {
-
             UserEvent userEvent = userMyEventDetails.getUserMyEventDetails(1);
 
             Assertions.assertEquals(2, userEvent.getEventID());
@@ -71,7 +69,6 @@ public class UserMyEventDetailsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Test

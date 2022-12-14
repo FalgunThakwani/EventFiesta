@@ -21,7 +21,6 @@ public class OrganizerResetPasswordController {
     @GetMapping("/organizerResetPassword")
     public String getResetPasswordPage(Model model, @ModelAttribute Organizer organizer, @RequestParam("email") String email)
     {
-        System.out.println("In organizer ResetPassword " + email);
         model.addAttribute("organizer", organizer);
         organizer.setEmail(email);
         return "OrganizerResetPassword";
@@ -37,12 +36,14 @@ public class OrganizerResetPasswordController {
             Object[] params = new Object[]{"OrganizerInfo", "organizer_id", "email", email};
             GenerateNewEncryptedPassword generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params);
             List<Map<String, Object>> result = generateNewEncryptedPassword.getID();
+
             if (result.size() > 0) {
                 Map<String, Object> row = result.get(0);
                 int organizer_id = (int) row.get("organizer_id");
                 Object[] params1 = new Object[]{"OrganizerSensitive", "private_key", "organizer_id", organizer_id};
                 generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params1);
                 String newEncryptedPassword = generateNewEncryptedPassword.getEncryptedPassword(newPassword);
+
                 if (newEncryptedPassword.equals("FAILURE")) {
                     model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
                 } else {
@@ -51,6 +52,7 @@ public class OrganizerResetPasswordController {
                     IState state = resetPasswordHandler.validate(organizer);
                     model.addAttribute("statusMsg", state.getStatus());
                 }
+
             } else {
                     model.addAttribute("statusMsg", "FAILURE.. PLEASE TRY AGAIN");
             }

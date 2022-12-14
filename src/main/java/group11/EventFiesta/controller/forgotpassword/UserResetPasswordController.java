@@ -37,12 +37,14 @@ public class UserResetPasswordController {
             Object[] params = new Object[]{"UserInfo", "user_id", "email", email};
             GenerateNewEncryptedPassword generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params);
             List<Map<String, Object>> result = generateNewEncryptedPassword.getID();
+
             if (result.size() > 0) {
                 Map<String, Object> row = result.get(0);
                 int user_id = (int) row.get("user_id");
                 Object[] params1 = new Object[]{"UserSensitive", "private_key", "user_id", user_id};
                 generateNewEncryptedPassword = new GenerateNewEncryptedPassword(new MySQLDBPersistence(), params1);
                 String newEncryptedPassword = generateNewEncryptedPassword.getEncryptedPassword(newPassword);
+
                 if (newEncryptedPassword.equals("FAILURE")) {
                     model.addAttribute("statusMsg", "PASSWORDS NOT UPDATED");
                 } else {

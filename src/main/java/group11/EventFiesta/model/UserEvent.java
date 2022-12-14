@@ -1,6 +1,5 @@
 package group11.EventFiesta.model;
 
-import java.util.Date;
 import java.util.List;
 
 public class UserEvent {
@@ -11,9 +10,7 @@ public class UserEvent {
     private int guestCount;
     private List<UserService> service;
 
-    public UserEvent()
-    {
-
+    public UserEvent() {
     }
 
     public int getGuestCount() {
@@ -23,7 +20,6 @@ public class UserEvent {
     public void setGuestCount(int guestCount) {
         this.guestCount = guestCount;
     }
-
 
     public int getEventID() {
         return eventID;

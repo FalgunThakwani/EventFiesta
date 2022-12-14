@@ -29,9 +29,6 @@ public class UserSecurityQuestionsController {
     {
         int user_id;
         String statusMessage;
-        System.out.println("Entered email is : "+ user.getEmail());
-        System.out.println("Selected security question is : "+ user.getSecurityQuestion());
-        System.out.println("Entered security answer is : "+ user.getSecurityAnswer());
         String email = user.getEmail();
         Object[] params1 = new Object[]{"UserInfo", "*", "email", email};
         VerifyEmailHandler verifyEmailHandler = new VerifyEmailHandler(new MySQLDBPersistence(), params1);
@@ -39,9 +36,10 @@ public class UserSecurityQuestionsController {
         if(result != null && result.size() > 0) {
 
             user_id = Integer.parseInt(result.get(0).get("user_id").toString());
-            System.out.println(user_id);
+
             String securityQuestion = user.getSecurityQuestion();
             String securityAnswer = user.getSecurityAnswer();
+
             Object[] params2 = new Object[]{"UserSensitive", "*", "user_id", user_id};
             IForgotPassword secretQuestionHandler = new SecretQuestionHandler(new MySQLDBPersistence(), params2, securityQuestion, securityAnswer);
             IState state  = secretQuestionHandler.validate(user);
@@ -56,8 +54,7 @@ public class UserSecurityQuestionsController {
             }
             else
             {
-
-                    return "UserSecurityQuestion";
+                return "UserSecurityQuestion";
             }
         }
         else

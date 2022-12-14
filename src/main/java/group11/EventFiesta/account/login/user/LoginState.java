@@ -6,7 +6,8 @@ import group11.EventFiesta.model.Account;
 public abstract class LoginState implements IState {
 
     public Account account;
-
+    String status;
+    String nextPage;
     LoginState(Account account)
     {
         this.account = account;
@@ -14,8 +15,6 @@ public abstract class LoginState implements IState {
         setNextPage();
     }
 
-    String status;
-    String nextPage;
     @Override
     public String getStatus() {
         return status;

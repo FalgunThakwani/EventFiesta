@@ -1,15 +1,7 @@
 package group11.EventFiesta.event;
 
 import group11.EventFiesta.db.IDBPersistence;
-import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.Reviews;
-import group11.EventFiesta.model.UserEvent;
-import group11.EventFiesta.model.UserService;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 public class UserMyEventFeedback {
 
@@ -29,6 +21,7 @@ public class UserMyEventFeedback {
     public boolean submitUserMyEventFeedback(int eventId, int serviceId, float rating, String review) throws Exception {
         Object[] params = new Object[]{rating, review, serviceId, eventId};
         String storedProcedure = "sp_storeUserMyEventFeedback";
+
         String query = "{call " + storedProcedure + " (";
         for (Object param : params) {
             query += "?,";
@@ -38,11 +31,14 @@ public class UserMyEventFeedback {
         query = buffer.toString();
         query += ")}";
         System.out.println(query);
+
         Integer data = idbPersistence.saveData(query, params);
-        System.out.println("result of save is :" + data);
-        if(data > 0)
+
+        if(data > 0){
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 }

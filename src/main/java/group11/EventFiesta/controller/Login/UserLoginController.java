@@ -1,7 +1,6 @@
 package group11.EventFiesta.controller.Login;
 
 import group11.EventFiesta.account.IState;
-import group11.EventFiesta.account.login.user.LoginState;
 import group11.EventFiesta.account.login.user.UserLogin;
 import group11.EventFiesta.model.User;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,5 @@
 package group11.EventFiesta.controller.UserEvents;
 
-import group11.EventFiesta.model.User;
 import group11.EventFiesta.model.UserEventQuestionnaire;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @SessionAttributes({"userEventQuestionnaire"})
 @Controller

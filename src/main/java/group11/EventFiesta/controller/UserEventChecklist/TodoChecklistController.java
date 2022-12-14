@@ -27,6 +27,7 @@ public class TodoChecklistController
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(new MySQLDBPersistence());
         List<TodoChecklist> userEventToDoList = userEventChecklistHandler.getChecklist(eventID);
         todoList.clear();
+
         for(TodoChecklist item: userEventToDoList)
         {
             if(item.getStatus() == 1)
@@ -38,6 +39,7 @@ public class TodoChecklistController
             todoItem.setStatus(item.getStatus());
             todoList.add(todoItem);
         }
+
         System.out.println("LIST = " + todoList.toString());
         model.addAttribute("todoList", todoList);
         model.addAttribute("todoItem", new TodoChecklist());

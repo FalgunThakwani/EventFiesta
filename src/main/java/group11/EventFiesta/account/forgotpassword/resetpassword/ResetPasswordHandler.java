@@ -5,7 +5,6 @@ import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.Account;
 
-
 public class ResetPasswordHandler implements IForgotPassword {
 
     Object[] params;

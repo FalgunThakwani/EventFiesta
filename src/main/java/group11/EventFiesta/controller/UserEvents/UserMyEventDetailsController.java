@@ -16,6 +16,7 @@ public class UserMyEventDetailsController {
     @GetMapping("/userMyEventDetails")
     public String getUserMyEventDetails(Model model, @RequestParam("eventId") int eventID) throws Exception {
         int event_id = eventID;
+
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(new MySQLDBPersistence());
         UserEvent userEvent = userMyEventDetails.getUserMyEventDetails(event_id);
         model.addAttribute("userEvent", userEvent);

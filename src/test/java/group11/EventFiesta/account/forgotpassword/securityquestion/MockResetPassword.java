@@ -1,4 +1,4 @@
-package group11.EventFiesta.ForgotPasswordTest;
+package group11.EventFiesta.account.forgotpassword.securityquestion;
 
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.User;
@@ -57,18 +57,15 @@ public class MockResetPassword implements IDBPersistence {
             Map<String, Object> map = userList.get(i);
 
             if (map.containsKey("user_id") && (Integer) map.get("user_id") == user_id) {
-                System.out.println("id matched");
                 userList.get(i).put("encrypted_password", 0);
                 return 1;
             }
             else {
-                System.out.println("id not matched");
                 return 0;
             }
         }
         return 0;
     }
-
 
     @Override
     public List<Object> insertData(String insertProcedure, Object[] inputParams, int[] outputParams) throws Exception {
