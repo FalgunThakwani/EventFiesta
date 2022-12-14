@@ -3,13 +3,13 @@ package group11.EventFiesta.model;
 public abstract class Account {
 
     Integer otp;
-    Boolean org = false;
+    Boolean isOrganizer = false;
     String secretQuestion;
     String secretAnswer;
 
-    public abstract Boolean getOrg();
+    public abstract Boolean getIsOrganizer();
 
-    public abstract void setOrg(Boolean org) ;
+    public abstract void setIsOrganizer(Boolean isOrganizer) ;
 
     public abstract boolean verifyEmailAddress();
 

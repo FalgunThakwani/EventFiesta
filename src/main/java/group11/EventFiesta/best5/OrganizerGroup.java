@@ -6,18 +6,20 @@ public class OrganizerGroup extends GroupComponent {
 
     List<GroupComponent> organizerServices = new ArrayList<>();
 
-    private Integer id;
+    protected Integer id;
 
-    Double score = 0.0;
+    protected Double score = 0.0;
+
     @Override
     public Double calculateScore() {
         System.out.println("Inside OrganizerGroup.calculateScore()");
-        if(score == 0.0) {
+        if (score == 0.0) {
+            System.out.println("Inside actual OrganizerGroup.calculateScore()");
             Double avgScore = 0.0;
             for (GroupComponent organizerService : organizerServices) {
                 avgScore += organizerService.calculateScore();
             }
-            score =  avgScore / organizerServices.size();
+            score = avgScore / organizerServices.size();
         }
         return score;
     }
@@ -35,7 +37,7 @@ public class OrganizerGroup extends GroupComponent {
     }
 
     public Double getScore() {
-        return score;
+        return Double.parseDouble(String.format("%.2f", score));
     }
 
     public Integer getId() {

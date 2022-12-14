@@ -15,6 +15,7 @@ public class OrganizerService extends GroupComponent {
     protected Double score = 0.0;
     protected Double rating;
     protected Double price;
+
     private ICalculateScore calculator;
 
     public OrganizerService() {
@@ -30,7 +31,7 @@ public class OrganizerService extends GroupComponent {
     public Double calculateScore() {
         System.out.println("Inside OrganizerService.calculateScore()");
         if (score == 0.0) {
-            score = 1.0 * calculator.calculateRatingsForService();
+            score = 1.0 * calculator.calculateScoreForService();
         }
         System.out.println(score);
         return score;
@@ -48,6 +49,18 @@ public class OrganizerService extends GroupComponent {
                 ", dateTime='" + dateTime + "'" +
                 ", score='" + score + "'" +
                 "}";
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getServiceName() {
@@ -79,7 +92,7 @@ public class OrganizerService extends GroupComponent {
     }
 
     public Double getScore() {
-        return score;
+        return Double.parseDouble(String.format("%.2f", score));
     }
 
     @Override

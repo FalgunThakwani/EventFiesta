@@ -18,14 +18,11 @@ public class VerifyEmailHandler {
 
     public List<Map<String, Object>> validateEmail(Account account) throws Exception {
 
-        System.out.println("Params: ");
-
         for(Object o: params)
             System.out.println(String.valueOf(o));
 
         List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
-        System.out.println(params);
-        System.out.println(data);
+
         if (data.size() > 0) {
             return data;
         }

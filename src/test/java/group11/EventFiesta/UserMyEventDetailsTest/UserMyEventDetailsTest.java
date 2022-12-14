@@ -1,5 +1,6 @@
 package group11.EventFiesta.UserMyEventDetailsTest;
 
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.event.UserMyEventDetails;
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.UserEvent;
@@ -14,13 +15,11 @@ public class UserMyEventDetailsTest {
     @Test
     public void getUserMyEventDetailsTest()
     {
-        MockUserMyEventDetailsPersistence mockDB = new MockUserMyEventDetailsPersistence();
+        IDBPersistence mockDB = new MockUserMyEventDetailsPersistence();
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(mockDB);
-
 
         try
         {
-
             UserEvent userEvent = userMyEventDetails.getUserMyEventDetails(1);
 
             Assertions.assertEquals(2, userEvent.getEventID());
@@ -70,13 +69,12 @@ public class UserMyEventDetailsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Test
     public void getUserMyEventDetailsFailureTest()
     {
-        MockUserMyEventDetailsPersistence mockDB = new MockUserMyEventDetailsPersistence();
+        IDBPersistence mockDB = new MockUserMyEventDetailsPersistence();
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(mockDB);
 
         try

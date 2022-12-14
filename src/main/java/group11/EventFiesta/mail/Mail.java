@@ -16,44 +16,17 @@ public class Mail {
 
     private String from;
 
-    private Authenticator authenticator;
     public Mail(String recipent, String subject, String body) {
         this.recipent = recipent;
         this.subject = subject;
         this.body = body;
         this.from = eventFiestaMailCredentials.getEmail();
-        setAuthentication();
     }
 
     public Mail(String subject, String body) {
         this.subject = subject;
         this.body = body;
         this.from = eventFiestaMailCredentials.getEmail();
-        setAuthentication();
-    }
-
-    public void setAuthentication() {
-        authenticator = new SMTPAuthenticator(eventFiestaMailCredentials.getEmail(), eventFiestaMailCredentials.getAppPassword());
-
-    }
-    public String getRecipent() {
-        return recipent;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public Authenticator getAuthenticator() {
-        return authenticator;
     }
 
     public void setRecipent(String recipent) {
@@ -64,13 +37,13 @@ public class Mail {
         System.out.println("Inside send mail");
         Boolean status = true;
         Properties properties = mailProtocol.getMailProperties();
-        Session session = Session.getInstance(properties, getAuthenticator());
+        Session session = Session.getInstance(properties, mailProtocol.getAuthenticator(eventFiestaMailCredentials));
         try {
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(getFrom()));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(getRecipent()));
-            message.setSubject(getSubject());
-            message.setText(getBody());
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipent));
+            message.setSubject(subject);
+            message.setText(body);
             Transport.send(message);
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {

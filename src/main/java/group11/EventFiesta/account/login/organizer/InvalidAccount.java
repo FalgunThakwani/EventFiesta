@@ -14,7 +14,7 @@ public class InvalidAccount extends LoginState {
 
     @Override
     public void setNextPage() {
-        if(account.getOrg()) {
+        if(account.getIsOrganizer()) {
             nextPage = "OrganizerLogin";
         } else {
             nextPage = "UserLogin";
