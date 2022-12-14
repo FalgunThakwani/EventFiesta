@@ -49,4 +49,18 @@ public class UserGuestListController {
         model.addAttribute("guest", new Guest());
         return "UserGuestList";
     }
+
+    @PostMapping("/handleUpdateGuest/{event_id}")
+    public String updateGuest(Model model,
+                              @ModelAttribute UserGuestList guestList,
+                         @PathVariable("event_id") int eventId, @ModelAttribute("user") User user) throws Exception {
+        GuestListHandler glHandler = new GuestListHandler(dbPersistence);
+        glHandler.updateGuestList(guestList);
+        guestList = glHandler.loadGuestList(eventId);
+        model.addAttribute("userId", user.getUserId());
+        model.addAttribute("eventId", eventId);
+        model.addAttribute("userGuestList", guestList);
+        model.addAttribute("guest", new Guest());
+        return "UserGuestList";
+    }
 }

@@ -10,7 +10,8 @@
 <body>
 <th:block th:include="fragments/loggedInHeader :: loggedInHeader"></th:block>
 <h1 style="text-align: center;">Guest List</h1>
-    <button id="addGuest" name="Add Guest" onclick="addguests()">Add Guest</button>
+<a th:href="@{'/userMyEventDetails?eventId=' + ${eventId}}"><input class="btn" name="back" type="submit" value="Back To Event Details" /></a>
+    <button id="addGuest" class="btn" name="Add Guest" onclick="addguests()">Add Guest</button>
     <div style="display: none" id="guestModal" class="modal">
         <div class="modal-content">
             <form method="post" id="guestForm" th:action="@{'/handleAddGuest/'+${eventId}}" th:object="${guest}">
@@ -26,39 +27,44 @@
             </form>
         </div>
     </div>
-    <table id="guestList" style="margin-left: auto; margin-right: auto; display: block">
-        <thead>
-        <tr>
-            <th style="margin: auto"> Guest Name</th>
-            <th style="margin: auto"> Contact No</th>
-            <th style="margin: auto"> Invited</th>
-            <th style="margin: auto"> RSVP</th>
-        </tr>
-        </thead>
-        <tbody id="guests">
-        <tr th:each="guest, itemStat : *{userGuestList.guests}">
-            <td><input th:field="*{userGuestList.guests[__${itemStat.index}__].guestName}" /></td>
-            <td><input th:field="*{userGuestList.guests[__${itemStat.index}__].contactNo}" /></td>
-            <td><input type="checkbox" th:field="*{userGuestList.guests[__${itemStat.index}__].invited}" th:value="*{userGuestList.guests[__${itemStat.index}__].invited}" /></td>
-            <td><input type="checkbox" th:field="*{userGuestList.guests[__${itemStat.index}__].rsvp}" th:value="*{userGuestList.guests[__${itemStat.index}__].rsvp}" /></td>
-        </tr>
-        </tbody>
-    </table>
+    <form method="post" id="guestListForm" th:action="@{'/handleUpdateGuest/'+${eventId}}" th:object="${userGuestList}">
+        <fieldset>
+            <table id="guestList" style="margin-left: auto; margin-right: auto; display: block">
+                <thead>
+                <tr>
+                    <th style="margin: auto"> Guest Name</th>
+                    <th style="margin: auto"> Contact No</th>
+                    <th style="margin: auto"> Invited</th>
+                    <th style="margin: auto"> RSVP</th>
+                </tr>
+                </thead>
+                <tbody id="guests">
+                <tr th:each="guest, itemStat : *{guests}">
+                    <td><input th:field="*{guests[__${itemStat.index}__].guestName}" /></td>
+                    <td><input th:field="*{guests[__${itemStat.index}__].contactNo}" /></td>
+                    <td><input type="checkbox" th:field="*{guests[__${itemStat.index}__].invited}" th:value="*{guests[__${itemStat.index}__].invited}" /></td>
+                    <td><input type="checkbox" th:field="*{guests[__${itemStat.index}__].rsvp}" th:value="*{guests[__${itemStat.index}__].rsvp}" /></td>
+                </tr>
+                <p><input class="btn" name="Update" type="submit" value="Update" /></p>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
 <script>
     function addguests(){
         // modal.style.display = "none";
         var modal = document.getElementById("guestModal");
         var btn = document.getElementById("addGuest");
-        var guestList = document.getElementById("guestList");
+        var guestListForm = document.getElementById("guestListForm");
 
         var span = document.getElementsByClassName("close")[0];
 
 
         btn.onclick = function() {
-            if(guestList.style.display === "block"){
-                guestList.style.display = "none";
+            if(guestListForm.style.display === "block"){
+                guestListForm.style.display = "none";
             }else{
-                guestList.style.display = "block";
+                guestListForm.style.display = "block";
             }
             if(modal.style.display === "block"){
                 modal.style.display = "none";
