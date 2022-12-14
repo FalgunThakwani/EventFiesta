@@ -15,6 +15,7 @@ public class OrganizerService extends GroupComponent {
     protected Double score = 0.0;
     protected Double rating;
     protected Double price;
+
     private ICalculateScore calculator;
 
     public OrganizerService() {
@@ -48,38 +49,6 @@ public class OrganizerService extends GroupComponent {
                 ", dateTime='" + dateTime + "'" +
                 ", score='" + score + "'" +
                 "}";
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public Integer getOrgranizerId() {
-        return orgranizerId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Double getBudget() {
-        return budget;
-    }
-
-    public Double getHeadCount() {
-        return headCount;
-    }
-
-    public String getEvent() {
-        return event;
-    }
-
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public Double getScore() {
-        return score;
     }
 
     @Override
