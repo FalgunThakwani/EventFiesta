@@ -16,6 +16,7 @@ public class EventManager {
 
     IDBPersistence idbPersistence;
     MailProtocol mailProtocol;
+
     public EventManager(IDBPersistence idbPersistence) {
         this.idbPersistence = idbPersistence;
     }
@@ -25,7 +26,7 @@ public class EventManager {
         mailProtocol = protocol;
     }
 
-    public void updateEvent(Object [] params, Mail mail) throws Exception {
+    public void updateEvent(Object[] params, Mail mail) throws Exception {
         Integer rows = idbPersistence.updateData("updateEventStatus", params);
         if (rows >= 1) {
             mail.sendMail(mailProtocol);
@@ -34,22 +35,23 @@ public class EventManager {
     }
 
     public List<Map<String, Object>> getEventServices(Integer organizerId, String status) throws Exception {
-        Object [] params = new Object[]{organizerId, status};
+        Object[] params = new Object[] { organizerId, status };
         List<Map<String, Object>> eventDetails = idbPersistence.loadData("getOrganizerEventDetails", params);
         for (Map<String, Object> event : eventDetails) {
             Integer eventId = Integer.parseInt(event.get("event_id").toString());
-            params= new Object[]{eventId, status, organizerId};
+            params = new Object[] { eventId, status, organizerId };
             List<Map<String, Object>> serviceDetails = idbPersistence.loadData("getOrganizerEventServices", params);
             event.put("services", serviceDetails);
         }
         return eventDetails;
     }
 
-    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId, Mail mail) throws Exception {
+    public void addEvent(UserEventQuestionnaire eventDetails, OrganizerGroup selectedGroup, Integer userId, Mail mail)
+            throws Exception {
         String venue = eventDetails.getCity() + ", " + eventDetails.getProvince();
-        Object[] params = new Object[]{userId, eventDetails.getEvent(), venue, eventDetails.getDateTime(),
-                eventDetails.getBudget(), eventDetails.getGuestCount()};
-        int[] outParams = new int[]{Types.INTEGER};
+        Object[] params = new Object[] { userId, eventDetails.getEvent(), venue, eventDetails.getDateTime(),
+                eventDetails.getBudget(), eventDetails.getGuestCount() };
+        int[] outParams = new int[] { Types.INTEGER };
         List<Object> returnValues = idbPersistence.insertData("addEvent", params, outParams);
         System.out.println(returnValues);
         if (returnValues != null && returnValues.size() > 0) {
@@ -57,10 +59,11 @@ public class EventManager {
             for (GroupComponent organizerService : selectedGroup.getOrganizerServices()) {
                 OrganizerService service = (OrganizerService) organizerService;
                 String status = "Pending";
-                params = new Object[]{eventId, service.getId(), service.getBudget(), status};
-                outParams = new int[]{};
+                params = new Object[] { eventId, service.getId(), service.getBudget(), status };
+                outParams = new int[] {};
                 returnValues = idbPersistence.insertData("addService", params, outParams);
-                //mail.setRecipent(organizerService.se)//todo get organizer email for each service
+                // mail.setRecipent(organizerService.se)//todo get organizer email for each
+                // service
                 System.out.println(returnValues);
             }
         }

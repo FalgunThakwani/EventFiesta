@@ -51,6 +51,38 @@ public class OrganizerService extends GroupComponent {
                 "}";
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public Integer getOrgranizerId() {
+        return orgranizerId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Double getBudget() {
+        return budget;
+    }
+
+    public Double getHeadCount() {
+        return headCount;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
     @Override
     public void add(GroupComponent child) {
         // DO NOTHING I AM A LEAF
