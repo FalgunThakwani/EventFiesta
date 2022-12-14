@@ -14,17 +14,17 @@ public class UserSignUpTest {
     ISignup signupTest = new UserSignUp(dbPersistence);
     private Account user = new User();
 
-    // @Test
-    // public void validateUser() throws Exception {
-    // user.setEmail("falgunthakwani@gmail.com");
-    // Assertions.assertEquals(signupTest.validateUser(user), true);
-    // }
+    @Test
+    public void validateUser() throws Exception {
+    user.setEmail("falgunthakwani@gmail.com");
+    Assertions.assertEquals(signupTest.validateUser(user), true);
+    }
 
-    // @Test
-    // public void validateWrongUser() throws Exception {
-    // user.setEmail("fl700637@dal.ca");
-    // Assertions.assertEquals(signupTest.validateUser(user), false);
-    // }
+    @Test
+    public void validateWrongUser() throws Exception {
+    user.setEmail("fl700637@dal.ca");
+    Assertions.assertEquals(signupTest.validateUser(user), false);
+    }
 
     // @Test
     // public void storeInfo() throws Exception {
