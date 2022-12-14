@@ -13,6 +13,9 @@
     <div class="split left">
         <p><span style="font-size:38px;">Create an account</span></p>
         <p>Already a member?&nbsp;<a href="/userLogin">Sign In</a></p>
+        <div th:if="${ValidateMessage} != null">
+            <p style="color: rgb(230, 0, 0)" data-th-text="${ValidateMessage}" />
+        </div>
         <form th:action="@{/handleUserSignUp}" th:object="${user}" method="post">
             <p>First name*&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Last name*</p>
@@ -24,7 +27,7 @@
             <p>Password*</p>
             <p><input maxlength="25" name="password" type="password" th:field="*{password}" /></p>
             <p>Confirm Password*</p>
-            <p><input maxlength="25" name="confirm password" required="required" type="text" /></p>
+            <p><input maxlength="25" name="confirm password" required="required" type="password" /></p>
             <p>Security Question*</p>
             <select title="security question"  class="dropdown" th:field="*{securityQuestion}">
                 <optionvalue="">
@@ -44,7 +47,7 @@
         </form>
     </div>
     <div class="split right">
-        <img th:src="@{/images/signupimage.jpg}" class="image">
+        <img th:src="@{/images/signupimage.jpg}" class="image" title="Wedding Image">
     </div>
 </div>
 </body>

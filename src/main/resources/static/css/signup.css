@@ -5,6 +5,7 @@ body {
   background-size: cover;
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 a {
   color: #002d62;
   font-weight: 700;
@@ -34,8 +35,9 @@ input[name="securityAnswer"] {
 .split {
   height: 100%;
   width: 50%;
-  position: fixed;
   top: 0;
+  position: absolute;
+  overflow-y: scroll;
   overflow-x: hidden;
   align-items: center;
   display: flex;
@@ -62,12 +64,13 @@ input[name="Sign Up"] {
 
 .right {
   right: 0;
+
 }
 .image {
   object-fit: cover;
-  position: absolute;
+  position: fixed;
   height: 100%;
-  width: 100%;
+  width: 50%;
 }
 .btn {
   cursor: pointer;
@@ -98,12 +101,6 @@ input[type="submit"].btn:hover {
   
   .right {
     right: 0;
-  }
-  .image{
-    object-fit: cover;
-    position: absolute;
-    height: 100%;
-    width: 100%;
   }
   .btn {
     cursor: pointer;
