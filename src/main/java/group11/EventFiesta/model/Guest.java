@@ -29,7 +29,7 @@ public class Guest {
         this.contactNo = contactNo;
     }
 
-    public boolean isInvited() {
+    public boolean getInvited() {
         return invited;
     }
 
@@ -37,7 +37,7 @@ public class Guest {
         this.invited = invited;
     }
 
-    public boolean isRsvp() {
+    public boolean getRsvp() {
         return rsvp;
     }
 
