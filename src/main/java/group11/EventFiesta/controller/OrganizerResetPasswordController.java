@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes({"organizer"})
 @Controller
 public class OrganizerResetPasswordController {
     @GetMapping("/organizerResetPassword")
     public String getResetPasswordPage(Model model, @ModelAttribute Organizer organizer)
     {
+        System.out.println(organizer);
         System.out.println("In organizer ResetPassword " + organizer.getOrganizerId());
 
         model.addAttribute("organizer", organizer);

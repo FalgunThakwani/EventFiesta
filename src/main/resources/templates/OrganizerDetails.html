@@ -32,7 +32,6 @@
                                 </div>
                             </div>
                             <th:block th:each="organizerEvent, iter :${PendingEvents}">
-<!--                                <form th:action="@{/acceptEvent}" th:method="post" th:object="${todoItem}">-->
                                 <div th:attr="id=|Pending_${organizerEvent.event_id}|" class="verticalTabContent">
                                     <h3 class="align-center" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date} + ' | ' + ${organizerEvent.venue}"></h3>
                                     <hr>

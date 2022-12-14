@@ -38,8 +38,7 @@
                                             <div class="box-content-header" th:text="' ' + ${service.serviceName} + ' by '+ ${service.organizerName}" />
                                             <p>
                                                 <p th:text="'Score (of 10): ' + ${service.score} "/>
-<!--                                                <p th:text="'Rating: ' + ${service.rating} "/>-->
-                                                <p th:text="'Budget: ' + ${service.price} "/>
+                                                <p th:text="'Budget: ' + ${service.budget} "/>
                                             </p>
                                         </div>
                                     </th:block>
@@ -47,7 +46,7 @@
                                 <div class="align-center" style="margin: 50px 0 20px 0;">
                                     <form th:action="@{/acceptOption}" th:object="${option}" method="post">
                                         <input type="hidden" name="optionId" th:value="${option.id}"/>
-                                        <button class="btn" type="submit">Accept</button>
+                                        <button class="btn" type="submit">Choose</button>
                                     </form>
                                 </div>
                             </div>
