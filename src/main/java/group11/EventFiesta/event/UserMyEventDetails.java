@@ -6,7 +6,6 @@ import group11.EventFiesta.model.UserEvent;
 import group11.EventFiesta.model.UserService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +17,7 @@ public class UserMyEventDetails {
     }
 
     public UserEvent getUserMyEventDetails(int event_id) throws Exception {
+
         Object[] params = new Object[]{event_id};
         List<Map<String, Object>> data = idbPersistence.loadData("getUserMyEventDetails", params);
 
@@ -38,7 +38,6 @@ public class UserMyEventDetails {
                 UserService service = new UserService();
                 service.setId((Integer) row.get("service_id"));
                 service.setType((String) row.get("service_type"));
-                //service.setCost((String.valueOf(row.get("cost"))));
 
                 Organizer organizer = new Organizer();
                 organizer.setOrganizerId((Integer) row.get("organizer_id"));
@@ -49,11 +48,8 @@ public class UserMyEventDetails {
                 service.setOrganizer(organizer);
                 userServiceList.add(service);
             }
-
             userEvent.setService(userServiceList);
         }
-
-
         return userEvent;
     }
 }

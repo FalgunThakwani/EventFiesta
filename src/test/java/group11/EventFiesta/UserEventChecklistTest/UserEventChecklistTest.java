@@ -1,6 +1,7 @@
 package group11.EventFiesta.UserEventChecklistTest;
 
 import group11.EventFiesta.UserEventChecklist.UserEventChecklistHandler;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.TodoChecklist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ public class UserEventChecklistTest
     @Test
     public void getChecklistTest()
     {
-        MockUserEventChecklistPersistence mockDb = new MockUserEventChecklistPersistence();
+        IDBPersistence mockDb = new MockUserEventChecklistPersistence();
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(mockDb);
 
         try
@@ -36,7 +37,7 @@ public class UserEventChecklistTest
     @Test
     public void addItemToChecklistTest()
     {
-        MockUserEventChecklistPersistence mockDb = new MockUserEventChecklistPersistence();
+        IDBPersistence mockDb = new MockUserEventChecklistPersistence();
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(mockDb);
 
         try
@@ -67,7 +68,7 @@ public class UserEventChecklistTest
     @Test
     public void removeChecklistItemTest()
     {
-        MockUserEventChecklistPersistence mockDb = new MockUserEventChecklistPersistence();
+        IDBPersistence mockDb = new MockUserEventChecklistPersistence();
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(mockDb);
 
         try
@@ -88,7 +89,7 @@ public class UserEventChecklistTest
     @Test
     public void getChecklistItemNotMatchingTest()
     {
-        MockUserEventChecklistPersistence mockDb = new MockUserEventChecklistPersistence();
+        IDBPersistence mockDb = new MockUserEventChecklistPersistence();
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(mockDb);
 
         try
@@ -106,7 +107,7 @@ public class UserEventChecklistTest
     @Test
     public void removeChecklistItemNotPresentTest()
     {
-        MockUserEventChecklistPersistence mockDb = new MockUserEventChecklistPersistence();
+        IDBPersistence mockDb = new MockUserEventChecklistPersistence();
         UserEventChecklistHandler userEventChecklistHandler = new UserEventChecklistHandler(mockDb);
 
         try

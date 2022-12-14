@@ -5,21 +5,15 @@ public class UserService
     private int id;
     private String type;
     private Organizer organizer;
+    private int cost;
 
+    public UserService() {
+    }
     public int getCost() {
         return cost;
     }
-
     public void setCost(int cost) {
         this.cost = cost;
-    }
-
-    private int cost;
-
-
-    public UserService()
-    {
-
     }
 
     public int getId() {
