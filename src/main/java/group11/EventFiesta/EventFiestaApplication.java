@@ -9,7 +9,7 @@ public class EventFiestaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EventFiestaApplication.class, args);
 
-		System.out.println("Hello world");
+		System.out.println("Welcome to " + getAppName());
 
 		getAppName();
 	}

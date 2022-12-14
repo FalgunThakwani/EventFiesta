@@ -25,7 +25,6 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Integer organizerId = Integer.parseInt(session.getAttribute("accountId").toString());
-            System.out.println("organizerId: " + organizerId);
 
             IDBPersistence idbPersistence = new MySQLDBPersistence();
             EventManager eventManager = new EventManager(idbPersistence);
@@ -57,7 +56,7 @@ public class OrganizerEventDetailsController {
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
 
             CreateEventStatus createEventStatus = new CreateEventStatus();
-            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("upcoming");
+            IEventStatusWithPreviousStatus newStatus = createEventStatus.getEventStatusWithPreviousStatus("upcoming");
             IEventStatus previousStatus = newStatus.getPreviousState();
             Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
 
@@ -80,7 +79,7 @@ public class OrganizerEventDetailsController {
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
 
             CreateEventStatus createEventStatus = new CreateEventStatus();
-            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("complete");
+            IEventStatusWithPreviousStatus newStatus = createEventStatus.getEventStatusWithPreviousStatus("complete");
             IEventStatus previousStatus = newStatus.getPreviousState();
             Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
 
@@ -103,7 +102,7 @@ public class OrganizerEventDetailsController {
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
 
             CreateEventStatus createEventStatus = new CreateEventStatus();
-            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("reject");
+            IEventStatusWithPreviousStatus newStatus = createEventStatus.getEventStatusWithPreviousStatus("reject");
             IEventStatus previousStatus = newStatus.getPreviousState();
             Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
 

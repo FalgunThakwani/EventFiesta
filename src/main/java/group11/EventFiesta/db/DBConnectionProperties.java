@@ -6,27 +6,13 @@ import java.util.Properties;
 
 public class DBConnectionProperties {
 
-    String url;
+    private String url;
 
-    String username;
+    private String username;
 
-    String password;
+    private String password;
 
-    private static DBConnectionProperties dbConnectionProperties = null;
-
-    //used singleton to load properties because the properties does not vary, can be fetched just once from the properties file
-    public static DBConnectionProperties getInstance(String db) {
-        if (dbConnectionProperties == null) {
-            synchronized (DBConnectionProperties.class) {
-                if (dbConnectionProperties == null) {
-                    dbConnectionProperties = new DBConnectionProperties(db);
-                }
-            }
-        }
-        return dbConnectionProperties;
-    }
-
-    private DBConnectionProperties(String db) {
+    public DBConnectionProperties(String db) {
         loadDBProperties(db);
     }
 

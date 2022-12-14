@@ -1,6 +1,6 @@
 package group11.EventFiesta.event.status;
 
-public class EventUpcoming implements IEventStatusWithPreviousState {
+public class EventUpcoming implements IEventStatusWithPreviousStatus {
 
     @Override
     public String getEventStatus() {
