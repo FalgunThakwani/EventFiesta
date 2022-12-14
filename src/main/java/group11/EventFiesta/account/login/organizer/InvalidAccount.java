@@ -5,7 +5,6 @@ import group11.EventFiesta.model.Account;
 public class InvalidAccount extends LoginState {
     public InvalidAccount(Account account) {
         super(account);
-        System.out.println("Invalid account");
     }
     @Override
     public void setStatus() {

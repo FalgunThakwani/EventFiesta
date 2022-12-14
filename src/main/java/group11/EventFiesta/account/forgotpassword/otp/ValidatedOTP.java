@@ -16,12 +16,10 @@ public class ValidatedOTP extends AccountState {
 
     @Override
     public void setNextPage() {
-        System.out.println("ValidatedOTP setNextPage() " + account.getEmail());
         String nextPage = "redirect:/userResetPassword?email=" + account.getEmail();
         if (account.getIsOrganizer()) {
             nextPage = "redirect:/organizerResetPassword?email=" + account.getEmail();
         }
-        System.out.println(nextPage);
         setNextPage(nextPage);
     }
 

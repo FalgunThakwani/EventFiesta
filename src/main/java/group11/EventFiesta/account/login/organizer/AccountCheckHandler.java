@@ -20,12 +20,10 @@ public class AccountCheckHandler extends LoginHandler {
     @Override
     public IState execute(Account account) throws Exception {
         List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
-        System.out.println(data);
         Integer accountId;
         if (data.size() > 0) {
             String accoundIdColumn = params[1].toString();
             accountId = Integer.parseInt(data.get(0).get(accoundIdColumn).toString());
-            System.out.println(accountId);
             account.setAccountId(accountId);
             return nextHandler.execute(account);
         } else {

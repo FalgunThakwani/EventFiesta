@@ -57,7 +57,6 @@ public class OTPHandler extends LoginHandler {
             newParam[i++] = otp;
             newParam[i++] = otpTime;
             newParam[i] = accountId;
-            System.out.println(Arrays.toString(newParam));
             idbPersistence.updateData("updateTwoColumnDBUsingWhere", newParam);
         } catch (Exception exception) {
             System.out.println("Exception in otphandler: " + exception.getMessage());

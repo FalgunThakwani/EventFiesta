@@ -91,7 +91,6 @@ public class MockEventManagerDBPersistence implements IDBPersistence {
 
             }
         }
-        System.out.println(mock);
 
         return mock;
     }

@@ -17,7 +17,6 @@ public class FilterRegistration {
         registration.setFilter(authenticationFilter());
         registration.addUrlPatterns("/*");
         Properties applicationProperties = PropertiesReader.getInstance().getProperties();
-        System.out.println(applicationProperties);
         registration.addInitParameter("EXCLUDE_URL_PATTERN", applicationProperties.getProperty("event_fiesta.excluded_url"));
         registration.setName("authenticationFilter");
         registration.setOrder(1);
