@@ -4,7 +4,7 @@ import java.util.Properties;
 
 public class SSLSMTPProtocol extends SMTPProtocol {
 
-    public SSLSMTPProtocol(String host, Integer port) {
+    public SSLSMTPProtocol(String host, int port) {
         super(host, port);
     }
 
