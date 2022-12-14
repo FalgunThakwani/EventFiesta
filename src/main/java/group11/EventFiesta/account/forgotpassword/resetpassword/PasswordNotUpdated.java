@@ -16,6 +16,5 @@ public class PasswordNotUpdated extends AccountState {
 
     @Override
     public void setNextPage() {
-
     }
 }

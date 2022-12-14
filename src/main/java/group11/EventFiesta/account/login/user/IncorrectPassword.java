@@ -1,14 +1,20 @@
 package group11.EventFiesta.account.login.user;
 
+import group11.EventFiesta.model.Account;
+
 public class IncorrectPassword extends LoginState {
 
-    @Override
-    public void setLoginStatus() {
-        loginStatus = "Password Incorrect !! Please enter Correct Password.";
+    IncorrectPassword(Account account) {
+        super(account);
     }
 
     @Override
-    public void setNextHtml() {
-        nextHtml = "UserLogin";
+    public void setStatus() {
+        status = "Password Incorrect !! Please enter Correct Password.";
+    }
+
+    @Override
+    public void setNextPage() {
+        nextPage = "userLogin";
     }
 }

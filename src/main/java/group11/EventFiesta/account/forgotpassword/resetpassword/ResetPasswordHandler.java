@@ -5,7 +5,6 @@ import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.model.Account;
 
-
 public class ResetPasswordHandler implements IForgotPassword {
 
     Object[] params;
@@ -24,7 +23,6 @@ public class ResetPasswordHandler implements IForgotPassword {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Updated Row Count: " + result);
         if (result == 1) {
             return new PasswordUpdated(account);
         }

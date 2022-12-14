@@ -10,17 +10,15 @@ import java.util.Map;
 public class BlogHandler
 {
     IDBPersistence idbPersistence;
-
     Object[] params;
-    public BlogHandler(IDBPersistence dbPersistence, Object[] params) {
 
+    public BlogHandler(IDBPersistence dbPersistence, Object[] params) {
         this.idbPersistence = dbPersistence;
         this.params = params;
     }
     public List<Reviews> getReviewList()
     {
         List<Reviews> reviewsList = new LinkedList<>();
-
         try
         {
             List<Map<String, Object>> map = idbPersistence.loadData("getFromDB", params);

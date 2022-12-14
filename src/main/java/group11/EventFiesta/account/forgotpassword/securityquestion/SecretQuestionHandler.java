@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class SecretQuestionHandler implements IForgotPassword {
 
-
     IDBPersistence idbPersistence;
     Object[] params;
     String securityQuestion;
@@ -31,20 +30,20 @@ public class SecretQuestionHandler implements IForgotPassword {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(data);
         if (data.size() > 0) {
             String secretQuestionFromDB = data.get(0).get("security_question").toString();
             String secretAnswerFromDB = data.get(0).get("security_answer").toString();
-            System.out.println("secret question from DB : " + secretQuestionFromDB);
-            System.out.println("secret answer from DB : " + secretAnswerFromDB);
-            System.out.println("Secret Question Received : " + securityQuestion);
-            System.out.println("Secret Answer Received : " + securityAnswer);
+
             if (secretQuestionFromDB.equals(securityQuestion)) {
                 if (secretAnswerFromDB.equals(securityAnswer)) {
                     return new CorrectSecurityCredential(account);
                 }
-                else {return new IncorrectSecurityCredential(account);}
-            } else {return new IncorrectSecurityCredential(account);}
+                else {
+                    return new IncorrectSecurityCredential(account);
+                }
+            } else {
+                return new IncorrectSecurityCredential(account);
+            }
         }
         return new IncorrectSecurityCredential(account);
     }
