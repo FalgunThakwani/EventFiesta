@@ -23,7 +23,7 @@ public class UserGuestListController {
     @GetMapping("/user/{event_id}/guests")
     public String getGuestList(Model model, HttpServletRequest request, @PathVariable("event_id") int eventId) throws Exception {
         HttpSession session = request.getSession(false);
-        int userId = (int) session.getAttribute("userId");
+        int userId = (int) session.getAttribute("accountId");
         model.addAttribute("userId", userId);
         model.addAttribute("eventId", eventId);
         GuestListHandler glHandler = new GuestListHandler(dbPersistence);
@@ -33,16 +33,18 @@ public class UserGuestListController {
         return "UserGuestList";
     }
 
-    @PostMapping("/handleAddGuest/{event_id}")
-    public String addGuest(Model model, @ModelAttribute Guest guest, @PathVariable("event_id") int eventId, @ModelAttribute("user") User user) throws Exception {
+    @PostMapping("/handleAddGuest/{user_id}/{event_id}")
+    public String addGuest(Model model, @ModelAttribute Guest guest,
+                           @PathVariable("event_id") int eventId,
+                           @PathVariable("user_id") int userId) throws Exception {
         GuestListHandler glHandler = new GuestListHandler(dbPersistence);
         UserGuestList ugl = new UserGuestList();
 //        User user = model.getAttribute("user");
-        ugl.setUserId(user.getUserId());
+        ugl.setUserId(userId);
         ugl.setEventId(eventId);
         ugl.addGuest(guest);
         glHandler.storeGuestList(ugl);
-        model.addAttribute("userId", user.getUserId());
+        model.addAttribute("userId", userId);
         model.addAttribute("eventId", eventId);
         ugl = glHandler.loadGuestList(eventId);
         model.addAttribute("userGuestList", ugl);
