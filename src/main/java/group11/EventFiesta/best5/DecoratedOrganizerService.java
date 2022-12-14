@@ -35,11 +35,10 @@ public class DecoratedOrganizerService extends BaseDecorator {
 
     private void getDetailsFromDB() {
         List<Map<String, Object>> resultSet = helperForDB.getOrganizerDetailsFromDB(this.organizerId);
-        buildObject(resultSet);
+        initializeObject(resultSet);
     }
 
-    /// Use builder pattern to do this kind of stuff please
-    private void buildObject(List<Map<String, Object>> resultSet) {
+    private void initializeObject(List<Map<String, Object>> resultSet) {
         if (resultSet.size() > 0) {
             organizerName = resultSet.get(0).get("name").toString();
             firstName = resultSet.get(0).get("first_name").toString();
@@ -53,7 +52,6 @@ public class DecoratedOrganizerService extends BaseDecorator {
             contact_hours_to = (LocalDateTime) resultSet.get(0).get("contact_hours_to");
         }
     }
-
 
     public Integer getOrganizerId() {
         return organizerId;

@@ -1,18 +1,21 @@
 package group11.EventFiesta.controller;
 
-import group11.EventFiesta.ISignup;
+
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;
-import group11.EventFiesta.account.signup.user.UserSignUp;
+
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.Service;
-import group11.EventFiesta.account.signup.organizer.OrganizerSignUp;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import group11.EventFiesta.model.User;
+import group11.EventFiesta.signUp.ISignUpFactory;
+import group11.EventFiesta.signUp.ISignup;
+import group11.EventFiesta.signUp.SignUpFactory;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 public class SignUpController {
 
     private IDBPersistence dbPersistence = new MySQLDBPersistence();
+    private ISignUpFactory factory = new SignUpFactory();
 
     @GetMapping("/signup")
     public String getHomePage(Model model) {
@@ -30,10 +34,9 @@ public class SignUpController {
     @PostMapping("/handleUserSignUp")
     public String handleUserSignUp(@ModelAttribute User user) {
         // Todo: Store User object in db
-        ISignup signup = new UserSignUp(dbPersistence);
+        ISignup signup = factory.createUserSignUp(dbPersistence);
         try {
             if (signup.validateUser(user)) {
-                // TODO: Send message to front end
                 System.out.println("User with email " + user.getEmail() + " already exists.");
                 System.out.println("Please try with different email address");
             } else {
@@ -49,12 +52,12 @@ public class SignUpController {
     @GetMapping("/org/signup")
     public String getOrgSignUpPage(Model model) {
         Organizer org = new Organizer();
-        ArrayList<Service> services= new ArrayList<Service>();
-//        for(int i=0; i<3; i++) {
+        ArrayList<Service> services = new ArrayList<Service>();
+        // for(int i=0; i<3; i++) {
         services.add(new Service("Catering", 0));
         services.add(new Service("Decoration", 0));
         services.add(new Service("Hall", 0));
-//        }
+        // }
         org.setService(services);
         model.addAttribute("organizer", org);
         return "OrganizerSignUp";
@@ -65,7 +68,7 @@ public class SignUpController {
         System.out.println(organizer.getService());
         // Store Organizer object in db
 
-        ISignup signup = new OrganizerSignUp(dbPersistence);
+        ISignup signup = factory.createOrganizerSignUp(dbPersistence);
         try {
             if (signup.validateUser(organizer)) {
                 // Error
