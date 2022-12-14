@@ -1,5 +1,7 @@
 package group11.EventFiesta.model;
 
+import java.math.BigInteger;
+
 public class Guest {
     private int guestId;
     private String guestName;
