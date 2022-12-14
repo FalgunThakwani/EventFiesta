@@ -1,5 +1,6 @@
 package group11.EventFiesta.UserMyEventDetailsTest;
 
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.event.UserMyEventDetails;
 import group11.EventFiesta.model.Organizer;
 import group11.EventFiesta.model.UserEvent;
@@ -14,7 +15,7 @@ public class UserMyEventDetailsTest {
     @Test
     public void getUserMyEventDetailsTest()
     {
-        MockUserMyEventDetailsPersistence mockDB = new MockUserMyEventDetailsPersistence();
+        IDBPersistence mockDB = new MockUserMyEventDetailsPersistence();
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(mockDB);
 
 
@@ -76,7 +77,7 @@ public class UserMyEventDetailsTest {
     @Test
     public void getUserMyEventDetailsFailureTest()
     {
-        MockUserMyEventDetailsPersistence mockDB = new MockUserMyEventDetailsPersistence();
+        IDBPersistence mockDB = new MockUserMyEventDetailsPersistence();
         UserMyEventDetails userMyEventDetails = new UserMyEventDetails(mockDB);
 
         try

@@ -3,6 +3,7 @@ package group11.EventFiesta.ForgotPasswordTest;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.IForgotPassword;
 import group11.EventFiesta.account.forgotpassword.resetpassword.ResetPasswordHandler;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ public class ResetPasswordTest {
 
     @Test
     public void validateResetPasswordPassTest() {
-        MockResetPassword mockDB = new MockResetPassword();
+        IDBPersistence mockDB = new MockResetPassword();
         Object[] params2 = new Object[]{"UserSensitive", "encrypted_password", "[64, 82, -28, 9, -41, -67, -60, 81, -48, 86, 91, -32, 110, 28, -1, 73]", "user_id", 1};
         IForgotPassword resetPasswordHandler = new ResetPasswordHandler(mockDB, params2);
 
@@ -31,7 +32,7 @@ public class ResetPasswordTest {
 
     @Test
     public void validateResetPasswordFailTest() {
-        MockResetPassword mockDB = new MockResetPassword();
+        IDBPersistence mockDB = new MockResetPassword();
         Object[] params2 = new Object[]{"UserSensitive", "encrypted_password", "[64, 82, -28, 9, -41, -67, -60, 81, -48, 86, 91, -32, 110, 28, -1, 73]", "user_id", 3};
         IForgotPassword resetPasswordHandler = new ResetPasswordHandler(mockDB, params2);
 

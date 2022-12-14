@@ -3,6 +3,7 @@ package group11.EventFiesta.ForgotPasswordTest;
 import group11.EventFiesta.account.IState;
 import group11.EventFiesta.account.forgotpassword.securityquestion.SecretQuestionHandler;
 import group11.EventFiesta.account.forgotpassword.securityquestion.VerifyEmailHandler;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ public class SecurityQuestionTest
     {
         String email = "testuser@test.com";
         Object[] params1 = new Object[]{"UserInfo", "*", "email", email};
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         VerifyEmailHandler emailHandler = new VerifyEmailHandler(mockDb, params1);
 
         User user = new User();
@@ -46,7 +47,7 @@ public class SecurityQuestionTest
     {
         String email = "unknown@test.com";
         Object[] params1 = new Object[]{"UserInfo", "*", "email", email};
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         VerifyEmailHandler emailHandler = new VerifyEmailHandler(mockDb, params1);
 
         User user = new User();
@@ -73,7 +74,7 @@ public class SecurityQuestionTest
     @Test
     public void validateSecurityCredentialsTest()
     {
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         Object[] params = new Object[]{"UserSensitive", "*", "user_id", 1};
 
         User user = new User();
@@ -95,7 +96,7 @@ public class SecurityQuestionTest
     @Test
     public void validateSecurityCredentialsWrongQuestionTest()
     {
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         Object[] params = new Object[]{"UserSensitive", "*", "user_id", 1};
 
         User user = new User();
@@ -117,7 +118,7 @@ public class SecurityQuestionTest
     @Test
     public void validateSecurityCredentialsWrongAnswerTest()
     {
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         Object[] params = new Object[]{"UserSensitive", "*", "user_id", 1};
 
         User user = new User();
@@ -139,7 +140,7 @@ public class SecurityQuestionTest
     @Test
     public void validateSecurityCredentialsWrongQuestionAndAnswerTest()
     {
-        MockSecurityPassword mockDb = new MockSecurityPassword();
+        IDBPersistence mockDb = new MockSecurityPassword();
         Object[] params = new Object[]{"UserSensitive", "*", "user_id", 1};
 
         User user = new User();

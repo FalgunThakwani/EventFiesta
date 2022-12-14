@@ -1,5 +1,6 @@
 package group11.EventFiesta.UserMyEventFeedbackTest;
 
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.event.BlogHandler;
 import group11.EventFiesta.event.UserMyEventFeedback;
 import group11.EventFiesta.model.Reviews;
@@ -14,7 +15,7 @@ public class BlogHandlerTest {
     @Test
     public void getReviewsListPassTest()
     {
-        MockUserMyEventFeedback mockDb = new MockUserMyEventFeedback();
+        IDBPersistence mockDb = new MockUserMyEventFeedback();
         Object[] params = new Object[]{"ServiceReviews", "*"};
         BlogHandler blogHandler = new BlogHandler(mockDb, params);
         List<Reviews> reviewsList = blogHandler.getReviewList();
@@ -25,7 +26,7 @@ public class BlogHandlerTest {
     @Test
     public void getReviewsListFailTest()
     {
-        MockUserMyEventFeedback mockDb = new MockUserMyEventFeedback();
+        IDBPersistence mockDb = new MockUserMyEventFeedback();
         Object[] params = new Object[]{"ServiceReviews", "*"};
         BlogHandler blogHandler = new BlogHandler(mockDb, params);
         List<Reviews> reviewsList = blogHandler.getReviewList();

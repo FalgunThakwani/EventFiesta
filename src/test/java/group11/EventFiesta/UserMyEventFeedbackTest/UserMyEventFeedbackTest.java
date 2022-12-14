@@ -2,6 +2,7 @@ package group11.EventFiesta.UserMyEventFeedbackTest;
 
 import group11.EventFiesta.UserEventChecklist.UserEventChecklistHandler;
 import group11.EventFiesta.UserEventChecklistTest.MockUserEventChecklistPersistence;
+import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.UserMyEventFeedback;
 import group11.EventFiesta.model.Reviews;
@@ -16,7 +17,7 @@ public class UserMyEventFeedbackTest {
 
     @Test
     public void submitUserMyEventFeedbackTest() throws Exception {
-        MockUserMyEventFeedback mockDb = new MockUserMyEventFeedback();
+        IDBPersistence mockDb = new MockUserMyEventFeedback();
         UserMyEventFeedback userMyEventFeedback = new UserMyEventFeedback(mockDb);
 
         boolean result = userMyEventFeedback.submitUserMyEventFeedback(3, 1, 1, "worst");
