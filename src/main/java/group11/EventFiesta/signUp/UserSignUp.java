@@ -30,7 +30,8 @@ public class UserSignUp extends ISignup {
     public void storeInfo(Account object) throws Exception {
         User user = (User) object;
         Object[] params = createParams(user);
-        connection.loadData("sp_storeUserData", params);
+
+        List<Map<String, Object>> resultSet = connection.loadData("sp_storeUserData", params);
     }
 
     private Object[] createParams(User user) {

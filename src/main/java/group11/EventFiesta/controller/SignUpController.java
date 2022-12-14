@@ -1,6 +1,5 @@
 package group11.EventFiesta.controller;
 
-
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;
 
@@ -32,21 +31,26 @@ public class SignUpController {
     }
 
     @PostMapping("/handleUserSignUp")
-    public String handleUserSignUp(@ModelAttribute User user) {
+    public String handleUserSignUp(@ModelAttribute User user, Model model) {
         // Todo: Store User object in db
         ISignup signup = factory.createUserSignUp(dbPersistence);
         try {
             if (signup.validateUser(user)) {
                 System.out.println("User with email " + user.getEmail() + " already exists.");
                 System.out.println("Please try with different email address");
+                model.addAttribute("ValidateMessage", "User with email " + user.getEmail()
+                        + " already exists. Please try with different email address");
+                return "UserSignUp";
             } else {
                 signup.storeInfo(user);
+                return "home";
             }
         } catch (Exception e) {
             System.out.println("Error in validating user");
             e.printStackTrace();
+            return "/UserSignUp";
         }
-        return "home";
+
     }
 
     @GetMapping("/org/signup")
@@ -82,7 +86,7 @@ public class SignUpController {
             System.out.println("Error in validating Organizer");
             e.printStackTrace();
         }
-        return "home";
+        return "redire";
     }
 
 }

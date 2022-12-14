@@ -8,7 +8,7 @@ public abstract class BaseDecorator extends OrganizerService {
         init(org);
     }
 
-    void init(OrganizerService organizerService) {
+    private void init(OrganizerService organizerService) {
         this.budget = organizerService.budget;
         this.headCount = organizerService.headCount;
         this.orgranizerId = organizerService.orgranizerId;

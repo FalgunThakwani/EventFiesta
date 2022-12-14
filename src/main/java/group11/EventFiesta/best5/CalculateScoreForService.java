@@ -37,6 +37,9 @@ public class CalculateScoreForService implements ICalculateScore {
 
         Double totalScore = (rs + es + bs) / totalNumberOfCriteria;
         totalScore = totalScore < defaultScore ? defaultScore : totalScore;
+        if (totalScore > defaultScore && totalScore > 10) {
+            totalScore = totalScore - (totalScore / 4);
+        }
         return totalScore;
     }
 }

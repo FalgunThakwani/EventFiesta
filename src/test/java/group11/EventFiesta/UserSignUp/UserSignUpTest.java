@@ -26,9 +26,10 @@ public class UserSignUpTest {
     Assertions.assertEquals(signupTest.validateUser(user), false);
     }
 
-    // @Test
-    // public void storeInfo() throws Exception {
-    // // signupTest.storeInfo(user);
-    // }
+    @Test
+    public void storeInfo() throws Exception {
+        
+    signupTest.storeInfo(user);
+    }
 
 }
