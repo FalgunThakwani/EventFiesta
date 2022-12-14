@@ -14,7 +14,7 @@
     <button id="addGuest" class="btn" name="Add Guest" onclick="addguests()">Add Guest</button>
     <div style="display: none" id="guestModal" class="modal">
         <div class="modal-content">
-            <form method="post" id="guestForm" th:action="@{'/handleAddGuest/'+${eventId}}" th:object="${guest}">
+            <form method="post" id="guestForm" th:action="@{'/handleAddGuest/'+${userId}+'/'+${eventId}}" th:object="${guest}">
                 <p>Name*</p>
                 <p><input maxlength="50" name="name" type="text" th:field="*{guestName}"/></p>
                 <p>Number*</p>
@@ -39,6 +39,9 @@
                 </tr>
                 </thead>
                 <tbody id="guests">
+                <tr th:if="${guests == null}">
+                    <td colspan="2"> No Guests Added. </td>
+                </tr>
                 <tr th:each="guest, itemStat : *{guests}">
                     <td><input th:field="*{guests[__${itemStat.index}__].guestName}" /></td>
                     <td><input th:field="*{guests[__${itemStat.index}__].contactNo}" /></td>
