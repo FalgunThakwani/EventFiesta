@@ -9,13 +9,21 @@ import java.util.Map;
 
 public class BlogHandler
 {
-    public List<Reviews> getReviewList(IDBPersistence db)
+    IDBPersistence idbPersistence;
+
+    Object[] params;
+    public BlogHandler(IDBPersistence dbPersistence, Object[] params) {
+
+        this.idbPersistence = dbPersistence;
+        this.params = params;
+    }
+    public List<Reviews> getReviewList()
     {
         List<Reviews> reviewsList = new LinkedList<>();
 
         try
         {
-            List<Map<String, Object>> map = db.loadData("SELECT review_id, rating, review, service_id, event_id FROM CSCI5308_11_DEVINT.ServiceReviews");
+            List<Map<String, Object>> map = idbPersistence.loadData("getFromDB", params);
 
             for(int i = 0; i < map.size(); i++)
             {

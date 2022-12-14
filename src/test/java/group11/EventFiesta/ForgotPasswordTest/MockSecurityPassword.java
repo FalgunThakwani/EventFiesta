@@ -1,7 +1,6 @@
-package group11.EventFiesta.register;
+package group11.EventFiesta.ForgotPasswordTest;
 
 import group11.EventFiesta.db.IDBPersistence;
-import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.User;
 
 import java.util.HashMap;
@@ -9,11 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class SecurityPasswordMockDB implements IDBPersistence
+public class MockSecurityPassword implements IDBPersistence
 {
     List<Map<String, Object>> securityAccountList;
 
-    public SecurityPasswordMockDB()
+    public MockSecurityPassword()
     {
         securityAccountList = new LinkedList<>();
     }
@@ -38,11 +37,21 @@ public class SecurityPasswordMockDB implements IDBPersistence
 
         Map<String, Object> map = new HashMap<>();
 
-        if(user.getEmail().equals((String) params[3]))
+        if(user.getEmail().equals(String.valueOf(params[3])))
         {
             map.put("testuser@test.com", user);
             securityAccountList.add(map);
         }
+        else if(user.getUserId() == params[3])
+        {
+            map.put("testuser@test.com", user);
+            map.put("security_question", "question");
+            map.put("security_answer", "answer");
+
+            securityAccountList.add(map);
+        }
+
+        System.out.println(securityAccountList);
 
         return securityAccountList;
     }

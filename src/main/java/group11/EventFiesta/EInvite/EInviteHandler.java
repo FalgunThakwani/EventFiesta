@@ -14,7 +14,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.imageio.ImageIO;
 
-public class EInviteHandler {
+public class EInviteHandler implements IEInviteHandler {
     EInviteModel eObject;
     private File input;
     private File output;
@@ -35,23 +35,9 @@ public class EInviteHandler {
         init();
     }
 
-    private void init() {
-
-        this.title = "Please join us to celebrate " + eObject.getCeremonyName();
-        this.subTitle = "ceremony of";
-        this.templateName = "einviteTemplate2.jpg";
-        this.outputFileName = "generatedEInvite.jpg";
-        this.input = new File("src/main/resources/static/images/" + templateName);
-        this.output = new File("src/main/resources/static/images/" + outputFileName);
-        this.sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm",
-                Locale.ENGLISH);
-
-    }
-
+    @Override
     public void AddTextInImage() {
-
         try {
-
             BufferedImage orgImg = getOriginalImage();
 
             BufferedImage buffImg = getBufferdImage();
@@ -87,12 +73,6 @@ public class EInviteHandler {
             graphics.drawString(getFormatedTime(), centerX - 20, centerY + bottomY + 50);
             graphics.drawString(eObject.getVenue(), centerX - 20, centerY + bottomY + 100);
 
-            // drawTitle(graphics);
-
-            // drawCenter(graphics);
-
-            // drawBottom(graphics);
-
             ImageIO.write(buffImg, "jpg", output);
 
             graphics.dispose();
@@ -102,7 +82,8 @@ public class EInviteHandler {
         }
     }
 
-    private BufferedImage getOriginalImage() {
+    @Override
+    public BufferedImage getOriginalImage() {
         try {
             img = ImageIO.read(input);
         } catch (IOException e) {
@@ -110,6 +91,22 @@ public class EInviteHandler {
             e.printStackTrace();
         }
         return img;
+    }
+
+    @Override
+    public Graphics2D getGraphicsObject(BufferedImage bold) {
+        Graphics2D graphics2d = (Graphics2D) bold.getGraphics();
+        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f);
+        graphics2d.drawImage(img, 1, 2, null);
+        graphics2d.setComposite(alphaComposite);
+        return graphics2d;
+    }
+
+    @Override
+    public BufferedImage getBufferdImage() {
+        int imgType = "jpg".equalsIgnoreCase("jpg") ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(), img.getHeight(), imgType);
+        return bufferedImage;
     }
 
     private String getFormatedDate() {
@@ -135,42 +132,16 @@ public class EInviteHandler {
         }
     }
 
-    private Graphics2D getGraphicsObject(BufferedImage bold) {
-        Graphics2D graphics2d = (Graphics2D) bold.getGraphics();
-        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f);
-        graphics2d.drawImage(img, 1, 2, null);
-        graphics2d.setComposite(alphaComposite);
-        return graphics2d;
-    }
+    private void init() {
 
-    private BufferedImage getBufferdImage() {
-        int imgType = "jpg".equalsIgnoreCase("jpg") ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
-        BufferedImage bufferedImage = new BufferedImage(img.getWidth(), img.getHeight(), imgType);
-        return bufferedImage;
-    }
+        this.title = "Please join us to celebrate " + eObject.getCeremonyName();
+        this.subTitle = "ceremony of";
+        this.templateName = "einviteTemplate2.jpg";
+        this.outputFileName = "generatedEInvite.jpg";
+        this.input = new File("src/main/resources/static/images/" + templateName);
+        this.output = new File("src/main/resources/static/images/" + outputFileName);
+        this.sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm",
+                Locale.ENGLISH);
 
-    private void drawTitle(Graphics2D graphics2d) {
-        graphics2d.setColor(Color.white);
-        graphics2d.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 20));
-        graphics2d.drawString(title, topX, topY);
-        graphics2d.drawString(subTitle, centerX - 20, topY + 40);
-    }
-
-    private void drawCenter(Graphics2D graphics2d) {
-        graphics2d.setFont(new Font(Font.DIALOG_INPUT, Font.ITALIC, 50));
-        String host2 = eObject.getEventHost2();
-        if (host2 != null && host2 != "") {
-            graphics2d.drawString("&", centerX, centerY - 10);
-            graphics2d.drawString(eObject.getEventHost2(), centerX + 20, centerY + 60);
-            graphics2d.drawString(eObject.getEventHost1(), topX + 30, topY + 140);
-        } else {
-            graphics2d.drawString(eObject.getEventHost1(), centerX - 30, centerY);
-        }
-    }
-
-    private void drawBottom(Graphics2D graphics2d) {
-        graphics2d.setFont(new Font(Font.SERIF, Font.ITALIC, 30));
-        graphics2d.drawString(getFormatedDate(), topX, centerY + bottomY);
-        graphics2d.drawString(getFormatedTime(), centerX - 20, centerY + bottomY + 50);
     }
 }

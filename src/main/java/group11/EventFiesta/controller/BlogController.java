@@ -17,8 +17,9 @@ public class BlogController
     @GetMapping("/blog")
     public String showBlog(Model model) throws Exception
     {
-        BlogHandler blogHandler = new BlogHandler();
-        List<Reviews> reviewsList = blogHandler.getReviewList(new MySQLDBPersistence());
+        Object[] params = new Object[]{"ServiceReviews", "*"};
+        BlogHandler blogHandler = new BlogHandler(new MySQLDBPersistence(), params);
+        List<Reviews> reviewsList = blogHandler.getReviewList();
         model.addAttribute("userReviews", reviewsList);
         return "Blog";
     }
