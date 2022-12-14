@@ -14,7 +14,7 @@
 
         <p><span style="font-size:38px;">Create an account</span></p>
 
-        <p>Already a member?&nbsp;<a href="/signin">Sign In</a></p>
+        <p>Already a member?&nbsp;<a href="/organizerLogin">Sign In</a></p>
 
         <div th:if="${ValidationMsg} != null">
             <p style="color: red" data-th-text="${ValidationMsg}" />
@@ -88,7 +88,7 @@
 
 <!--            <div class = "tab">-->
 
-                <p>Just a few more details:></p>
+                <p>Just a few more details:</p>
                 <p>What time is appropriate to contact you?*</p>
                 <input type="datetime-local" name="fromcontact" th:field="*{fromcontact}"/> to <input type="datetime-local" name="tocontact" th:field="*{tocontact}"/>
 

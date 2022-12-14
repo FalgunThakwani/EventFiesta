@@ -17,7 +17,7 @@ public class OTPExpired  extends AccountState {
     @Override
     public void setNextPage() {
         String nextPage = "redirect:/UserForgotPasswordOTP";
-        if (account.getOrg()) {
+        if (account.getIsOrganizer()) {
             nextPage = "redirect:/OrganizerForgotPasswordOTP";
         }
         System.out.println(nextPage);

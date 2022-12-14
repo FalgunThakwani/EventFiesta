@@ -19,7 +19,7 @@
         <form th:action="@{/organizerValidateOTP}" th:object="${organizer}" method="post">
 
             <p>Enter OTP*</p>
-            <p><input  type="hidden" th:field="*{org}" /></p>
+            <p><input  type="hidden" th:field="*{isOrganizer}" /></p>
             <p><input  type="hidden" th:field="*{email}" /></p>
             <p><input  type="hidden" th:field="*{accountId}" /></p>
 
@@ -29,6 +29,7 @@
         </form>
 
         <p>Retry&nbsp;<a href="/organizerLogin"> login</a></p>
+        <p><a href="/home">Back to Home</a></p>
     </div>
 
     <div class="split-50w right">

@@ -34,7 +34,7 @@ public class SecurityPasswordMockDB implements IDBPersistence
         user.setSecurityAnswer("answer");
         user.setPassword("password");
         user.setEmail("testuser@test.com");
-        user.setOrg(false);
+        user.setIsOrganizer(false);
 
         Map<String, Object> map = new HashMap<>();
 

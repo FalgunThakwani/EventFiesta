@@ -13,10 +13,6 @@ public class SMTPAuthenticator extends Authenticator {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public PasswordAuthentication getPasswordAuthentication() {
         if (userName != null && password != null) {
             return new PasswordAuthentication(userName, password);

@@ -13,12 +13,12 @@ public class User extends Account {
     private String securityQuestion;
     private String securityAnswer;
 
-    public Boolean getOrg() {
-        return org;
+    public Boolean getIsOrganizer() {
+        return isOrganizer;
     }
 
-    public void setOrg(Boolean org) {
-        this.org = org;
+    public void setIsOrganizer(Boolean isOrganizer) {
+        this.isOrganizer = isOrganizer;
     }
 
     public String getFirstName() {

@@ -32,7 +32,6 @@
                                 </div>
                             </div>
                             <th:block th:each="organizerEvent, iter :${PendingEvents}">
-<!--                                <form th:action="@{/acceptEvent}" th:method="post" th:object="${todoItem}">-->
                                 <div th:attr="id=|Pending_${organizerEvent.event_id}|" class="verticalTabContent">
                                     <h3 class="align-center" th:text="' ' + ${organizerEvent.type} + ' | ' + ${organizerEvent.event_date} + ' | ' + ${organizerEvent.venue}"></h3>
                                     <hr>
@@ -69,7 +68,7 @@
                                                 <span th:text = "${organizerEvent.venue}"/>
                                             </p>
                                             <p>
-                                                <strong>Count : </strong>
+                                                <strong>Guest Count : </strong>
                                                 <span th:text = "${organizerEvent.head_count}"/>
                                             </p>
                                         </div>
@@ -139,7 +138,7 @@
                                                 <span th:text = "${organizerEvent.venue}"/>
                                             </p>
                                             <p>
-                                                <strong>Count : </strong>
+                                                <strong>Guest Count : </strong>
                                                 <span th:text = "${organizerEvent.head_count}"/>
                                             </p>
                                         </div>
@@ -197,7 +196,7 @@
                                                 <span th:text = "${organizerEvent.venue}"/>
                                             </p>
                                             <p>
-                                                <strong>Count : </strong>
+                                                <strong>Guest Count : </strong>
                                                 <span th:text = "${organizerEvent.head_count}"/>
                                             </p>
                                         </div>

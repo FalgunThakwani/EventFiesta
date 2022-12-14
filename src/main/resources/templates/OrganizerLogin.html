@@ -13,7 +13,7 @@
                 <p>Welcome back! Please enter your credentials</p>
                 <form th:action="@{/handleOrganizerLogin}" th:object="${organizer}" method="post">
                     <p>Email*</p>
-                    <p><input  type="hidden" th:field="*{org}" /></p>
+                    <p><input  type="hidden" th:field="*{isOrganizer}" /></p>
                     <p><input class= "w-410" maxlength="50" name="email" type="email" th:field="*{email}" /></p>
                     <p>Password*</p>
                     <p><input  class= "w-410" maxlength="25" name="password" type="password" th:field="*{password}" /></p>
@@ -23,8 +23,9 @@
                     </div>
                     <p><input class="btn submitButton"name="Login" type="submit" value="Login" /></p>
                 </form>
-                <p>Not registered yet?&nbsp;<a href="/signup">Create an account</a></p>
+                <p>Not registered yet?&nbsp;<a href="/org/signup">Create an account</a></p>
                 <p>Are you a customer? Try&nbsp;<a href="/userLogin">user login</a></p>
+                <p><a href="/home">Back to Home</a></p>
             </div>
             <div class="split-50w right">
                 <img th:src="@{/images/signupimage.jpg}" class="image">
