@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@SessionAttributes({"user"})
 @Controller
 public class UserSecurityQuestionsController {
     @GetMapping("/userSecurityQuestion")
@@ -28,7 +27,6 @@ public class UserSecurityQuestionsController {
     {
         int user_id;
         String statusMessage;
-//        model.addAttribute("user", user);
         System.out.println("Entered email is : "+ user.getEmail());
         System.out.println("Selected security question is : "+ user.getSecurityQuestion());
         System.out.println("Entered security answer is : "+ user.getSecurityAnswer());
@@ -52,11 +50,11 @@ public class UserSecurityQuestionsController {
             if(state.getStatus().equals("Security Details validated successfully!"))
             {
                 model.addAttribute("user", user);
-                return "redirect:/userResetPassword";
+                return "redirect:/userResetPassword?email="+email;
             }
             else
             {
-//                model.addAttribute("user", user);
+
                     return "UserSecurityQuestion";
             }
         }

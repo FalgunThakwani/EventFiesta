@@ -33,7 +33,16 @@ public class UserEventChecklistHandler
 
     public List<TodoChecklist> addItemToChecklist(int eventID, String checklistItemName){
         Object[] params = new Object[]{checklistItemName,eventID,new Date(), 0};
-        String query = "{call sp_storeUserEventChecklistData (?,?,?,?)}";
+        String storedProcedure = "sp_storeUserEventChecklistData";
+        String query = "{call " + storedProcedure + " (";
+        for (Object param : params) {
+            query += "?,";
+        }
+        StringBuffer buffer = new StringBuffer(query);
+        buffer.deleteCharAt(query.length() - 1);
+        query = buffer.toString();
+        query += ")}";
+        System.out.println(query);
         try {
             Integer data = idbPersistence.saveData(query, params );
             return this.getChecklist(eventID);

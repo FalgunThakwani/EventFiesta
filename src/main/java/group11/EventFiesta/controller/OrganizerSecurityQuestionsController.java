@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.List;
 import java.util.Map;
 
-@SessionAttributes({"organizer"})
 @Controller
 public class OrganizerSecurityQuestionsController {
     @GetMapping("/organizerSecurityQuestion")
@@ -54,7 +53,7 @@ public class OrganizerSecurityQuestionsController {
             if(state.getStatus().equals("Security Details validated successfully!"))
             {
                 model.addAttribute("organizer", organizer);
-                return "redirect:/organizerResetPassword";
+                return "redirect:/organizerResetPassword?email="+email;
             }
             else
             {

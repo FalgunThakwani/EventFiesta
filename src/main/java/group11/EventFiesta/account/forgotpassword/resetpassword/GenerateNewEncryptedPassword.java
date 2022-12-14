@@ -16,6 +16,19 @@ public class GenerateNewEncryptedPassword {
         this.params = params;
     }
 
+    public GenerateNewEncryptedPassword() {
+
+    }
+
+    public List<Map<String, Object>> getID() throws Exception {
+        List<Map<String, Object>> data = null;
+        data = idbPersistence.loadData("getFromDBUsingWhere", params);
+                if(data.size() > 0){
+                    Map<String, Object> row = data.get(0);
+                    return data;
+                }
+        return null;
+    }
     public String getEncryptedPassword(String newPassword) {
         List<Map<String, Object>> data = null;
         try {
