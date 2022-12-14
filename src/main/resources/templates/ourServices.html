@@ -1,0 +1,27 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Fiesta - Our Services</title>
+  <link th:href="@{/css/home.css}" rel="stylesheet" />
+  <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
+</head>
+<body>
+<th:block th:include="fragments/header :: header"></th:block>
+<div>
+    <div class="logo-text">
+        <div class="heading">Our Services</div>
+        <div class="sub-heading">Events</div>
+            <div class="content-text">Wedding</div>
+            <div class="content-text">Birthday</div>
+            <div class="content-text">Anniversary</div>
+        <div class="sub-heading"></div>
+        <div class="sub-heading">Services</div>
+            <div class="content-text">Catering</div>
+            <div class="content-text">Decoration</div>
+            <div class="content-text">Hall</div>
+    </div>
+  <img th:src="@{/images/homepage.jpg}" class="image" />
+</div>
+</body>
+</html>

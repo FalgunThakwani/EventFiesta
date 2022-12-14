@@ -1,0 +1,28 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Contact Us - Event Fiesta</title>
+        <link th:href="@{/css/home.css}" rel="stylesheet" />
+        <link rel="icon" th:href="@{/images/logo.png}" type="image/x-icon" />
+    </head>
+    <body>
+        <th:block th:include="fragments/header :: header"></th:block>
+        <div>
+            <div class="logo-text">
+                <div class="heading">About Us</div>
+                <div class="sub-heading">Let's Make Your Dream a Reality</div>
+                <div class="content-text">
+                    We at Event Fiesta provides event planning from setting
+                </div>
+                <div class="content-text">
+                    up venues to decoration to sending E-invites and organising guest & check lists.
+                </div>
+                <div class="content-text">
+                    We help you find the best organizers based on your budget and requirements.
+                </div>
+            </div>
+            <img th:src="@{/images/homepage.jpg}" class="image" />
+        </div>
+    </body>
+</html>
