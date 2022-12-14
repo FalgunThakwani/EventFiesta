@@ -2,6 +2,7 @@ package group11.EventFiesta.controller.OrganizerEvents;
 
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;
+import group11.EventFiesta.event.status.*;
 import group11.EventFiesta.event.EventManager;
 import group11.EventFiesta.mail.Mail;
 import group11.EventFiesta.mail.MailProtocol;
@@ -29,16 +30,17 @@ public class OrganizerEventDetailsController {
             IDBPersistence idbPersistence = new MySQLDBPersistence();
             EventManager eventManager = new EventManager(idbPersistence);
 
-            String status = "Complete";
-            List<Map<String, Object>> events = eventManager.getEventServicesAndReviews(organizerId, status);
+            CreateEventStatus createEventStatus = new CreateEventStatus();
+            IEventStatus completeStatus = createEventStatus.getEventStatus("complete");
+            List<Map<String, Object>> events = eventManager.getEventServices(organizerId, completeStatus.getEventStatus());
             model.addAttribute("CompletedEvents", new ArrayList<>(events));
 
-            status = "Upcoming";
-            events = eventManager.getEventServices(organizerId, status);
+            IEventStatus upcomingStatus = createEventStatus.getEventStatus("upcoming");
+            events = eventManager.getEventServices(organizerId, upcomingStatus.getEventStatus());
             model.addAttribute("UpcomingEvents", new ArrayList<>(events));
 
-            status = "Pending";
-            events = eventManager.getEventServices(organizerId, status);
+            IEventStatus pendingStatus = createEventStatus.getEventStatus("pending");
+            events = eventManager.getEventServices(organizerId, pendingStatus.getEventStatus());
             model.addAttribute("PendingEvents", new ArrayList<>(events));
 
         } catch (Exception exception) {
@@ -53,13 +55,13 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
-            String newStatus = "Upcoming";
-            String prevStatus = "Pending";
-            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
 
-            String mailSubject = "Event Fiesta - Event confirmed!";
-            String mailBody = "Event has been confirmed by the Organizer";
-            Mail mail = new Mail(email, mailSubject, mailBody);
+            CreateEventStatus createEventStatus = new CreateEventStatus();
+            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("upcoming");
+            IEventStatus previousStatus = newStatus.getPreviousState();
+            Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
+
+            Mail mail = new Mail(email, newStatus.getEmailSubject(), newStatus.getEmailContent());
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
 
@@ -76,13 +78,13 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
-            String newStatus = "Complete";
-            String prevStatus = "Upcoming";
-            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
 
-            String mailSubject = "Event Fiesta - Event completed!";
-            String mailBody = "Event has been marked completed by the Organizer. Contact us if you have an issue.";
-            Mail mail = new Mail(email, mailSubject, mailBody);
+            CreateEventStatus createEventStatus = new CreateEventStatus();
+            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("complete");
+            IEventStatus previousStatus = newStatus.getPreviousState();
+            Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
+
+            Mail mail = new Mail(email, newStatus.getEmailSubject(), newStatus.getEmailContent());
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
             IDBPersistence idbPersistence = new MySQLDBPersistence();
 
@@ -99,14 +101,14 @@ public class OrganizerEventDetailsController {
         try {
             HttpSession session = request.getSession();
             Long organizerId = Long.parseLong(session.getAttribute("accountId").toString());
-            String newStatus = "Rejected";
-            String prevStatus = "Pending";
-            Object[] params = new Object[]{eventId, organizerId, newStatus, prevStatus};
 
-            String mailSubject = "Event Fiesta - Event not confirmed!";
-            String mailBody = "Event was rejected by the Organizer";
+            CreateEventStatus createEventStatus = new CreateEventStatus();
+            IEventStatusWithPreviousState newStatus = createEventStatus.getEventStatusWithPreviousStatus("reject");
+            IEventStatus previousStatus = newStatus.getPreviousState();
+            Object[] params = new Object[]{eventId, organizerId, newStatus.getEventStatus(), previousStatus.getEventStatus()};
+
             MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
-            Mail mail = new Mail(email, mailSubject, mailBody);
+            Mail mail = new Mail(email, newStatus.getEmailSubject(), newStatus.getEmailContent());
             IDBPersistence idbPersistence = new MySQLDBPersistence();
 
             EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
