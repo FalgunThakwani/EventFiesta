@@ -32,7 +32,7 @@ public class ForgotPasswordUsingOTPTest {
         IState state = mockForgotPwdUsingOTP.validate(user);
 
         Assertions.assertEquals("OTP validated succesfully!", state.getStatus());
-        Assertions.assertEquals("userResetPassword", state.getNextPage());
+        Assertions.assertEquals("redirect:/userResetPassword?email=success@gmail.com", state.getNextPage());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ForgotPasswordUsingOTPTest {
         IState state = mockForgotPwdUsingOTP.validate(organizer);
 
         Assertions.assertEquals("OTP validated succesfully!", state.getStatus());
-        Assertions.assertEquals("organizerResetPassword", state.getNextPage());
+        Assertions.assertEquals("redirect:/organizerResetPassword?email=success@gmail.com", state.getNextPage());
     }
 
     @Test
