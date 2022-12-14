@@ -1,8 +1,9 @@
-package group11.EventFiesta.account.signup.organizer;
+package group11.EventFiesta.signUp;
+
 
 import group11.EventFiesta.DBConnection.IDBPersistence;
+
 import group11.EventFiesta.security.EncryptPassword;
-import group11.EventFiesta.ISignup;
 import group11.EventFiesta.model.Account;
 import group11.EventFiesta.model.Organizer;
 

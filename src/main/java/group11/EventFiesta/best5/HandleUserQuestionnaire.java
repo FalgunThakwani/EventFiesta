@@ -47,7 +47,8 @@ public class HandleUserQuestionnaire implements IHandleUserQuestionnaire {
             organizerService.id = Integer.parseInt(resultSet.get(i).get("service_id").toString());
             organizerService.serviceName = resultSet.get(i).get("service_type").toString();
             organizerService.price = Double.parseDouble(resultSet.get(i).get("price").toString());
-            organizerService.rating = Double.parseDouble(resultSet.get(i).get("rating").toString());
+            // organizerService.rating =
+            // Double.parseDouble(resultSet.get(i).get("rating").toString());
 
             organizerService.budget = (double) userEventQuestionnaire.getBudget();
             organizerService.headCount = (double) userEventQuestionnaire.getGuestCount();

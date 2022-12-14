@@ -26,14 +26,14 @@ import javax.servlet.http.HttpSession;
 public class Best5Controller {
 
     @GetMapping("/bestOrganizers")
-    public String getBest5Organizers(RedirectAttributes requestAttribute,
-            Model model) {
-        UserEventQuestionnaire questionnaire = (UserEventQuestionnaire) model.getAttribute("userEventObject");
-        // UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-        // questionnaire.setBudget(1000);
-        // questionnaire.setCity("Halifax");
-        // questionnaire.setService("Catering,Decoration");
-        // questionnaire.setGuestCount(10);
+    public String getBest5Organizers(Model model) {
+        // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
+        // model.getAttribute("userEventObject");
+        UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
+        questionnaire.setBudget(1000);
+        questionnaire.setCity("Halifax");
+        questionnaire.setService("Catering,Decoration");
+        questionnaire.setGuestCount(10);
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);
