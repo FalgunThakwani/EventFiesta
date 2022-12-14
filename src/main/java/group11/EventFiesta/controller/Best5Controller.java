@@ -32,12 +32,14 @@ public class Best5Controller {
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);
+
         GetBestNOptions getBestNOptions = new GetBestNOptions();
         List<GroupComponent> bestFiveGroups = getBestNOptions.getBestNGroups(servicesAndScores, 5);
         for (int id = 1; id <= bestFiveGroups.size(); id++) {
             bestFiveGroups.get(id - 1).setId(id);
         }
         System.out.println("bestFiveGroups: " + bestFiveGroups);
+
         model.addAttribute("bestFiveOptions", bestFiveGroups);
         return "BestFiveOptions";
     }
@@ -47,19 +49,21 @@ public class Best5Controller {
             @SessionAttribute("userEventQuestionnaire") UserEventQuestionnaire userEventQuestionnaire,
             @SessionAttribute("bestFiveOptions") ArrayList<GroupComponent> bestFiveOptions,
             @RequestParam Integer optionId, HttpServletRequest request) {
-        System.out.println("Inside acceptOption");
+
         System.out.println(userEventQuestionnaire);
         System.out.println(bestFiveOptions);
+
         int optionIndex = optionId - 1;
         if (bestFiveOptions.size() > optionIndex) {
             try {
                 OrganizerGroup selectedGroup = (OrganizerGroup) bestFiveOptions.get(optionIndex);
+
                 HttpSession session = request.getSession();
                 Integer user_id = Integer.parseInt(session.getAttribute("accountId").toString());
 
                 MailProtocol gmailSslSmtpProtocol = new SSLSMTPProtocol("smtp.gmail.com", 465);
-
                 IDBPersistence idbPersistence = new MySQLDBPersistence();
+
                 EventManager eventManager = new EventManager(idbPersistence, gmailSslSmtpProtocol);
                 eventManager.addEvent(userEventQuestionnaire, selectedGroup, user_id);
             } catch (Exception exception) {
