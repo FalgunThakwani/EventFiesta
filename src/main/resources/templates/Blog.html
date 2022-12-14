@@ -14,9 +14,13 @@
   <form th:object="${userReviews}" class="form-container">
     <div>
       <fieldset th:each="item: ${userReviews}">
-        <p th:text="'Review ID: ' + ${item.reviewId}"></p>
-        <p th:text="'Rating: ' + ${item.rating}"></p>
-        <p th:text="'Review: ' + ${item.review}"></p>
+        <table>
+          <tr>
+        <h5><p th:text="'Review ID: ' + ${item.reviewId}"></p></h5>
+        <h5><p th:text="'Rating: ' + ${item.rating}"></p></h5>
+          <h5><p th:text="'Review: ' + ${item.review}"></p></h5>
+          </tr>
+        </table>
       </fieldset>
     </div>
   </form>
