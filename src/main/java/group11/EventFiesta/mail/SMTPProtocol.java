@@ -1,10 +1,11 @@
 package group11.EventFiesta.mail;
 
+import javax.mail.Authenticator;
 import java.util.Properties;
 
 public abstract class SMTPProtocol extends MailProtocol {
 
-    public SMTPProtocol(String host, Integer port) {
+    public SMTPProtocol(String host, int port) {
         super(host, port);
     }
 
@@ -18,5 +19,9 @@ public abstract class SMTPProtocol extends MailProtocol {
         properties.put("mail.smtp.port", port);
         properties.put("mail.smtp.timeout", timeout);
         return properties;
+    }
+
+    public Authenticator getAuthenticator(EventFiestaMailCredentials efCredentials) {
+        return new SMTPAuthenticator(efCredentials.getEmail(), efCredentials.getAppPassword());
     }
 }

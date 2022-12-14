@@ -14,6 +14,7 @@ public class OrganizerGroup extends GroupComponent {
     public Double calculateScore() {
         System.out.println("Inside OrganizerGroup.calculateScore()");
         if (score == 0.0) {
+            System.out.println("Inside actual OrganizerGroup.calculateScore()");
             Double avgScore = 0.0;
             for (GroupComponent organizerService : organizerServices) {
                 avgScore += organizerService.calculateScore();

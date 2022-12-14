@@ -1,47 +1,39 @@
 package group11.EventFiesta.best5;
 
-import group11.EventFiesta.best5.GetBestNOptions;
-import group11.EventFiesta.best5.GroupComponent;
-import group11.EventFiesta.best5.OrganizerGroup;
-import group11.EventFiesta.best5.OrganizerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GetBestNOptionsTest {
-
-    private Map<String, List<GroupComponent>> getOrganizerServicesMock() {
-
-        Map<String, List<GroupComponent>> map = new HashMap();
-
-        List<GroupComponent> services = new ArrayList<>();
-        services.add(new OrganizerService("catering", 5.0));
-        services.add(new OrganizerService("catering", 4.0));
-        map.put("catering", services);
-
-        services = new ArrayList<>();
-        services.add(new OrganizerService("decoration", 3.0));
-        services.add(new OrganizerService("decoration", 5.0));
-//        services.add(new OrganizerService("decoration", 7.0));
-        map.put("decoration", services);
-
-        services = new ArrayList<>();
-        services.add(new OrganizerService("auditorium", 4.0));
-        map.put("auditorium", services);
-
-        return map;
-
+    @Test
+    public void getBestNGroupsMoreThanFiveGroupsTest() {
+        int n = 5;
+        GroupComponentMock mock = new GroupComponentMock();
+        Map<String, List<GroupComponent>> serviceProvidersMap = mock.getOrganizerServicesMoreThanFiveGroupsMock();
+        System.out.println(serviceProvidersMap);
+        GetBestNOptions getBestNOptions = new GetBestNOptions();
+        List<GroupComponent> bestNGroups = getBestNOptions.getBestNGroups(serviceProvidersMap, n);
+        System.out.println(bestNGroups);
+        Double[] bestScores = new Double[]{6.5, 5.5, 5.5, 5.0, 5.0};
+        for (int i = 0; i < n; i++) {
+            Assertions.assertEquals(bestScores[i], bestNGroups.get(i).calculateScore());
+        }
+        Assertions.assertEquals(bestNGroups.size(), n);
     }
     @Test
-    public void getBestNGroupsTest() {
+    public void getBestNGroupsLessThanFiveGroupsTest() {
         int n = 5;
-        Map<String, List<GroupComponent>> serviceProvidersMap = getOrganizerServicesMock();
+        GroupComponentMock mock = new GroupComponentMock();
+        Map<String, List<GroupComponent>> serviceProvidersMap = mock.getOrganizerServicesLessThanFiveGroupsMock();
         System.out.println(serviceProvidersMap);
-
         GetBestNOptions getBestNOptions = new GetBestNOptions();
-        List<GroupComponent> bestNGroups = getBestNOptions.getBestNGroups(serviceProvidersMap, 5);
-        Assertions.assertEquals(bestNGroups.size(), 4);
+        List<GroupComponent> bestNGroups = getBestNOptions.getBestNGroups(serviceProvidersMap, n);
+        System.out.println(bestNGroups);
+        Double[] bestScores = new Double[]{6.5, 5.0, 4.0, 2.5};
+        for (int i = 0; i < bestScores.length; i++) {
+            Assertions.assertEquals(bestScores[i], bestNGroups.get(i).calculateScore());
+        }
+        Assertions.assertEquals(bestNGroups.size(), bestScores.length);
     }
 }
