@@ -27,7 +27,6 @@ public class OrgnaizerForgotPasswordOTP {
 
     @PostMapping("/organizerGetOTP")
     public String getOTP(Model model, @ModelAttribute Organizer organizer) {
-        System.out.println("inside getOTP()" );
         IDBPersistence idbPersistence = new MySQLDBPersistence();
         List<Object[]> paramList = new ArrayList<>();
         Object [] params = new Object[] {"OrganizerInfo", "organizer_id", "email", organizer.getEmail()};
@@ -41,7 +40,6 @@ public class OrgnaizerForgotPasswordOTP {
 
     @PostMapping("/organizerValidateOTP")
     public String validateOTP(Model model, @ModelAttribute Organizer organizer) {
-        System.out.println("inside validateOTP()");
         Object[] params = new Object[]{"OrganizerSensitive", "otp, otp_time", "organizer_id", organizer.getAccountId().toString()};
         IForgotPassword forgotPassword = new ForgotPasswordUsingOTP(new MySQLDBPersistence(), params);
         IState state = forgotPassword.validate(organizer);

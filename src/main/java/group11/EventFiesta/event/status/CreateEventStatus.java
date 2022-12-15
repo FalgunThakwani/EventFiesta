@@ -2,7 +2,7 @@ package group11.EventFiesta.event.status;
 
 public class CreateEventStatus {
 
-    public IEventStatusWithPreviousState getEventStatusWithPreviousStatus(String action) {
+    public IEventStatusWithPreviousStatus getEventStatusWithPreviousStatus(String action) {
         switch (action) {
             case "upcoming":
                 return new EventUpcoming();

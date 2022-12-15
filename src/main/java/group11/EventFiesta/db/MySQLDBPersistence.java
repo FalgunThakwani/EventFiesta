@@ -11,7 +11,7 @@ public class MySQLDBPersistence implements IDBPersistence {
     private DBConnectionPool connectionPool;
 
     public MySQLDBPersistence() {
-        DBConnectionProperties properties = DBConnectionProperties.getInstance("mysql");
+        DBConnectionProperties properties = new DBConnectionProperties("mysql");
         connectionPool = DBConnectionPool.getInstance(properties);
     }
 
@@ -88,14 +88,12 @@ public class MySQLDBPersistence implements IDBPersistence {
     }
 
     public Integer saveData(String query, Object... params) throws Exception {
-        Connection connection;
+        Connection connection = connectionPool.getConnection();
 
         CallableStatement statement = null;
 
         Integer result = -1;
         try {
-            connection = connectionPool.getConnection();
-
             statement = connection.prepareCall(query);
 
             int pi = 1;
@@ -109,6 +107,7 @@ public class MySQLDBPersistence implements IDBPersistence {
             exception.printStackTrace();
         } finally {
             statement.close();
+            connection.close();
         }
         return result;
     }

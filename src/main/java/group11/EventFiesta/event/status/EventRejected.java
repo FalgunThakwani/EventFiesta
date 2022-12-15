@@ -1,6 +1,6 @@
 package group11.EventFiesta.event.status;
 
-public class EventRejected  implements IEventStatusWithPreviousState {
+public class EventRejected  implements IEventStatusWithPreviousStatus {
 
     @Override
     public String getEventStatus() {

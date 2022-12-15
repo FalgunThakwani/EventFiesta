@@ -27,7 +27,6 @@ public class UserForgotPasswordOTP {
 
     @PostMapping("/userGetOTP")
     public String getOTP(Model model, @ModelAttribute User user) {
-        System.out.println("inside getOTP()" );
         IDBPersistence idbPersistence = new MySQLDBPersistence();
         List<Object[]> paramList = new ArrayList<>();
         Object [] params = new Object[] {"UserInfo", "user_id", "email", user.getEmail()};
@@ -41,7 +40,6 @@ public class UserForgotPasswordOTP {
 
     @PostMapping("/userValidateOTP")
     public String validateOTP(Model model, @ModelAttribute User user) {
-        System.out.println("inside validateOTP()");
         Object[] params = new Object[]{"UserSensitive", "otp, otp_time", "user_id", user.getAccountId().toString()};
         IForgotPassword forgotPassword = new ForgotPasswordUsingOTP(new MySQLDBPersistence(), params);
         IState state = forgotPassword.validate(user);

@@ -9,7 +9,6 @@ public class PropertiesReader {
 
     private static PropertiesReader propertiesReader = null;
 
-    //used singleton to load properties because the properties does not vary, can be fetched just once from the properties file
     public static PropertiesReader getInstance() {
         if (propertiesReader == null) {
             synchronized (PropertiesReader.class) {

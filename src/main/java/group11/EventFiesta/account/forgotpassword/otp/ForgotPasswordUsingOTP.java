@@ -21,7 +21,6 @@ public class ForgotPasswordUsingOTP implements IForgotPassword {
         try {
             Integer otp = account.getOtp();
             List<Map<String, Object>> data = idbPersistence.loadData("getFromDBUsingWhere", params);
-            System.out.println(data);
             if (data.size() > 0) {
                 Integer originalOTP = Integer.parseInt(data.get(0).get("otp").toString());
                 Long otpTime = Long.parseLong(data.get(0).get("otp_time").toString());

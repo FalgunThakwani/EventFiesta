@@ -80,7 +80,6 @@ public class EventManager {
                 eventDetails.getBudget(), eventDetails.getGuestCount() };
         int[] outParams = new int[] { Types.INTEGER };
         List<Object> returnValues = idbPersistence.insertData("addEvent", params, outParams);
-        System.out.println(returnValues);
 
         if (returnValues != null && returnValues.size() > 0) {
 
