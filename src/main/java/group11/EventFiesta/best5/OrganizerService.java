@@ -4,7 +4,7 @@ public class OrganizerService extends GroupComponent {
 
     /// 1 particular organizer will have 1 service and 1 score
 
-    protected String serviceName;// catering, decoration, auditorium
+    protected String serviceName;
     protected Integer orgranizerId;
 
     protected Integer id;

@@ -31,13 +31,4 @@ public class OrganizerLogin implements ILogin {
         request.getSession().invalidate();
         return true;
     }
-
-    @Override
-    public Boolean resetPassword(Account account) {
-        return null;
-    }
-
-    public void forgotPassword(Account account) {
-        return;
-    }
 }
