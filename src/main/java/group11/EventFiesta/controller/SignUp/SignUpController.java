@@ -86,7 +86,7 @@ public class SignUpController {
             System.out.println("Error in validating Organizer");
             e.printStackTrace();
         }
-        return "redire";
+        return "home";
     }
 
 }

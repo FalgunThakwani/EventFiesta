@@ -1,28 +1,24 @@
 package group11.EventFiesta.best5;
 
+import group11.EventFiesta.db.IDBPersistence;
+import group11.EventFiesta.db.MockDetailsFromDB;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
 import java.util.Map;
 
-public class ScoreByBudget implements ICalculateScore {
+public class ScoreByBudgetTest {
 
-    private IHelperForDB helperForDB;
-    private Integer serviceId;
-    private Double budget;
-    private Double numberOfServices;
-    private Double headCount;
+    IDBPersistence helperForDB = new MockDetailsFromDB();
 
-    public ScoreByBudget(IHelperForDB helperForDB, OrganizerService service, Double numberOfServiceByUser) {
-        this.helperForDB = helperForDB;
-        this.serviceId = service.id;
-        this.budget = service.budget;
-        this.numberOfServices = numberOfServiceByUser;
-        this.headCount = service.headCount;
-    }
-
-    @Override
-    public Double calculateScoreForService() {
+    @Test
+    public void calculateScoreForService() throws Exception {
+        Double budget = 1000.0;
+        Double numberOfServices=2.0;
         Double total = 4.0;
-        List<Map<String, Object>> resultSet = helperForDB.getBudgetForService(serviceId);
+        Double headCount= 25.0;
+        List<Map<String, Object>> resultSet = helperForDB.loadData("sp_getBudgetForService","1");
         Double twentyPercentOfBudget = ((budget * 20) / 100);
         Double budgetByService = budget / numberOfServices;
         Double budget_l = budgetByService - twentyPercentOfBudget;
@@ -44,7 +40,6 @@ public class ScoreByBudget implements ICalculateScore {
         if (total < 0) {
             total *= -1;
         }
-        return total;
+        Assertions.assertEquals(total,28.571428571428573);
     }
-
 }
