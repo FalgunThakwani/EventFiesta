@@ -28,8 +28,8 @@ public class DBConnectionPool {
         ds.setUrl(dbProperties.getUrl());
         ds.setUsername(dbProperties.getUsername());
         ds.setPassword(dbProperties.getPassword());
-        ds.setMinIdle(5);
-        ds.setMaxIdle(10);
+        ds.setMinIdle(2);
+        ds.setMaxIdle(3);
         ds.setMaxOpenPreparedStatements(100);
     }
 
