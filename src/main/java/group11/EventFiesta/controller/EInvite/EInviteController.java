@@ -2,6 +2,7 @@ package group11.EventFiesta.controller.EInvite;
 
 import java.util.Date;
 
+import group11.EventFiesta.EInvite.IEInviteHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class EInviteController {
     @PostMapping("/handleInvite")
     public String handleInvite(@ModelAttribute EInviteModel eInviteModel, @ModelAttribute UserEvent userEvent) {
         eInviteModel.setVenue(userEvent.getEventVenue());
-        EInviteHandler handle = new EInviteHandler(eInviteModel);
+        IEInviteHandler handle = new EInviteHandler(eInviteModel);
         handle.AddTextInImage();
         return "DownloadEInvite";
     }

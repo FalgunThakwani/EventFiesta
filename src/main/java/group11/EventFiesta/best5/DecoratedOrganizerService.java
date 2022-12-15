@@ -44,10 +44,11 @@ public class DecoratedOrganizerService extends BaseDecorator {
             firstName = resultSet.get(0).get("first_name").toString();
             lastName = resultSet.get(0).get("last_name").toString();
             email = resultSet.get(0).get("email").toString();
-            phoneNumber = Long.parseLong(resultSet.get(0).get("phone_number").toString());
+            // phoneNumber =
+            // Long.parseLong(resultSet.get(0).get("phone_number").toString());
             province = resultSet.get(0).get("province").toString();
             city = resultSet.get(0).get("city").toString();
-            pincode = resultSet.get(0).get("province").toString();
+            pincode = resultSet.get(0).get("pincode").toString();
             contact_hours_from = (LocalDateTime) resultSet.get(0).get("contact_hours_from");
             contact_hours_to = (LocalDateTime) resultSet.get(0).get("contact_hours_to");
         }

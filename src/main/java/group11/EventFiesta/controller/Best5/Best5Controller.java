@@ -8,7 +8,6 @@ import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.best5.*;
 import group11.EventFiesta.event.EventManager;
-import group11.EventFiesta.mail.Mail;
 import group11.EventFiesta.mail.MailProtocol;
 import group11.EventFiesta.mail.SSLSMTPProtocol;
 import org.springframework.stereotype.Controller;
@@ -27,13 +26,7 @@ public class Best5Controller {
 
     @GetMapping("/bestOrganizers")
     public String getBest5Organizers(RedirectAttributes requestAttribute, Model model) {
-        // UserEventQuestionnaire questionnaire = (UserEventQuestionnaire)
-        // model.getAttribute("userEventObject");
-        UserEventQuestionnaire questionnaire = new UserEventQuestionnaire();
-        questionnaire.setBudget(1500);
-        questionnaire.setCity("Halifax");
-        questionnaire.setGuestCount(50);
-        questionnaire.setService("Catering,Decoration");
+        UserEventQuestionnaire questionnaire = (UserEventQuestionnaire) model.getAttribute("userEventObject");
         HandleUserQuestionnaire handleUserQuestionnaire = new HandleUserQuestionnaire(questionnaire);
         Map<String, List<GroupComponent>> servicesAndScores = handleUserQuestionnaire.getMapValuePairOfService();
         System.out.println(servicesAndScores);

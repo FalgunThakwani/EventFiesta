@@ -16,45 +16,37 @@ public class MockUserSignUpDBPersistence implements IDBPersistence {
 
     @Override
     public List<Map<String, Object>> loadData(String storedProcedure, Object... params) throws Exception {
-        List<Map<String, Object>> mock = new ArrayList<>();
-        if (storedProcedure.equals("getFromDBUsingWhere")) {
-            if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"UserSensitive", "otp, otp_time", "user_id", 1}))) {
-                //validateUserOTPSuccessTest()
-                Map map = new HashMap();
-                map.put("otp", 1111);
-                map.put("otp_time", System.currentTimeMillis());
-                mock.add(map);
-            } else if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"UserSensitive", "otp, otp_time", "user_id", 2}))) {
-                //validateUserExpiredOTPTest
-                Map map = new HashMap();
-                map.put("otp", 1111);
-                map.put("otp_time", 1111);
-                mock.add(map);
-            } else if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"OrganizerSensitive", "otp, otp_time", "organizer_id", 1}))) {
-                //validateOrganizerOTPSuccessTest()
-                Map map = new HashMap();
-                map.put("otp", 1111);
-                map.put("otp_time", System.currentTimeMillis());
-                mock.add(map);
-            } else if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"OrganizerSensitive", "otp, otp_time", "organizer_id", 2}))) {
-                //validateOrganizerOTPTest
-                Map map = new HashMap();
-                map.put("otp", 1111);
-                map.put("otp_time", 1111);
-                mock.add(map);
-            } else if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"OrganizerInfo", "organizer_id", "email", "generateOTP@gmail.com"}))) {
-                //generateOrganizerOTPSuccessTest
-                Map map = new HashMap();
-                map.put("organizer_id", 1);
-                mock.add(map);
-            }else if (Arrays.toString(params).equals(Arrays.toString(new Object[]{"UserInfo", "user_id", "email", "generateOTP@gmail.com"}))) {
-                //generateUserOTPSuccessTest
-                Map map = new HashMap();
-                map.put("user_id", 1);
+
+        if (storedProcedure.equals("sp_checkUserExists")) {
+            List<Map<String, Object>> mock = new ArrayList<>();
+            Map<String, Object> map = new HashMap<>();
+            if (params.equals("falgunthakwani@gmail.com")) {
+                map.put("user_id", "2");
+                map.put("email", "falgunthakwani@gmail.com");
                 mock.add(map);
             }
+            return mock;
+        } else if (storedProcedure.equals("sp_storeUserData")) {
+            List<Map<String, Object>> mock = new ArrayList<>();
+            Map<String, Object> map = new HashMap<>();
+            map.put("firstName", "falgun");
+            map.put("lastName", "thakwani");
+            map.put("email", "falgun@gmail.com");
+            map.put("password", "Awqedm32fsdf13245");
+            map.put("key", "vdskmk3324");
+            map.put("sign_up_date", "2022-01-30");
+            map.put("last_login", "2022-01-30");
+            map.put("isLogin", "0");
+            map.put("security_question", "What is your father's middle name?");
+            map.put("security_answer", "Jairaj");
+            map.put("private_key_expiry", "2022-01-30");
+            mock.add(map);
+            return mock;
+        } else {
+            List<Map<String, Object>> mock = new ArrayList<>();
+            return mock;
         }
-        return mock;
+
     }
 
     @Override
@@ -74,5 +66,5 @@ public class MockUserSignUpDBPersistence implements IDBPersistence {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
 }
