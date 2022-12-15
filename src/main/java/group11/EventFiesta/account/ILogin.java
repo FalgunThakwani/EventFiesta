@@ -10,9 +10,4 @@ public interface ILogin {
 
     Boolean logout(HttpServletRequest request);
 
-    //validate the security question and answer and give option to reset the password after validation
-     Boolean resetPassword(Account account);
-
-     void forgotPassword(Account account);
-
 }

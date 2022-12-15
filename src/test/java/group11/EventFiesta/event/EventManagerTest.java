@@ -1,12 +1,9 @@
 package group11.EventFiesta.event;
 
 import group11.EventFiesta.best5.DecoratedOrganizerService;
-import group11.EventFiesta.best5.GroupComponent;
 import group11.EventFiesta.best5.OrganizerGroup;
-import group11.EventFiesta.best5.OrganizerService;
 import group11.EventFiesta.db.IDBPersistence;
 import group11.EventFiesta.db.MockEventManagerDBPersistence;
-import group11.EventFiesta.db.MySQLDBPersistence;
 import group11.EventFiesta.event.status.CreateEventStatus;
 import group11.EventFiesta.event.status.IEventStatus;
 import group11.EventFiesta.event.status.IEventStatusWithPreviousStatus;
@@ -20,8 +17,6 @@ import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

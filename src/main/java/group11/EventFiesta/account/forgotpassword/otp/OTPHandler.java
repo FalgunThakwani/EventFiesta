@@ -8,7 +8,6 @@ import group11.EventFiesta.mail.SMTPProtocol;
 import group11.EventFiesta.model.Account;
 
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Random;
 
 

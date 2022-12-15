@@ -1,7 +1,6 @@
 package group11.EventFiesta.authentication;
 
 import group11.EventFiesta.application.PropertiesReader;
-import group11.EventFiesta.mail.Mail;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
